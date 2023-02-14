@@ -16,7 +16,17 @@
   <link rel="apple-touch-icon" href="<?php print_unescaped(image_path('', 'favicon-touch.png')); ?>">
   <link rel="mask-icon" sizes="any" href="<?php print_unescaped('/themes/nextmagentacloud21/core/img/favicon-mask.svg'); ?>" color="<?php p($theme->getColorPrimary()); ?>">
   <link rel="manifest" href="<?php print_unescaped('/themes/nextmagentacloud21/core/img/manifest.json'); ?>">
-  <?php emit_css_loading_tags($_); ?>
+  <?php
+  /* Get tealium config  */
+    use OCP\IConfig;
+    $config = \OC::$server->get(IConfig::class);
+    $tealiumConfig = $config->getSystemValue('tealium');
+    if($tealiumConfig && $tealiumConfig['enable']){ ?>
+    <!--TODO :Trying to load Telium library directly from CDN -->
+      <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
+    src="<?php echo $tealiumConfig['url'];?>"></script>
+  <?php } ?>
+   <?php emit_css_loading_tags($_); ?>
   <?php emit_script_loading_tags($_); ?>
   <?php print_unescaped($_['headers']); ?>
 </head>
