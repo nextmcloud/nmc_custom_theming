@@ -779,3 +779,41 @@ aside .icon-star{
 }
 
 
+/* Guest view Colloboara icons */
+#files-public-content a[href$=".docx"] .publicpreview, #files-public-content a[href$=".doc"] .publicpreview,
+#files-public-content a[href$=".odt"] .publicpreview, #files-public-content a[href$=".fodt"] .publicpreview,
+#files-public-content a[href$=".lwp"] .publicpreview, #files-public-content a[href$=".vsd"] .publicpreview,
+#files-public-content a[href$=".vsdx"] .publicpreview, #files-public-content a[href$=".wpd"] .publicpreview,
+#files-public-content a[href$=".one"] .publicpreview, #files-public-content a[href$=".dotx"] .publicpreview,
+#files-public-content a[href$=".docm"] .publicpreview, #files-public-content a[href$=".rtf"] .publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/text.svg");
+}
+
+#files-public-content a[href$=".xlsx"] .publicpreview, #files-public-content a[href$=".ods"] .publicpreview
+#files-public-content a[href$=".fods"] .publicpreview, #files-public-content a[href$=".csv"] .publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-spreadsheet.svg");
+}
+
+#files-public-content a[href$=".odg"] .publicpreview, #files-public-content a[href$=".fodg"] .publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/file-analytics.svg");
+}
+
+#files-public-content a[href$=".pptx"] .publicpreview, #files-public-content a[href$=".odp"] .publicpreview,
+#files-public-content a[href$=".fodp"] .publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-presentation.svg");
+}
+
+/* Grid view Colloboara icons */
+
+#filestable [data-mime="application/vnd.oasis.opendocument.graphics"] .thumbnail, #filestable [data-mime="application/vnd.oasis.opendocument.graphics-flat-xml"] .thumbnail{
+  background-image: url('/themes/nextmagentacloud21/core/img/filetypes/file-analytics.svg') !important;
+}
+
+#filestable [data-mime="application/vnd.oasis.opendocument.text-flat-xml"] .thumbnail, #filestable [data-mime="application/vnd.lotus-wordpro"] .thumbnail,
+#filestable [data-mime="application/vnd.ms-visio.drawing"] .thumbnail, #filestable [data-mime="application/vnd.ms-visio.drawing"] .thumbnail,
+#filestable [data-mime="application/vnd.wordperfect"] .thumbnail, #filestable [data-mime="application/msonenote"] .thumbnail,
+#filestable [data-mime="application/vnd.openxmlformats-officedocument.wordprocessingml.template"] .thumbnail,
+#filestable [data-mime="application/vnd.ms-word.document.macroEnabled.12"] .thumbnail, #filestable [data-mime="application/vnd.visio"] .thumbnail{
+  background-image: url('/themes/nextmagentacloud21/core/img/filetypes/text.svg') !important;
+}
+
