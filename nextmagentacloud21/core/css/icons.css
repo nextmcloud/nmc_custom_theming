@@ -785,12 +785,16 @@ aside .icon-star{
 #files-public-content a[href$=".lwp"] .publicpreview, #files-public-content a[href$=".vsd"] .publicpreview,
 #files-public-content a[href$=".vsdx"] .publicpreview, #files-public-content a[href$=".wpd"] .publicpreview,
 #files-public-content a[href$=".one"] .publicpreview, #files-public-content a[href$=".dotx"] .publicpreview,
-#files-public-content a[href$=".docm"] .publicpreview, #files-public-content a[href$=".rtf"] .publicpreview{
+#files-public-content a[href$=".docm"] .publicpreview, 
+#files-public-content a[href$=".rtf"] .publicpreview, #files-public-content a[href$=".svg"] .publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/text.svg");
 }
 
 #files-public-content a[href$=".xlsx"] .publicpreview, #files-public-content a[href$=".ods"] .publicpreview
-#files-public-content a[href$=".fods"] .publicpreview, #files-public-content a[href$=".csv"] .publicpreview{
+#files-public-content a[href$=".fods"] .publicpreview, #files-public-content a[href$=".csv"] .publicpreview,
+#files-public-content a[href$=".xltx"] .publicpreview, #files-public-content a[href$=".xltm"] .publicpreview,
+#files-public-content a[href$=".xlam"] .publicpreview, #files-public-content a[href$=".xlsb"] .publicpreview,
+#files-public-content a[href$=".xls"] .publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-spreadsheet.svg");
 }
 
@@ -799,9 +803,45 @@ aside .icon-star{
 }
 
 #files-public-content a[href$=".pptx"] .publicpreview, #files-public-content a[href$=".odp"] .publicpreview,
-#files-public-content a[href$=".fodp"] .publicpreview{
+#files-public-content a[href$=".fodp"] .publicpreview, #files-public-content a[href$=".ppsx"] .publicpreview,
+#files-public-content a[href$=".potx"] .publicpreview, #files-public-content a[href$=".ppam"] .publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-presentation.svg");
 }
+
+
+/* Guest view Colloboara icons for hidedownload*/
+
+#files-public-content img[src$=".docx&scalingup=0"].publicpreview, #files-public-content img[src$=".doc&scalingup=0"].publicpreview,
+#files-public-content img[src$=".odt&scalingup=0"].publicpreview, #files-public-content img[src$=".fodt&scalingup=0"].publicpreview,
+#files-public-content img[src$=".lwp&scalingup=0"].publicpreview, #files-public-content img[src$=".vsd&scalingup=0"].publicpreview,
+#files-public-content img[src$=".vsdx&scalingup=0"].publicpreview, #files-public-content img[src$=".wpd&scalingup=0"].publicpreview,
+#files-public-content img[src$=".one&scalingup=0"].publicpreview, #files-public-content img[src$=".dotx&scalingup=0"].publicpreview,
+#files-public-content img[src$=".docm&scalingup=0"].publicpreview, #files-public-content img[src$=".rtf&scalingup=0"].publicpreview,
+#files-public-content img[src$=".svg?svg"].publicpreview, #files-public-content img[src$=".svg"].publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/text.svg") !important;
+}
+
+
+#files-public-content img[src$=".xlsx&scalingup=0"].publicpreview, #files-public-content img[src$=".ods&scalingup=0"].publicpreview
+#files-public-content img[src$=".fods&scalingup=0"].publicpreview, #files-public-content img[src$=".csv&scalingup=0"].publicpreview,
+#files-public-content img[src$=".xltx&scalingup=0"].publicpreview, #files-public-content img[src$=".xltm&scalingup=0"].publicpreview,
+#files-public-content img[src$=".xlam&scalingup=0"].publicpreview, #files-public-content img[src$=".xlsb&scalingup=0"].publicpreview,
+#files-public-content img[src$=".fods&scalingup=0"].publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-spreadsheet.svg") !important;
+}
+
+#files-public-content img[src$=".odg&scalingup=0"].publicpreview, #files-public-content img[src$=".fodg&scalingup=0"].publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/file-analytics.svg") !important;
+}
+
+
+#files-public-content img[src$=".pptx&scalingup=0"].publicpreview, #files-public-content img[src$=".odp&scalingup=0"].publicpreview,
+#files-public-content img[src$=".fodp&scalingup=0"].publicpreview, #files-public-content img[src$=".ppsx&scalingup=0"].publicpreview,
+#files-public-content img[src$=".potx&scalingup=0"].publicpreview, #files-public-content img[src$=".ppam&scalingup=0"].publicpreview,
+#files-public-content img[src$=".fodp&scalingup=0"].publicpreview{
+  content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-presentation.svg") !important;
+}
+
 
 /* Grid view Colloboara icons */
 
@@ -813,7 +853,7 @@ aside .icon-star{
 #filestable [data-mime="application/vnd.ms-visio.drawing"] .thumbnail, #filestable [data-mime="application/vnd.ms-visio.drawing"] .thumbnail,
 #filestable [data-mime="application/vnd.wordperfect"] .thumbnail, #filestable [data-mime="application/msonenote"] .thumbnail,
 #filestable [data-mime="application/vnd.openxmlformats-officedocument.wordprocessingml.template"] .thumbnail,
-#filestable [data-mime="application/vnd.ms-word.document.macroEnabled.12"] .thumbnail, #filestable [data-mime="application/vnd.visio"] .thumbnail{
+#filestable [data-mime="application/vnd.ms-word.document.macroEnabled.12"] .thumbnail,
+#filestable [data-mime="application/vnd.visio"] .thumbnail, #filestable [data-mime="application/octet-stream"] .thumbnail{
   background-image: url('/themes/nextmagentacloud21/core/img/filetypes/text.svg') !important;
 }
-
