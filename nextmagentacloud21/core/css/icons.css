@@ -816,8 +816,7 @@ aside .icon-star{
 #files-public-content img[src$=".lwp&scalingup=0"].publicpreview, #files-public-content img[src$=".vsd&scalingup=0"].publicpreview,
 #files-public-content img[src$=".vsdx&scalingup=0"].publicpreview, #files-public-content img[src$=".wpd&scalingup=0"].publicpreview,
 #files-public-content img[src$=".one&scalingup=0"].publicpreview, #files-public-content img[src$=".dotx&scalingup=0"].publicpreview,
-#files-public-content img[src$=".docm&scalingup=0"].publicpreview, #files-public-content img[src$=".rtf&scalingup=0"].publicpreview,
-#files-public-content img[src$=".svg?svg"].publicpreview, #files-public-content img[src$=".svg"].publicpreview{
+#files-public-content img[src$=".docm&scalingup=0"].publicpreview, #files-public-content img[src$=".rtf&scalingup=0"].publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/text.svg") !important;
 }
 
