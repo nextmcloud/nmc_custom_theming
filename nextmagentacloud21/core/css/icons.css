@@ -794,7 +794,7 @@ aside .icon-star{
 #files-public-content a[href$=".fods"] .publicpreview, #files-public-content a[href$=".csv"] .publicpreview,
 #files-public-content a[href$=".xltx"] .publicpreview, #files-public-content a[href$=".xltm"] .publicpreview,
 #files-public-content a[href$=".xlam"] .publicpreview, #files-public-content a[href$=".xlsb"] .publicpreview,
-#files-public-content a[href$=".xls"] .publicpreview{
+#files-public-content a[href$=".xls"] .publicpreview, #files-public-content a[href$=".xlsm"] .publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-spreadsheet.svg");
 }
 
@@ -825,7 +825,8 @@ aside .icon-star{
 #files-public-content img[src$=".fods&scalingup=0"].publicpreview, #files-public-content img[src$=".csv&scalingup=0"].publicpreview,
 #files-public-content img[src$=".xltx&scalingup=0"].publicpreview, #files-public-content img[src$=".xltm&scalingup=0"].publicpreview,
 #files-public-content img[src$=".xlam&scalingup=0"].publicpreview, #files-public-content img[src$=".xlsb&scalingup=0"].publicpreview,
-#files-public-content img[src$=".fods&scalingup=0"].publicpreview{
+#files-public-content img[src$=".fods&scalingup=0"].publicpreview, #files-public-content img[src$=".ods&scalingup=0"].publicpreview,
+#files-public-content img[src$=".xls&scalingup=0"].publicpreview, #files-public-content img[src$=".xlsm&scalingup=0"].publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/x-office-spreadsheet.svg") !important;
 }
 
