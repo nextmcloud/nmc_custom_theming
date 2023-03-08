@@ -24,8 +24,14 @@
     if($tealiumConfig && $tealiumConfig['enable']){ ?>
     <!--TODO :Trying to load Telium library directly from CDN -->
       <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
-    src="<?php echo $tealiumConfig['url'];?>">console.log("-----------------------------consent layer test ------------------------------------------------------------")</script>
-  <?php } ?>
+    src="<?php echo $tealiumConfig['url'];?>">
+      window.onload = teliumCheck;
+      function teliumCheck() {
+        console.log(" ----Tealium Check------")
+      }
+    </script>
+
+    <?php } ?>
    <?php emit_css_loading_tags($_); ?>
   <?php emit_script_loading_tags($_); ?>
   <?php print_unescaped($_['headers']); ?>
