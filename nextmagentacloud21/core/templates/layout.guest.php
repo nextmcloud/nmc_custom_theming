@@ -25,10 +25,9 @@
     <!--TODO :Trying to load Telium library directly from CDN -->
       <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
     src="<?php echo $tealiumConfig['url'];?>">
-      window.onload = teliumCheck;
-      function teliumCheck() {
-        console.log(" ----Tealium Check------")
-      }
+    </script>
+      <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
+    src="/themes/nextmagentacloud21/core/js/televent.js">
     </script>
 
     <?php } ?>
