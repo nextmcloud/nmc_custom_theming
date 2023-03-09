@@ -35,37 +35,37 @@ build-image-dev1:
   only:
     - /^dev1-.*$/
 
-build-image-dev2:
-  stage: build
-  variables:
-    TARGET_DIR: 40_nextcloud-magenta
-    DEPLOY: "true"
-    PKR_VAR_image_tag: 'dev2_CI-$CI_PIPELINE_IID'
-    PKR_VAR_APP_FILES_VIDEOPLAYER_TAG: "nmc01.00.01"
-    PKR_VAR_APP_FILES_ZIP_TAG: "nmc01.00.00"
-    PKR_VAR_APP_FILES_DOWNLOADLIMIT_TAG: "1.0.1"
-    PKR_VAR_APP_MONTHLY_STATUS_EMAIL_TAG: "nmc01.00.06"
-    PKR_VAR_APP_END_TO_END_ENCRYPTION_TAG: "nmc01.00.01"
-    PKR_VAR_APP_PHOTOS_TAG: "nmc01.00.08"
-    PKR_VAR_APP_TEXT_TAG: "nmc01.00.05"
-    PKR_VAR_APP_NMC_FIRSTRUNWIZARD_TAG: "nmc01.00.00"
-    PKR_VAR_APP_NMC_FILES_ACTIVITY_TAG: "nmc01.00.04"
-    PKR_VAR_APP_ACTIVITY_TAG: "nmc01.00.02"
-    PKR_VAR_APP_NMC_SHARING_TAG: "nmc01.00.01"
-    PKR_VAR_APP_NMC_WELCOME_POPUP_TAG: "nmc01.00.04"
-    PKR_VAR_APP_NMC_EMAIL_TEMPLATE_TAG: "nmc01.00.17"
-    PKR_VAR_APP_QUOTA_WARNING_TAG: "nmc01.00.00"
-    PKR_VAR_APP_USER_OIDC_TAG: "nmc-1.2.6-1"
-    PKR_VAR_APP_NMCPROVISIONING_TAG: "1.0.4-18"
-    PKR_VAR_NC_VERSION: "24.0.4"
-    PKR_VAR_NC_TAG: "nmcrel24.0.4-39"
-    PKR_VAR_theme_tag: $CI_COMMIT_TAG
-  trigger:
-    project: nextmagentacloud/images
-    branch: master
-    strategy: depend
-  only:
-    - /^dev2-.*$/
+#build-image-dev2:
+#  stage: build
+#  variables:
+#    TARGET_DIR: 40_nextcloud-magenta
+#    DEPLOY: "true"
+#    PKR_VAR_image_tag: 'dev2_CI-$CI_PIPELINE_IID'
+#    PKR_VAR_APP_FILES_VIDEOPLAYER_TAG: "nmc01.00.01"
+#    PKR_VAR_APP_FILES_ZIP_TAG: "nmc01.00.00"
+#    PKR_VAR_APP_FILES_DOWNLOADLIMIT_TAG: "1.0.1"
+#    PKR_VAR_APP_MONTHLY_STATUS_EMAIL_TAG: "nmc01.00.06"
+#    PKR_VAR_APP_END_TO_END_ENCRYPTION_TAG: "nmc01.00.01"
+#    PKR_VAR_APP_PHOTOS_TAG: "nmc01.00.08"
+#    PKR_VAR_APP_TEXT_TAG: "nmc01.00.05"
+#    PKR_VAR_APP_NMC_FIRSTRUNWIZARD_TAG: "nmc01.00.00"
+#    PKR_VAR_APP_NMC_FILES_ACTIVITY_TAG: "nmc01.00.04"
+#    PKR_VAR_APP_ACTIVITY_TAG: "nmc01.00.02"
+#    PKR_VAR_APP_NMC_SHARING_TAG: "nmc01.00.01"
+#    PKR_VAR_APP_NMC_WELCOME_POPUP_TAG: "nmc01.00.04"
+#    PKR_VAR_APP_NMC_EMAIL_TEMPLATE_TAG: "nmc01.00.17"
+#    PKR_VAR_APP_QUOTA_WARNING_TAG: "nmc01.00.00"
+#    PKR_VAR_APP_USER_OIDC_TAG: "nmc-1.2.6-1"
+#    PKR_VAR_APP_NMCPROVISIONING_TAG: "1.0.4-18"
+#    PKR_VAR_NC_VERSION: "24.0.4"
+#    PKR_VAR_NC_TAG: "nmcrel24.0.4-39"
+#    PKR_VAR_theme_tag: $CI_COMMIT_TAG
+#  trigger:
+#    project: nextmagentacloud/images
+#    branch: master
+#    strategy: depend
+#  only:
+#    - /^dev2-.*$/
 
 build-image-dev3:
   stage: build
@@ -114,20 +114,20 @@ deploy-dev1:
   only:
     - /^dev1-.*$/
 
-deploy-dev2:
-  stage: deploy
-  needs:
-    - job: build-image-dev2
-  variables:
-    DEPLOY_STAGE: "dev2"
-    DEPLOY: "true"
-    THEME_TAG: $CI_COMMIT_TAG
-  trigger:
-    project: nextmagentacloud/deployment
-    branch: master
-    strategy: depend
-  only:
-    - /^dev2-.*$/
+#deploy-dev2:
+#  stage: deploy
+#  needs:
+#    - job: build-image-dev2
+#  variables:
+#    DEPLOY_STAGE: "dev2"
+#    DEPLOY: "true"
+#    THEME_TAG: $CI_COMMIT_TAG
+#  trigger:
+#    project: nextmagentacloud/deployment
+#    branch: master
+#    strategy: depend
+#  only:
+#    - /^dev2-.*$/
 
 deploy-dev3:
   stage: deploy
