@@ -24,13 +24,8 @@
     if($tealiumConfig && $tealiumConfig['enable']){ ?>
     <!--TODO :Trying to load Telium library directly from CDN -->
       <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
-    src="<?php echo $tealiumConfig['url'];?>">
-    </script>
-      <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
-    src="/themes/nextmagentacloud21/core/js/televent.js">
-    </script>
-
-    <?php } ?>
+    src="<?php echo $tealiumConfig['url'];?>"></script>
+  <?php } ?>
    <?php emit_css_loading_tags($_); ?>
   <?php emit_script_loading_tags($_); ?>
   <?php print_unescaped($_['headers']); ?>

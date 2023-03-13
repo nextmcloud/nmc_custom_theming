@@ -11,7 +11,8 @@ window.onload = function () {
   breadcrumbAddLabel();
   mobileOnlyClass();
   webTrackingEvents();
-  leftSidebarEvents()
+  leftSidebarEvents();
+  login_tracking();
 };
 
 function brandBarAnimation() {
@@ -628,4 +629,30 @@ function leftSidebarEvents() {
   $('.nav-icon-trashbin').click(function(){
     window._nc_event_bus.emit('files:navigation:changed')
   })
+}
+
+
+function login_tracking() {
+  setTimeout(() => {
+    var constLayerAccButton = document.querySelector('#consentAcceptAll');
+    if(constLayerAccButton){
+      constLayerAccButton.addEventListener('click', function() {
+        // tracking event
+        if(typeof utag!=='undefined' && utag.view()) {
+          var utag_data = {
+            page_content_id : "magentacloud.de.privatkunden.consentlayer",
+            page_type : "theme"
+            }
+            utag.view(utag_data);
+           }
+
+      // telkom redirection
+      urlSearchParams = new URLSearchParams(window.location.search);
+      if(urlSearchParams.get('direct')!="1"){
+        var telLoginButton = document.getElementById('alternative-logins');
+        telLoginButton.children[0].click();
+      }
+    }, false);
+    }
+  }, "200");
 }
