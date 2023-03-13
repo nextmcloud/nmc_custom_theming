@@ -631,28 +631,53 @@ function leftSidebarEvents() {
   })
 }
 
+function login_tracking_details(){
+    // tracking event
+    if(typeof utag!=='undefined' && utag.view()) {
+      var utag_data = {
+        page_content_id : "magentacloud.de.privatkunden.consentlayer",
+        page_type : "theme"
+        }
+        utag.view(utag_data);
+        }
+
+  // telkom redirection
+  urlSearchParams = new URLSearchParams(window.location.search);
+  if(urlSearchParams.get('direct')!="1"){
+    var telLoginButton = document.getElementById('alternative-logins');
+    telLoginButton.children[0].click();
+  }
+}
 
 function login_tracking() {
   setTimeout(() => {
     var constLayerAccButton = document.querySelector('#consentAcceptAll');
+    var onlyReqAccButton = document.querySelector('#rejectAll');
+
     if(constLayerAccButton){
       constLayerAccButton.addEventListener('click', function() {
-        // tracking event
-        if(typeof utag!=='undefined' && utag.view()) {
-          var utag_data = {
-            page_content_id : "magentacloud.de.privatkunden.consentlayer",
-            page_type : "theme"
-            }
-            utag.view(utag_data);
-           }
-
-      // telkom redirection
-      urlSearchParams = new URLSearchParams(window.location.search);
-      if(urlSearchParams.get('direct')!="1"){
-        var telLoginButton = document.getElementById('alternative-logins');
-        telLoginButton.children[0].click();
-      }
+        login_tracking_details();
     }, false);
     }
+
+    if(onlyReqAccButton){
+      onlyReqAccButton.addEventListener('click', function() {
+        login_tracking_details();
+    }, false);
+    }
+
+    document.addEventListener("click", function(e){
+      const target = e.target.closest("#consentSettingsAcceptAll");
+      if(target){
+        login_tracking_details();
+      }
+    })
+
   }, "200");
 }
+
+
+
+
+
+
