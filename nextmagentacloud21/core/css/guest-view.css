@@ -185,6 +185,11 @@
       display:none;
     }
 
+    .login-section input#password {
+      width: 249px;
+      margin-top: 10px !important;
+    }
+
     /* Guest view small screen download button */
     @media only screen and (max-width: 1024px){
       #body-public .header-right #header-primary-action {
