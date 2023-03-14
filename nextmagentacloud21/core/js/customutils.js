@@ -646,11 +646,12 @@ function login_tracking_details(){
   if(urlSearchParams.get('direct')!="1"){
     var telLoginButton = document.getElementById('alternative-logins');
     telLoginButton.children[0].click();
+  }else{
+    document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
   }
 }
 
 function login_tracking() {
-  setTimeout(() => {
     var constLayerAccButton = document.querySelector('#consentAcceptAll');
     var onlyReqAccButton = document.querySelector('#rejectAll');
 
@@ -672,8 +673,6 @@ function login_tracking() {
         login_tracking_details();
       }
     })
-
-  }, "200");
 }
 
 

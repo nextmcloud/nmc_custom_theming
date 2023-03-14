@@ -78,7 +78,7 @@ if ($isLoginPage || $isShareAuth) {
       <?php endif; ?>
       <main>
         <div class="login-main">
-          <div class="login-section">
+          <div class="login-section visibility-hidden">
             <div class="logo">
               <h1 class="hidden-visually">
                 <?php p($theme->getName()); ?>

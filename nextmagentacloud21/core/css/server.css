@@ -2393,6 +2393,15 @@ opacity: unset !important;
     color: white !important;
     }
 
+  .visibility-hidden {
+    visibility: hidden;
+  }
+
+  /*Telium popup css */
+  .cl-main .cl-link {
+    color: #00739f !important;
+  }
+
   /*Responsive Styling*/
 
  @media screen and (max-width: 375px) {
