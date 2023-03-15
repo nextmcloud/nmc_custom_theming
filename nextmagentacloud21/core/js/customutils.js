@@ -12,7 +12,7 @@ window.onload = function () {
   mobileOnlyClass();
   webTrackingEvents();
   leftSidebarEvents();
-  login_tracking();
+  login_form_redirect();
 };
 
 function brandBarAnimation() {
@@ -675,7 +675,33 @@ function login_tracking() {
     })
 }
 
-
+function login_form_redirect() {
+  urlSearchParams = new URLSearchParams(window.location.search);
+  if (urlSearchParams.get('direct') != "1") { // Logout scenario
+    // if consent layer accpected
+    if (!document.querySelector('#consentAcceptAll')) // get element by id is not null
+    {
+      if (urlSearchParams.get('redirect_url')) {
+        var telLoginButton = document.getElementById('alternative-logins');
+        if (telLoginButton) {
+          telLoginButton.children[0].click();
+        }
+      } else if (urlSearchParams.get('clear')=="1") {
+        document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+      }else{
+        var telLoginButton = document.getElementById('alternative-logins');
+        if (telLoginButton) {
+          telLoginButton.children[0].click();
+        }
+      }
+    }else{
+      login_tracking();
+    }
+  }
+  else {
+    document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+  }
+}
 
 
 
