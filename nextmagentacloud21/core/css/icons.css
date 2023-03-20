@@ -794,10 +794,10 @@ aside .icon-star{
 
 
 /* office file icon grid view*/
-#filestable [data-mime="application/vnd.oasis.opendocument.graphics"] .thumbnail {
-  background-image: url('../../core/img/office_icons_custom/file-analytics.svg') !important;
-  background-size: 44px!important;
+.newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="application/vnd.oasis.opendocument.graphics"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="application/vnd.oasis.opendocument.graphics-flat-xml"] .app-sidebar-header__figure {
+    background-image: url('../../core/img/office_icons_custom/file-analytics-24.svg') !important;
 }
+  
 
 #files-public-content a[href$=".docx"] .publicpreview, #files-public-content a[href$=".doc"] .publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/text.svg");
