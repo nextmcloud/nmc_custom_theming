@@ -652,20 +652,21 @@ function login_tracking_details(){
 }
 
 function login_tracking() {
-    var constLayerAccButton = document.querySelector('#consentAcceptAll');
-    var onlyReqAccButton = document.querySelector('#rejectAll');
 
-    if(constLayerAccButton){
-      constLayerAccButton.addEventListener('click', function() {
+    document.addEventListener("click", function(e){
+      const target = e.target.closest("#consentAcceptAll");
+      if(target){
         login_tracking_details();
-    }, false);
-    }
+      }
+    })
 
-    if(onlyReqAccButton){
-      onlyReqAccButton.addEventListener('click', function() {
+    document.addEventListener("click", function(e){
+      const target = e.target.closest("#rejectAll");
+      if(target){
         login_tracking_details();
-    }, false);
-    }
+      }
+    })
+
 
     document.addEventListener("click", function(e){
       const target = e.target.closest("#consentSettingsAcceptAll");
@@ -675,12 +676,18 @@ function login_tracking() {
     })
 }
 
+
+function constentCokkies(){
+  var constentCookieValue = document.cookie.match(/^(.*;)?\s*CONSENTMGR\s*=\s*[^;]+(.*)?$/);
+  return constentCookieValue && constentCookieValue[0].includes("consent:true");
+}
+
 function login_form_redirect() {
   urlSearchParams = new URLSearchParams(window.location.search);
-  if (urlSearchParams.get('direct') != "1") { // Logout scenario
-    // if consent layer accpected
-    if (!document.querySelector('#consentAcceptAll')) // get element by id is not null
-    {
+  if(urlSearchParams.get('direct') == "1") { // admin
+    document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+  }else{
+    if(constentCokkies()){ // if cookies set that means constent layer accpected
       if (urlSearchParams.get('redirect_url')) {
         var telLoginButton = document.getElementById('alternative-logins');
         if (telLoginButton) {
@@ -694,15 +701,9 @@ function login_form_redirect() {
           telLoginButton.children[0].click();
         }
       }
-    }else{
+    }else{ // not accpected
       login_tracking();
     }
   }
-  else {
-    document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
-  }
+
 }
-
-
-
-
