@@ -679,7 +679,7 @@ function login_tracking() {
 
 function constentCokkies(){
   var constentCookieValue = document.cookie.match(/^(.*;)?\s*CONSENTMGR\s*=\s*[^;]+(.*)?$/);
-  return constentCookieValue && constentCookieValue[0].includes("consent:true");
+  return constentCookieValue && constentCookieValue[0].includes("consent");
 }
 
 function login_form_redirect() {
