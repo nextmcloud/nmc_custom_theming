@@ -169,6 +169,26 @@
     <div class="container-fixed">
       <?php print_unescaped($_['content']); ?>
     </div>
+    <footer class="brand-footer">
+    <div class="container-fixed">
+      <div class="row brand-footer-bar">
+        <div class="col-l-4 col-s-12 text-muted">
+          <div class="brand-footer-bar-text">
+            © Telekom Deutschland GmbH
+          </div>
+        </div>
+        <div class="col-l-8 col-s-12">
+          <ul class="nav brand-footer-nav text-l-right">
+            <li><a href="https://static.magentacloud.de/licences/webui.htm" title="Open Source Lizenzen" target="_blank">Open Source Lizenzen</a>
+            <li><a href="http://www.telekom.de/impressum" title="Impressum" target="_blank">Impressum</a></li>
+            <li><a href="https://static.magentacloud.de/Datenschutz" title="Datenschutz" target="_blank">Datenschutz</a>
+            </li>
+            <li><a href="https://cloud.telekom-dienste.de/hilfe" title="HilfeAndFAQ" target="_blank">Hilfe & FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
   </div>
   <?php if (isset($template) && $template->getFooterVisible()) { ?>
 
