@@ -11,7 +11,8 @@ window.onload = function () {
   breadcrumbAddLabel();
   mobileOnlyClass();
   webTrackingEvents();
-  leftSidebarEvents()
+  leftSidebarEvents();
+  login_form_redirect();
 };
 
 function brandBarAnimation() {
@@ -628,4 +629,81 @@ function leftSidebarEvents() {
   $('.nav-icon-trashbin').click(function(){
     window._nc_event_bus.emit('files:navigation:changed')
   })
+}
+
+function login_tracking_details(){
+    // tracking event
+    if(typeof utag!=='undefined' && utag.view()) {
+      var utag_data = {
+        page_content_id : "magentacloud.de.privatkunden.consentlayer",
+        page_type : "theme"
+        }
+        utag.view(utag_data);
+        }
+
+  // telkom redirection
+  urlSearchParams = new URLSearchParams(window.location.search);
+  if(urlSearchParams.get('direct')!="1"){
+    var telLoginButton = document.getElementById('alternative-logins');
+    telLoginButton.children[0].click();
+  }else{
+    document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+  }
+}
+
+function login_tracking() {
+
+    document.addEventListener("click", function(e){
+      const target = e.target.closest("#consentAcceptAll");
+      if(target){
+        login_tracking_details();
+      }
+    })
+
+    document.addEventListener("click", function(e){
+      const target = e.target.closest("#rejectAll");
+      if(target){
+        login_tracking_details();
+      }
+    })
+
+
+    document.addEventListener("click", function(e){
+      const target = e.target.closest("#consentSettingsAcceptAll");
+      if(target){
+        login_tracking_details();
+      }
+    })
+}
+
+
+function constentCokkies(){
+  var constentCookieValue = document.cookie.match(/^(.*;)?\s*CONSENTMGR\s*=\s*[^;]+(.*)?$/);
+  return constentCookieValue && constentCookieValue[0].includes("consent:true");
+}
+
+function login_form_redirect() {
+  urlSearchParams = new URLSearchParams(window.location.search);
+  if(urlSearchParams.get('direct') == "1") { // admin
+    document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+  }else{
+    if(constentCokkies()){ // if cookies set that means constent layer accpected
+      if (urlSearchParams.get('redirect_url')) {
+        var telLoginButton = document.getElementById('alternative-logins');
+        if (telLoginButton) {
+          telLoginButton.children[0].click();
+        }
+      } else if (urlSearchParams.get('clear')=="1") {
+        document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+      }else{
+        var telLoginButton = document.getElementById('alternative-logins');
+        if (telLoginButton) {
+          telLoginButton.children[0].click();
+        }
+      }
+    }else{ // not accpected
+      login_tracking();
+    }
+  }
+
 }

@@ -24,7 +24,7 @@
     if($tealiumConfig && $tealiumConfig['enable']){ ?>
     <!--TODO :Trying to load Telium library directly from CDN -->
       <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
-    src="<?php echo $tealiumConfig['url'];?>">console.log("-----------------------------consent layer test ------------------------------------------------------------")</script>
+    src="<?php echo $tealiumConfig['url'];?>"></script>
   <?php } ?>
    <?php emit_css_loading_tags($_); ?>
   <?php emit_script_loading_tags($_); ?>
@@ -78,7 +78,7 @@ if ($isLoginPage || $isShareAuth) {
       <?php endif; ?>
       <main>
         <div class="login-main">
-          <div class="login-section">
+          <div class="login-section visibility-hidden">
             <div class="logo">
               <h1 class="hidden-visually">
                 <?php p($theme->getName()); ?>
