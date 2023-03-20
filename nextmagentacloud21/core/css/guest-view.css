@@ -2,7 +2,6 @@
 
     #files-public-content #emptycontent {
         margin-top: 8vh !important;
-        margin-bottom: 31vh !important;
     }
 
     #emptycontent {
@@ -113,6 +112,9 @@
         text-align: center;
         padding: 24px;
         background-color: #fff;
+        z-index: 999 !important;
+        position:fixed;
+        bottom: 0;
     }
 
     .content-dialog .content-para {
@@ -174,7 +176,7 @@
     }
 
     #body-public #content {
-        min-height: calc(100% - 120px);
+        min-height: calc(100% - 140px);
     }
 
     #files-public-content {
