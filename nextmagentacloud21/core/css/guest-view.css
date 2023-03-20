@@ -183,6 +183,10 @@
         height: auto !important;
     }
 
+    #body-public #app-content {
+        z-index: unset !important;
+    }
+
     .header-right  #header-primary-action span:first-child:not(.gust-download-svg) {
       display:none;
     }
