@@ -181,10 +181,15 @@
 
     #files-public-content {
         height: auto !important;
+        margin-bottom: 24vh;
     }
 
     #body-public #app-content {
         z-index: unset !important;
+    }
+
+    #body-public .brand-footer{
+        height: unset !important;
     }
 
     .header-right  #header-primary-action span:first-child:not(.gust-download-svg) {
