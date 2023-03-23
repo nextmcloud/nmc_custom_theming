@@ -667,6 +667,11 @@ function telekom_redirection(){
   const telLoginButton = document.getElementById('alternative-logins');
   if (telLoginButton && consentCookies()) {
     telLoginButton?.children[0]?.click();
+  }else{
+    const loginSect = document.getElementsByClassName('login-section');
+    if(loginSect){
+      loginSect[0].style.visibility = 'visible';
+    }
   }
 }
 
