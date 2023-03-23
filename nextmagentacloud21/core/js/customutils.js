@@ -669,7 +669,7 @@ function telekom_redirection(){
     telLoginButton?.children[0]?.click();
   }else{
     const loginSect = document.getElementsByClassName('login-section');
-    if(loginSect){
+    if(loginSect && consentCookies()){
       loginSect[0].style.visibility = 'visible';
     }
   }
