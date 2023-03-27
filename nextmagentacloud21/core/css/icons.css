@@ -796,7 +796,7 @@ aside .icon-star{
 /* office file icon grid view*/
 .newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="application/vnd.oasis.opendocument.graphics"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="application/vnd.oasis.opendocument.graphics-flat-xml"] .app-sidebar-header__figure {
     background-image: url('../../core/img/office_icons_custom/file-analytics-24.svg') !important;
-    height: 135px !important;
+    background-size: contain !important;
 }
   
 
