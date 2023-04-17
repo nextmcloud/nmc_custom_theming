@@ -798,7 +798,15 @@ aside .icon-star{
     background-image: url('../../core/img/office_icons_custom/file-analytics-24.svg') !important;
     background-size: contain !important;
 }
-  
+/* pdf file icon in sharing view*/
+.newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure {
+  background-image: url('/themes/nextmagentacloud21/core/img/filetypes/application-pdf.svg') !important;
+}
+
+/* audio file icon in sharing view*/
+.newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure {
+  background-image: url('/themes/nextmagentacloud21/core/img/filetypes/audio.svg') !important;
+}
 
 #files-public-content a[href$=".docx"] .publicpreview, #files-public-content a[href$=".doc"] .publicpreview{
   content:url("/themes/nextmagentacloud21/core/img/filetypes/text.svg");
