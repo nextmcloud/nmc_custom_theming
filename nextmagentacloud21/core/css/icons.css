@@ -801,11 +801,13 @@ aside .icon-star{
 /* pdf file icon in sharing view*/
 .newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure {
   background-image: url('/themes/nextmagentacloud21/core/img/filetypes/application-pdf.svg') !important;
+  background-size: contain !important;
 }
 
 /* audio file icon in sharing view*/
 .newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure {
   background-image: url('/themes/nextmagentacloud21/core/img/filetypes/audio.svg') !important;
+  background-size: contain !important;
 }
 
 #files-public-content a[href$=".docx"] .publicpreview, #files-public-content a[href$=".doc"] .publicpreview{
