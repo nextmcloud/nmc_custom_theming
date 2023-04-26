@@ -799,13 +799,13 @@ aside .icon-star{
     background-size: contain !important;
 }
 /* pdf file icon in sharing view*/
-.newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure {
+#app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="application/pdf"] .app-sidebar-header__figure {
   background-image: url('/themes/nextmagentacloud21/core/img/filetypes/application-pdf.svg') !important;
   width: 96px;
 }
 
 /* audio file icon in sharing view*/
-.newFileMenu .icon-filetype-draw, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure {
+#app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure, #app-sidebar-vue[data-mimetype="audio/mpeg"] .app-sidebar-header__figure {
   background-image: url('/themes/nextmagentacloud21/core/img/filetypes/audio.svg') !important;
   width: 96px;
 }
