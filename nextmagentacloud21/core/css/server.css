@@ -1459,7 +1459,7 @@ opacity: unset !important;
  #body-login,
  #firstrunwizard .firstrunwizard-header,
  #theming-preview {
-     background: url('../../core/img/dt_background.jpg') no-repeat !important;
+     background: url('../../core/img/MagentaCloudConsent.svg') no-repeat !important;
      background-color: unset !important;
      background-size: cover !important;
  }
