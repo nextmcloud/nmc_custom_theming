@@ -1,9 +1,15 @@
 :root {
+	--magenta-color:#e20074;
+	--white-color:#fff;
+
 	--body-container-radius: 16px;
-	--image-background-default:url('/themes/nextmagentacloud25/core/img/dt_background.jpg') !important;
-	--color-background-plain: #e20074 !important;
+	--image-background-plain:url('/themes/nextmagentacloud25/core/img/dt_background.jpg') !important;
+	--color-background-plain: var(--magenta-color) !important;
 	--scl-color-grey-90: hsl(0, 0%, 9.8%);
+	--color-primary-element:var(--magenta-color) !important;
+	--default-clickable-area:0 !important;
   }
+
 
   html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {
     font-family: TeleNeoWeb, TeleNeo, sans-serif;
