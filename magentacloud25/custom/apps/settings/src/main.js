@@ -25,7 +25,7 @@ import { loadState } from '@nextcloud/initial-state'
 import { translate as t } from '@nextcloud/l10n'
 import '@nextcloud/dialogs/dist/index.css'
 
-import LanguageSectionCustom from './PersonalInfo/LanguageSection/LanguageSectionCustom.vue'
+import LanguageSectionCustom from './components/PersonalInfo/LanguageSection/LanguageSectionCustom.vue'
 __webpack_nonce__ = btoa(getRequestToken())
 
 const profileEnabledGlobally = loadState('settings', 'profileEnabledGlobally', true)

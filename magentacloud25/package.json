@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Next magenta cloud custom theme",
   "scripts": {
-    "sass": "sass --style compressed --load-path core/css core/css/ apps/*/css",
-    "sass:watch": "sass --watch --load-path core/css core/css/ apps/*/css"
+    "sass": "sass --load-path core/css core/css/",
+    "sass:watch": "sass --watch --load-path core/css core/css/ apps/*/css",
+    "sass:icons": "babel-node core/src/icons.js"
+
   },
   "dependencies": {
     "sass": "^1.62.1",
