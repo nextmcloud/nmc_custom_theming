@@ -1,0 +1,52 @@
+@import 'functions';
+
+.app-files {
+	.actions .button.new {
+		@include unset('background',false);
+		padding: 0;
+		width: 24px;
+		height: 24px;
+		min-height: 24px;
+		border: 1px solid var(--magenta-color);
+			&:hover, &:focus{
+				border: 1px solid var(--magenta-color) !important;
+			}
+	}
+	.icon-add {
+		@include unset('background-size',true);
+		filter:var(--color-background-magenta);
+		opacity: 1 !important;
+		margin-left: 2.4rem;
+	}
+}
+
+div.crumb {
+	background-image: var(--icon-breadcrumb-arrow);
+	&:last-child{
+		@include unset('margin-right',false);
+	}
+	& > a,
+	& > span {
+    opacity: 1;
+		&:hover{
+			filter:var(--color-background-magenta);
+	 }
+	}
+	& > a{
+		margin-right: 0.5rem
+	}
+	.icon-shared {
+		display: none !important;
+	}
+}
+
+.actions.creatable {
+    top: 9px;
+    height: 45px;
+	.add-label {
+		margin-left: 0.625rem;
+		margin-top: 0.125rem;
+		font-weight: normal;
+		color:var(--magenta-color);;
+	}
+}
