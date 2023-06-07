@@ -50,6 +50,10 @@ foreach ($customNavigationItems as $item) {
 	</ul>
 
 	<div id="app-settings">
+		<div id="app-settings-header-test">
+			Hello Test.........
+		</div>
+
 		<div id="app-settings-header">
 			<button class="settings-button"
 					data-apps-slide-toggle="#app-settings-content">

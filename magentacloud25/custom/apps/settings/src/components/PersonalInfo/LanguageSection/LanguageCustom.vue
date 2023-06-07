@@ -88,13 +88,13 @@ export default {
 			const languages = []
 			for (var i = 0; i < this.commonLanguages.length; i++) {
 				if(this.commonLanguages[i]['code']=="de_DE"){
-					languages[0] = this.commonLanguages[i];
+					languages[0] = this.commonLanguages[i]
 					languages[0]['name'] = languages[0]['name'].split("(")[0]
 				}
 			}
 			for (var i = 0; i < this.otherLanguages.length; i++) {
 				if(this.otherLanguages[i]['code']=="en_GB"){
-					languages[1] = this.otherLanguages[i];
+					languages[1] = this.otherLanguages[i]
 					languages[1]['name'] = languages[1]['name'].split("(")[0]
 				}
 			}
