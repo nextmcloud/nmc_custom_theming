@@ -3,7 +3,7 @@
 		margin-top: 1rem;
 	}
 }
-.oc-conflict-pre-dlg {
+.oc-dialog.oc-conflict-pre-dlg {
 	padding-left: 1.5rem ;
 	padding-right: 1.5rem;
 	padding-top: 2rem;
@@ -14,7 +14,7 @@
 		margin-bottom: 1.5rem;
 	}
 }
-.oc-conflict-pre-dlg-button {
+button.oc-conflict-pre-dlg-button {
 	width: 100%;
 	margin-bottom: 0.5rem;
 	font-size: 1rem;
@@ -27,7 +27,7 @@
 	border: 1px solid var(--scl-color-grey-90);
 	padding: 0.375rem;
 }
-.oc-conflict-pre-dlg-replace-button {
+button.oc-conflict-pre-dlg-replace-button {
 	background-color: var(--magenta-color);
 	color: var(--white-color);
 	border: 1px solid var(--magenta-color);
@@ -38,7 +38,7 @@
 .oc-conflict-pre-dlg-title-div {
 	flex: 1;
 }
-.oc-conflict-pre-dlg-close-div {
+.oc-conflict-pre-dlg .oc-conflict-pre-dlg-close-div {
 	flex: 1;
 	text-align: right;
 	a {
@@ -52,17 +52,18 @@
 	margin-bottom: 0.5rem;
 	width: 180px;
 }
-.fourbuttons {
+
+.oc-conflict-pre-dlg .oc-conflict-pre-dlg-close-div a {
+    background-image: var(--original-icon-close-dark);
+	background-repeat: no-repeat ;
+}
+
+.oc-conflict-pre-dlg .oc-conflict-pre-dlg-close-div a:hover {
+   filter: var(--color-background-magenta);
+}
+
+.oc-conflict-pre-dlg .threebuttons {
 	button {
-		&:hover {
-			color: var(--magenta-color);
-		}
-		&:focus {
-			color: var(--magenta-color);
-		}
-		&:active {
-			color: var(--magenta-color);
-		}
 		&:last-child {
 			&:hover {
 				color: var(--white-color);
