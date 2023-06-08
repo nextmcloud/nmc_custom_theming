@@ -1,4 +1,4 @@
-@import 'styles.scss';
+/*@import 'styles.scss';
 @import 'inputs.scss';
 @import 'header.scss';
 @import 'icons.scss';
@@ -6,10 +6,10 @@
 @import 'global.scss';
 @import 'fixes.scss';
 @import 'mobile.scss';
-@import 'tooltip.scss';
+@import 'tooltip.scss';*/
 // If you include .css, it will be imported as url
-@import '../../node_modules/@nextcloud/dialogs/dist/index';
-@import 'public.scss';
+//@import '../../node_modules/@nextcloud/dialogs/dist/index';
+//@import 'public.scss';
 
 
 // Theming styling
@@ -29,6 +29,6 @@
 @import 'files-myshares.scss';
 @import 'files-favorites.scss';
 @import 'files-rightclick.scss';
-
+@import 'sharing.scss';
 // Responsive styling
 @import 'mobile.scss';
