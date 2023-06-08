@@ -1,5 +1,5 @@
-$color_1: #fff;
-$background-color_1: rgb(255 255 255 / 25%);
+
+@import 'functions';
 
 #viewer {
 	#collaboraframe {
@@ -7,54 +7,18 @@ $background-color_1: rgb(255 255 255 / 25%);
 	}
 	.richEditor {
 		.action-item__menutoggle--default-icon {
-			filter: unset;
+			@include unset('filter',true);
 			background-position: center !important;
 		}
 	}
-	margin-top: 4px;
-	a.prev {
-		position: fixed !important;
-		top: 0 !important;
-		display: flex !important;
-		left: 44.5% !important;
-		height: 70px !important;
-		min-width: auto !important;
-		width: auto !important;
-		opacity: .7;
-		z-index: 99999;
-		visibility: visible !important;
-		margin: 0 2rem;
-		&:hover {
-			opacity: 1;
-		}
-	}
-	a.next {
-		position: fixed !important;
-		top: 0 !important;
-		display: flex !important;
-		left: 44.5% !important;
-		height: 70px !important;
-		min-width: auto !important;
-		width: auto !important;
-		opacity: .7;
-		z-index: 99999;
-		visibility: visible !important;
-		margin: 0 2rem;
-		right: 42.5% !important;
-		left: unset !important;
-		&:hover {
-			opacity: 1;
-		}
-	}
+	border-top: 4px solid var(--magenta-color) !important;
+
 	.modal-header {
-		position: relative !important;
-		height: 63px !important;
+		position: relative;
+		height: 63px;
 		background: #191919;
-		justify-content: space-between !important;
-		visibility: visible !important;
-		.modal-title {
-			max-width: 400px;
-		}
+		justify-content: space-between;
+
 		.action-item__menutoggle--default-icon {
 			filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(148deg) brightness(105%) contrast(101%);
 			min-width: 24px;
@@ -62,19 +26,6 @@ $background-color_1: rgb(255 255 255 / 25%);
 			height: 24px;
 			padding: 0 !important;
 			opacity: 1 !important;
-		}
-		.icons-menu {
-			.play-pause-icons {
-				.icon-pause {
-					opacity: 1;
-					border-radius: 22px;
-					background-color: var(--scl-color-grey-90);
-					height: 40px !important;
-					width: 40px !important;
-					margin: 0 !important;
-					padding: 9px !important;
-				}
-			}
 		}
 	}
 	.modal-wrapper {
@@ -89,7 +40,7 @@ $background-color_1: rgb(255 255 255 / 25%);
 		margin-right: 1.5rem !important;
 	}
 	.action-item.action-item--single.header-close {
-		background-image: unset !important;
+		@include unset('background-image',true);
 		width: 24px;
 		min-width: 24px;
 		height: 24px;
@@ -100,9 +51,8 @@ $background-color_1: rgb(255 255 255 / 25%);
 	}
 	.play-pause-icons {
 		position: fixed;
-		left: 50%;
+		left: 49.8%;
 		top: 0;
-		width: auto;
 		height: 70px;
 	}
 	iframe {
@@ -110,21 +60,9 @@ $background-color_1: rgb(255 255 255 / 25%);
 		width: 85% !important;
 	}
 	.viewer__content {
-		align-self: start;
-		height: auto !important;
 		margin-top: 1rem;
-		width: inherit !important;
-		margin-top: 0px !important;
 	}
-	.modal-container {
-		height: 100% !important;
-		max-height: 100% !important;
-		max-width: 100% !important;
-		width: 100% !important;
-		>* {
-			z-index: 999999;
-		}
-	}
+
 	#editor-container {
 		top: 64px !important;
 	}
@@ -147,38 +85,22 @@ $background-color_1: rgb(255 255 255 / 25%);
 			display: none;
 		}
 	}
-	.close-icon {
-		.material-design-icon__svg {
-			color: var(--white-color);
-		}
-	}
-	.pause-icon {
-		.material-design-icon__svg {
-			color: var(--white-color);
-		}
-	}
 }
+
 .richEditor {
 	.action-item__menutoggle.icon-table_settings {
 		margin-top: 0.75rem !important;
 	}
 }
-#viewer[view="application/pdf"] {
-	a.prev {
+#viewer[view="application/pdf"],#viewer[view="text/markdown"] {
+	button.prev {
 		visibility: hidden !important;
 	}
-	a.next {
-		visibility: hidden !important;
-	}
-}
-#viewer[view="text/markdown"] {
-	a.prev {
-		visibility: hidden !important;
-	}
-	a.next {
+	button.next {
 		visibility: hidden !important;
 	}
 }
+
 .modal-header {
 	.modal-title {
 		font-size: 1rem !important;
@@ -188,44 +110,17 @@ $background-color_1: rgb(255 255 255 / 25%);
 		text-align: left !important;
 	}
 }
-.icon-previous {
-	&::before {
-		content: '' !important;
-	}
-	width: 40px !important;
-	height: 40px !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	background-size: cover;
-}
-.icon-next {
-	&::before {
-		content: '' !important;
-	}
-	width: 40px !important;
-	height: 40px !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	background-size: cover;
-}
-.play-icon {
-	&::before {
-		content: '' !important;
-	}
-	width: 40px !important;
-	height: 40px !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	background-size: cover;
-}
+
 .popover {
 	.action-link {
 		align-items: center !important;
 	}
 }
+
 iframe.viewer__file {
 	width: inherit !important;
 }
+
 .modal-mask {
 	.play-pause-icons {
 		.progress-ring {
@@ -234,6 +129,59 @@ iframe.viewer__file {
 		}
 	}
 }
+
 #content.app-files_sharing.mobile-content.content-translation {
 	top: 120px !important;
+}
+
+
+button {
+
+	&.prev,&.next {
+		position: fixed !important;
+		top: 0 !important;
+		left: 44.5% !important;
+		height: 70px !important;
+		opacity: .7;
+		z-index: 99999 !important;
+		margin: 0 2rem;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	&.next{
+		right: 42.5% !important;
+		@include unset('left',true);
+		&:hover {
+			opacity: 1;
+		}
+	 }
+
+	& > span{
+		background-repeat: no-repeat;
+	 }
+
+	&.prev >span{
+		background-image: url(../../core/img/icons/prev-icon-white.svg) !important;
+	 }
+
+	&.next >span{
+		background-image: url(../../core/img/icons/next-icon-white.svg) !important;
+	}
+
+	& span.play-icon {
+		background-image: url(../../core/img/icons/play-icon-white.svg) !important;
+		background-repeat: no-repeat;
+	}
+
+	&:active{
+		@include unset('background-color',true);
+	}
+}
+
+
+.action-item.action-item--open{
+	@include unset('background-color',false);
 }
