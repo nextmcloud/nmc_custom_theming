@@ -733,3 +733,31 @@ li.action-details-container {
     width: 192px;
     margin: 0 auto !important;
 }
+
+/* E2E related changes */
+
+.files-filestable tbody tr[data-e2eencrypted="true"] {
+	background-color: rgb(242 242 242 / 50%) !important;
+	pointer-events: none !important;
+  }
+  
+  .files-filestable.view-grid:not(.hidden) tbody tr[data-e2eencrypted="true"] td.filename .thumbnail-wrapper{
+	z-index: unset !important;
+  }
+  
+  .files-filestable tr[data-e2eencrypted="true"] td.filename .nametext .innernametext,
+  .files-filestable tbody tr[data-e2eencrypted="true"] td.filesize,
+  .files-filestable tbody tr[data-e2eencrypted="true"] td.date span {
+	  color: #666666 !important;
+  }
+  
+  .files-filestable tbody tr[data-e2eencrypted="true"] td a{
+	pointer-events: none !important;
+  }
+  
+  /* office new file creation */
+  
+  .files-filestable tr[data-e2eencrypted="true"] td input[type="checkbox"].checkbox+label:before {
+	  border: 1px solid #cccccc !important;
+  }
+  
