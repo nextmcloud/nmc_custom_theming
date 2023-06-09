@@ -1,0 +1,25 @@
+:root {
+	--magenta-color:#e20074;
+	--white-color:#fff;
+
+	--body-container-margin: 16px !important;
+	--image-background-plain:url('/themes/magentacloud25/core/img/dt_background.jpg') !important;
+	--app-image-logo:url('/themes/magentacloud25/core/img/logo/logo.svg');
+	--color-background-plain: var(--magenta-color) !important;
+	--scl-color-grey-90: hsl(0, 0%, 9.8%);
+	--color-primary-element:var(--magenta-color) !important;
+	--color-background-magenta: invert(11%) sepia(80%) saturate(6905%) hue-rotate(320deg) brightness(93%) contrast(110%);
+	--scl-shadow-level-2: 0px 8px 32px 0px hsla(0, 0%, 0%, 0.1), 0px 4px 8px 0px hsla(0, 0%, 0%, 0.1);
+	--scl-color-grey-0: hsl(0, 0%, 94.9%);
+	--color-border: #ededed;
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {
+	font-family: TeleNeoWeb, TeleNeo, sans-serif;
+	font-size: 16px;
+	color: var(--scl-color-grey-90);
+}
+
+#header .logo{
+	background-image: var(--app-image-logo);
+}

@@ -10,3 +10,28 @@
 // If you include .css, it will be imported as url
 @import '../../node_modules/@nextcloud/dialogs/dist/index';
 @import 'public.scss';
+
+
+// Theming styling
+@import 'theme.scss';
+@import 'icons.scss';
+@import 'variables.scss';
+@import 'functions.scss';
+
+@import 'fileconflict.scss';
+@import 'file.scss';
+@import 'files-nav.scss';
+@import 'file-view.scss';
+@import 'newfilemenu.scss';
+@import 'search.scss';
+@import 'files-trashbin.scss';
+@import 'files-sharewithme.scss';
+@import 'files-myshares.scss';
+@import 'files-favorites.scss';
+@import 'files-rightclick.scss';
+@import 'core.scss';
+@import 'viewer.scss';
+@import 'breadcrumb.scss';
+
+// Responsive styling
+@import 'mobile.scss';
