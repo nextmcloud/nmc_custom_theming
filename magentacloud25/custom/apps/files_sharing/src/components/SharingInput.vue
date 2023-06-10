@@ -24,19 +24,27 @@
 	<div class="sharing-search">
 		<label for="sharing-search-input">{{ t('files_sharing', 'Search for share recipients') }}</label>
 		<NcSelect ref="select"
-			id="sharing-search-input"
 			class="sharing-search__input"
-			:disabled="!canReshare"
-			:loading="loading"
 			:filterable="false"
-			:placeholder="inputPlaceholder"
-			:clear-search-on-blur="() => false"
-			:user-select="true"
+			:clear-on-select="true"
+			:disabled="!canReshare"
+			:internal-search="false"
+			:loading="loading"
 			:options="options"
+			:placeholder="inputPlaceholder"
+			:preselect-first="true"
+			:preserve-search="false"
+			:searchable="true"
+			:user-select="true"
 			v-model="value"
+			multiple: false
+			closeOnSelect: true
 			@open="handleOpen"
+			open-direction="below"
+			label="displayName"
+			track-by="id"
 			@search="asyncFind"
-			@option:selected="addShare">
+			@option:selected="showPermissions">
 			<template #no-options="{ search }">
 				{{ search ? noResultText : t('files_sharing', 'No recommendations. Start typing.') }}
 			</template>
@@ -158,6 +166,9 @@ export default {
 
 	mounted() {
 		this.getRecommendations()
+		this.$root.$on('getRecommendations', data => {
+			this.getRecommendations()
+		})
 	},
 
 	methods: {
@@ -709,6 +720,18 @@ export default {
 			} finally {
 				this.loading = false
 			}
+		},
+
+		async showPermissions(value) {
+			// this.$root.$emit('optionValues', value)
+			this.$store.commit('addOption', value)
+			this.$store.commit('addFromInput', true)
+			const newShare = new Share({})
+			newShare.permissions = OC.PERMISSION_READ
+			newShare.expireDate = ''
+			newShare.password = ''
+			this.$store.commit('addShare', newShare)
+			this.$store.commit('addCurrentTab', 'permissions')
 		},
 	},
 }

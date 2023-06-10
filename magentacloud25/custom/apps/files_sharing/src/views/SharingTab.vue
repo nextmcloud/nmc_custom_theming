@@ -30,56 +30,57 @@
 
 		<!-- shares content -->
 		<div v-else class="sharingTab__content">
-			<!-- shared with me information -->
-			<SharingEntrySimple v-if="isSharedWithMe" v-bind="sharedWithMe" class="sharing-entry__reshare">
-				<template #avatar>
-					<NcAvatar :user="sharedWithMe.user"
-						:display-name="sharedWithMe.displayName"
-						class="sharing-entry__avatar" />
-				</template>
-			</SharingEntrySimple>
+			<div v-if="currentTab == 'default'">
+				<!-- shared with me information -->
+				<SharingEntrySimple v-if="isSharedWithMe" v-bind="sharedWithMe" class="sharing-entry__reshare">
+					<template #avatar>
+						<NcAvatar :user="sharedWithMe.user"
+							:display-name="sharedWithMe.displayName"
+							class="sharing-entry__avatar" />
+					</template>
+				</SharingEntrySimple>
 
-			<!-- add new share input -->
-			<SharingInput v-if="!loading"
-				:can-reshare="canReshare"
-				:file-info="fileInfo"
-				:link-shares="linkShares"
-				:reshare="reshare"
-				:shares="shares"
-				@add:share="addShare" />
+				<!-- add new share input -->
+				<SharingInput v-if="!loading"
+					:can-reshare="canReshare"
+					:file-info="fileInfo"
+					:link-shares="linkShares"
+					:reshare="reshare"
+					:shares="shares"
+					@add:share="addShare" />
 
-			<!-- link shares list -->
-			<SharingLinkList v-if="!loading"
-				ref="linkShareList"
-				:can-reshare="canReshare"
-				:file-info="fileInfo"
-				:shares="linkShares" />
+				<!-- link shares list -->
+				<SharingLinkList v-if="!loading"
+					ref="linkShareList"
+					:can-reshare="canReshare"
+					:file-info="fileInfo"
+					:shares="linkShares" />
 
-			<!-- other shares list -->
-			<SharingList v-if="!loading"
-				ref="shareList"
-				:shares="shares"
-				:file-info="fileInfo" />
+				<!-- other shares list -->
+				<SharingList v-if="!loading"
+					ref="shareList"
+					:shares="shares"
+					:file-info="fileInfo" />
 
-			<!-- inherited shares -->
-			<SharingInherited v-if="canReshare && !loading" :file-info="fileInfo" />
+				<!-- inherited shares -->
+				<SharingInherited v-if="canReshare && !loading" :file-info="fileInfo" />
 
-			<!-- internal link copy -->
-			<SharingEntryInternal :file-info="fileInfo" />
+				<!-- internal link copy -->
+				<SharingEntryInternal :file-info="fileInfo" />
 
-			<!-- projects -->
-			<CollectionList v-if="projectsEnabled && fileInfo"
-				:id="`${fileInfo.id}`"
-				type="file"
-				:name="fileInfo.name" />
+				<!-- projects -->
+				<CollectionList v-if="projectsEnabled && fileInfo"
+					:id="`${fileInfo.id}`"
+					type="file"
+					:name="fileInfo.name" />
+			</div>
+
 		</div>
-
-		<!-- additional entries, use it with cautious -->
-		<div v-for="(section, index) in sections"
-			:ref="'section-' + index"
-			:key="index"
-			class="sharingTab__additionalContent">
-			<component :is="section($refs['section-'+index], fileInfo)" :file-info="fileInfo" />
+		<div v-if="currentTab == 'permissions'">
+			<!-- sharing permissions -->
+			<SharingPermissions
+				:share="share"
+				:file-info="fileInfo" />
 		</div>
 	</div>
 </template>
@@ -91,7 +92,7 @@ import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 
-import Config from '../../../../../../../release25.0.6/apps/files_sharing/src/services/ConfigService'
+import Config from '../services/ConfigService'
 import { shareWithTitle } from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/SharedWithMe'
 import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
 import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
@@ -102,7 +103,8 @@ import SharingInput from '../components/SharingInput'
 import SharingInherited from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingInherited'
 import SharingLinkList from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingLinkList'
 import SharingList from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingList.vue'
-
+import SharingPermissions from '../components/SharingPermissions'
+import { mapGetters } from 'vuex'
 export default {
 	name: 'SharingTab',
 
@@ -115,6 +117,7 @@ export default {
 		SharingInput,
 		SharingLinkList,
 		SharingList,
+		SharingPermissions
 	},
 
 	mixins: [ShareTypes],
@@ -141,6 +144,10 @@ export default {
 	},
 
 	computed: {
+		...mapGetters({
+			currentTab: 'getCurrentTab',
+			share: 'getShare',
+		}),
 		/**
 		 * Is this share shared with me?
 		 *
@@ -154,9 +161,29 @@ export default {
 			return !!(this.fileInfo.permissions & OC.PERMISSION_SHARE)
 				|| !!(this.reshare && this.reshare.hasSharePermission && this.config.isResharingAllowed)
 		},
+				hasShares() {
+			return this.shares.length > 0
+		},
+		hasLinkShares() {
+			return this.linkShares.length > 0
+		},
+	},
+
+	mounted() {
+		this.$root.$on('update', data => {
+			this.update(data)
+		})
 	},
 
 	methods: {
+
+		isLinkShare() {
+			return this.SHARE_TYPES.SHARE_TYPE_LINK === this.shareType
+		},
+		isEmailShare() {
+			return this.SHARE_TYPES.SHARE_TYPE_EMAIL === this.shareType
+		},
+
 		/**
 		 * Update current fileInfo and fetch new data
 		 *
