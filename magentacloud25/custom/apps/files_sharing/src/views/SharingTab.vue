@@ -82,6 +82,12 @@
 				:share="share"
 				:file-info="fileInfo" />
 		</div>
+		<div v-if="currentTab == 'notes'">
+		<!-- sharing notes -->
+			<SharingNotes
+				:share="share"
+				:file-info="fileInfo" />
+		</div>
 	</div>
 </template>
 
@@ -104,6 +110,7 @@ import SharingInherited from '../../../../../../../release25.0.6/apps/files_shar
 import SharingLinkList from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingLinkList'
 import SharingList from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingList.vue'
 import SharingPermissions from '../components/SharingPermissions'
+import SharingNotes from '../components/SharingNotes'
 import { mapGetters } from 'vuex'
 export default {
 	name: 'SharingTab',
@@ -117,7 +124,8 @@ export default {
 		SharingInput,
 		SharingLinkList,
 		SharingList,
-		SharingPermissions
+		SharingPermissions,
+		SharingNotes
 	},
 
 	mixins: [ShareTypes],
