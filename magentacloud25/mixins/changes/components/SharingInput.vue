@@ -24,23 +24,28 @@
 	<div class="sharing-search">
 		<label for="sharing-search-input">{{ t('files_sharing', 'Search for share recipients') }}</label>
 		<NcSelect ref="select"
-		class="sharing-input"
+			id="sharing-search-input"
+			class="sharing-search__input"
+			:filterable="false"
 			:clear-on-select="true"
 			:disabled="!canReshare"
-			:hide-selected="true"
 			:internal-search="false"
 			:loading="loading"
 			:options="options"
 			:placeholder="inputPlaceholder"
 			:preselect-first="true"
-			:preserve-search="true"
+			:preserve-search="false"
 			:searchable="true"
 			:user-select="true"
+			v-model="value"
+			multiple: false
+			closeOnSelect: true
+			@open="handleOpen"
 			open-direction="below"
 			label="displayName"
 			track-by="id"
-			@search-change="asyncFind"
-			@select="showPermissions">
+			@search="asyncFind"
+			@option:selected="showPermissions">
 			<template #no-options="{ search }">
 				{{ search ? noResultText : t('files_sharing', 'No recommendations. Start typing.') }}
 			</template>
@@ -62,11 +67,11 @@ import axios from '@nextcloud/axios'
 import debounce from 'debounce'
 import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 
-import Config from '../../../../../../../release25.0.6/apps/files_sharing/src/services/ConfigService'
+import Config from '../services/ConfigService.js'
 import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+import Share from '../models/Share.js'
+import ShareRequests from '../mixins/ShareRequests.js'
+import ShareTypes from '../mixins/ShareTypes.js'
 
 export default {
 	name: 'SharingInput',
@@ -169,6 +174,7 @@ export default {
 	},
 
 	methods: {
+
 		/**
 		 * Create a new share link and append it to the list
 		 */
@@ -334,6 +340,11 @@ export default {
 					resolve(newShare)
 				}
 			})
+		},
+
+		handleOpen() {
+			// Fix dropdown not opening when viewer is open, see https://github.com/nextcloud/viewer/pull/1319
+			emit('viewer:trapElements:changed', this.$refs.select.$el)
 		},
 
 		async asyncFind(query) {
@@ -600,7 +611,7 @@ export default {
 			case this.SHARE_TYPES.SHARE_TYPE_SCIENCEMESH:
 				return {
 					icon: 'icon-sciencemesh',
-					iconTitle: t('files_sharing', 'Science Mesh'),
+					iconTitle: t('files_sharing', 'ScienceMesh'),
 				}
 			default:
 				return {}
@@ -639,82 +650,7 @@ export default {
 				...this.shareTypeToIcon(result.value.shareType),
 			}
 		},
-
-		/**
-		 * Process the new share request
-		 *
-		 * @param {object} value the multiselect option
-		 */
-		async addShare(value) {
-			// Clear the displayed selection
-			this.value = null
-
-			if (value.lookup) {
-				await this.getSuggestions(this.query, true)
-
-				this.$nextTick(() => {
-					// open the dropdown again
-					this.$refs.select.$children[0].open = true
-				})
-				return true
-			}
-
-			// handle externalResults from OCA.Sharing.ShareSearch
-			if (value.handler) {
-				const share = await value.handler(this)
-				this.$emit('add:share', new Share(share))
-				return true
-			}
-
-			this.loading = true
-			console.debug('Adding a new share from the input for', value)
-			try {
-				let password = null
-
-				if (this.config.enforcePasswordForPublicLink
-					&& value.shareType === this.SHARE_TYPES.SHARE_TYPE_EMAIL) {
-					password = await GeneratePassword()
-				}
-
-				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
-				const share = await this.createShare({
-					path,
-					shareType: value.shareType,
-					shareWith: value.shareWith,
-					password,
-					permissions: this.fileInfo.sharePermissions & OC.getCapabilities().files_sharing.default_permissions,
-					attributes: JSON.stringify(this.fileInfo.shareAttributes),
-				})
-
-				// If we had a password, we need to show it to the user as it was generated
-				if (password) {
-					share.newPassword = password
-					// Wait for the newly added share
-					const component = await new Promise(resolve => {
-						this.$emit('add:share', share, resolve)
-					})
-
-					// open the menu on the
-					// freshly created share component
-					component.open = true
-				} else {
-					// Else we just add it normally
-					this.$emit('add:share', share)
-				}
-
-				await this.getRecommendations()
-			} catch (error) {
-				this.$nextTick(() => {
-					// open the dropdown again on error
-					this.$refs.select.$children[0].open = true
-				})
-				this.query = value.shareWith
-				console.error('Error while adding new share', error)
-			} finally {
-				this.loading = false
-			}
-		},
-
+			
 		async showPermissions(value) {
 			// this.$root.$emit('optionValues', value)
 			this.$store.commit('addOption', value)
@@ -760,4 +696,16 @@ export default {
 		}
 	}
 }
+.add-new-link-btn{
+	margin: 0.75rem 0 1rem 0 !important;
+    font-size: 1rem !important;
+    width: auto !important;
+    background-color: #ffffff !important;
+    border: 1px solid #191919 !important;
+	color: #e20074 !important;
+    border-radius: 4px !important;
+    padding: 0.563rem 1.5rem !important;
+    height: 40px !important;
+    font-weight: normal !important;
+}   
 </style>

@@ -29,16 +29,29 @@
 		</div>
 
 		<!-- shares content -->
-		<div v-else class="sharingTab__content">
+		<template v-else>
 			<div v-if="currentTab == 'default'">
 				<!-- shared with me information -->
 				<SharingEntrySimple v-if="isSharedWithMe" v-bind="sharedWithMe" class="sharing-entry__reshare">
 					<template #avatar>
-						<NcAvatar :user="sharedWithMe.user"
+						<Avatar :user="sharedWithMe.user"
 							:display-name="sharedWithMe.displayName"
-							class="sharing-entry__avatar" />
+							class="sharing-entry__avatar"
+							tooltip-message="" />
 					</template>
 				</SharingEntrySimple>
+
+				<p class="sharing-message">
+					<span v-if="!canReshare">
+						<!-- {{ t('files_sharing', 'Resharing is not allowed.' ) }} -->
+					</span>
+					<span v-else>
+						<span v-if="isSharedWithMe">
+							{{ t('files_sharing', 'Resharing is allowed.' ) }}
+						</span>
+						{{ t('files_sharing', 'You can create links or send shares by mail. If you invite MagentaCLOUD users, you have more opportunities for collaboration.') }}
+					</span>
+				</p>
 
 				<!-- add new share input -->
 				<SharingInput v-if="!loading"
@@ -48,6 +61,15 @@
 					:reshare="reshare"
 					:shares="shares"
 					@add:share="addShare" />
+
+					<div v-if="canReshare" class="your-shares">
+						{{ t('files_sharing', 'Your shares' ) }}
+					</div>
+					<template v-if="!hasShares && !hasLinkShares && canReshare">
+						<label>
+							{{ t('files_sharing', 'No shares created yet.' ) }}
+						</label>
+					</template>
 
 				<!-- link shares list -->
 				<SharingLinkList v-if="!loading"
@@ -69,54 +91,61 @@
 				<SharingEntryInternal :file-info="fileInfo" />
 
 				<!-- projects -->
-				<CollectionList v-if="projectsEnabled && fileInfo"
+				<!-- <CollectionList v-if="fileInfo"
 					:id="`${fileInfo.id}`"
 					type="file"
-					:name="fileInfo.name" />
-			</div>
+					:name="fileInfo.name" /> -->
 
-		</div>
-		<div v-if="currentTab == 'permissions'">
-			<!-- sharing permissions -->
-			<SharingPermissions
-				:share="share"
-				:file-info="fileInfo" />
-		</div>
-		<div v-if="currentTab == 'notes'">
-		<!-- sharing notes -->
-			<SharingNotes
-				:share="share"
-				:file-info="fileInfo" />
-		</div>
+				<!-- additionnal entries, use it with cautious -->
+				<!-- <div v-for="(section, index) in sections"
+					:ref="'section-' + index"
+					:key="index"
+					class="sharingTab__additionalContent">
+					<component :is="section($refs['section-'+index], fileInfo)" :file-info="fileInfo" />
+				</div> -->
+			</div>
+			<div v-if="currentTab == 'permissions'">
+				<!-- sharing permissions -->
+				<SharingPermissions
+					:share="share"
+					:file-info="fileInfo" />
+			</div>
+			<div v-if="currentTab == 'notes'">
+				<!-- sharing notes -->
+				<SharingNotes
+					:share="share"
+					:file-info="fileInfo" />
+			</div>
+		</template>
 	</div>
 </template>
 
 <script>
 import { CollectionList } from 'nextcloud-vue-collections'
 import { generateOcsUrl } from '@nextcloud/router'
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 import axios from '@nextcloud/axios'
-import { loadState } from '@nextcloud/initial-state'
 
 import Config from '../services/ConfigService'
 import { shareWithTitle } from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/SharedWithMe'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
-import SharingEntryInternal from '../../../../../../../release25.0.6/apps/files_sharing/src/components/SharingEntryInternal'
-import SharingEntrySimple from '../../../../../../../release25.0.6/apps/files_sharing/src/components/SharingEntrySimple'
+import Share from '../models/Share'
+import ShareTypes from '../mixins/ShareTypes'
+import SharingEntryInternal from '../components/SharingEntryInternal'
+import SharingEntrySimple from '../components/SharingEntrySimple'
 import SharingInput from '../components/SharingInput'
-
-import SharingInherited from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingInherited'
-import SharingLinkList from './SharingLinkList'
-import SharingList from './SharingList.vue'
 import SharingPermissions from '../components/SharingPermissions'
 import SharingNotes from '../components/SharingNotes'
+
+import SharingInherited from './SharingInherited'
+import SharingLinkList from './SharingLinkList'
+import SharingList from './SharingList'
 import { mapGetters } from 'vuex'
+
 export default {
 	name: 'SharingTab',
 
 	components: {
-		NcAvatar,
+		Avatar,
 		CollectionList,
 		SharingEntryInternal,
 		SharingEntrySimple,
@@ -125,7 +154,7 @@ export default {
 		SharingLinkList,
 		SharingList,
 		SharingPermissions,
-		SharingNotes
+		SharingNotes,
 	},
 
 	mixins: [ShareTypes],
@@ -147,7 +176,6 @@ export default {
 			linkShares: [],
 
 			sections: OCA.Sharing.ShareTabSections.getSections(),
-			projectsEnabled: loadState('core', 'projects_enabled', false),
 		}
 	},
 
@@ -156,6 +184,7 @@ export default {
 			currentTab: 'getCurrentTab',
 			share: 'getShare',
 		}),
+
 		/**
 		 * Is this share shared with me?
 		 *
@@ -169,9 +198,11 @@ export default {
 			return !!(this.fileInfo.permissions & OC.PERMISSION_SHARE)
 				|| !!(this.reshare && this.reshare.hasSharePermission && this.config.isResharingAllowed)
 		},
-				hasShares() {
+
+		hasShares() {
 			return this.shares.length > 0
 		},
+
 		hasLinkShares() {
 			return this.linkShares.length > 0
 		},
@@ -188,11 +219,12 @@ export default {
 		isLinkShare() {
 			return this.SHARE_TYPES.SHARE_TYPE_LINK === this.shareType
 		},
+
 		isEmailShare() {
 			return this.SHARE_TYPES.SHARE_TYPE_EMAIL === this.shareType
 		},
 
-		/**
+/**
 		 * Update current fileInfo and fetch new data
 		 *
 		 * @param {object} fileInfo the current file FileInfo
@@ -398,13 +430,7 @@ export default {
 .emptyContentWithSections {
 	margin: 1rem auto;
 }
-
-.sharingTab {
-	&__content {
-		padding: 0 6px;
-	}
-	&__additionalContent {
-		margin: 44px 0;
-	}
+.your-shares {
+	font-weight: bold;
 }
 </style>

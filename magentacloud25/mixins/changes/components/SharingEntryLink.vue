@@ -30,9 +30,7 @@
 				<h5 :title="title">
 					{{ title }}
 				</h5>
-				<p v-if="subtitle">
-					{{ subtitle }}
-				</p>
+
 			</div>
 
 			<div id="app">
@@ -52,7 +50,7 @@
 						<template v-else>
 							<CustomSelect
 								:title="title"
-								:isDisable="true"
+								:isDisable="isAllowed"
 								:options="getFileOptions"
 								:default="sharePermissions"
 								@setSelectedOption="togglePermissions($event);"
@@ -78,6 +76,7 @@
 		<!-- pending actions -->
 		<NcActions v-if="!pending && (pendingPassword || pendingExpirationDate)"
 			class="sharing-entry__actions"
+			:aria-label="actionsTooltip"
 			menu-align="right"
 			:open.sync="open"
 			@close="onNewLinkShare">
@@ -124,6 +123,7 @@
 				:disabled="saving"
 				:is-native-picker="true"
 				:hide-label="true"
+				:first-day-of-week="firstDay"
 				:value="new Date(share.expireDate)"
 				type="date"
 				:min="dateTomorrow"
@@ -145,11 +145,12 @@
 		<!-- actions -->
 		<NcActions v-else-if="!loading"
 			class="sharing-entry__actions"
+			:aria-label="actionsTooltip"
 			menu-align="right"
 			:open.sync="open"
 			@close="onMenuClose">
 			<template v-if="share">
-				<!-- external legacy sharing via url (social...) -->
+				<!-- external sharing via url (social...) -->
 				<NcActionLink v-for="({icon, url, name}, index) in externalActions"
 					:key="index"
 					:href="url(shareLink)"
@@ -157,6 +158,7 @@
 					target="_blank">
 					{{ name }}
 				</NcActionLink>
+
 				<NcActionLink v-if="share.canEdit"
 					icon="icon-settings"
 					:disabled="saving"
@@ -169,23 +171,22 @@
 					@click.prevent="editNotes">
 					{{ t('files_sharing', 'Send new mail') }}
 				</NcActionLink>
+
 				<NcActionButton v-if="share.canDelete"
 					icon="icon-close"
 					:disabled="saving"
 					@click.prevent="onDelete">
 					{{ t('files_sharing', 'Unshare') }}
 				</NcActionButton>
+				<!-- <NcActionButton v-if="!isEmailShareType && canReshare"
+					class="new-share-link"
+					icon="icon-add"
+					@click.prevent.stop="onNewLinkShare">
+					{{ t('files_sharing', 'Add another link') }}
+				</NcActionButton> -->
+			
 			</template>
-
-			<!-- Create new share -->
-			<NcActionButton v-else-if="canReshare"
-				class="new-share-link"
-				:title="t('files_sharing', 'Create a new share link')"
-				:aria-label="t('files_sharing', 'Create a new share link')"
-				:icon="loading ? 'icon-loading-small' : 'icon-add'"
-				@click.prevent.stop="onNewLinkShare" />
 		</NcActions>
-
 		<!-- loading indicator to replace the menu -->
 		<div v-else class="icon-loading-small sharing-entry__loading" />
 	</li>
@@ -197,18 +198,21 @@ import { showError, showSuccess } from '@nextcloud/dialogs'
 import { Type as ShareTypes } from '@nextcloud/sharing'
 import Vue from 'vue'
 
-import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import NcActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
-import NcActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
-import NcActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
-import NcActionText from '@nextcloud/vue/dist/Components/NcActionText'
-import NcActions from '@nextcloud/vue/dist/Components/NcActions'
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import NcActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js'
+import NcActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
+import NcActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import NcActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import NcActionSeparator from '@nextcloud/vue/dist/Components/NcActionSeparator.js'
+import NcActionTextEditable from '@nextcloud/vue/dist/Components/NcActionTextEditable.js'
+import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
+import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 
-import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword.js'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share.js'
-import SharesMixin from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/SharesMixin.js'
+import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
+import Share from '../models/Share.js'
+import SharesMixin from '../mixins/SharesMixin.js'
 import CustomSelect from './CustomSelect'
+
 export default {
 	name: 'SharingEntryLink',
 
@@ -219,8 +223,11 @@ export default {
 		NcActionInput,
 		NcActionLink,
 		NcActionText,
+		NcActionTextEditable,
+		NcActionSeparator,
 		NcAvatar,
 		CustomSelect
+
 	},
 
 	mixins: [SharesMixin],
@@ -243,13 +250,25 @@ export default {
 
 			// Are we waiting for password/expiration date
 			pending: false,
-
+			isAllowed:true,
 			publicUploadRWValue: OC.PERMISSION_UPDATE | OC.PERMISSION_CREATE | OC.PERMISSION_READ | OC.PERMISSION_DELETE,
 			publicUploadRValue: OC.PERMISSION_READ,
 			publicUploadWValue: OC.PERMISSION_CREATE,
 			publicUploadEValue: OC.PERMISSION_UPDATE | OC.PERMISSION_READ,
 			ExternalLinkActions: OCA.Sharing.ExternalLinkActions.state,
+			allowExtensions:["application/pdf","text/markdown","text/plain","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/vnd.openxmlformats-officedocument.presentationml.presentation"],
+
 		}
+	},
+
+	beforeMount() {
+		
+		console.log("file extension : "+this.fileInfo.mimetype)
+		if(this.allowExtensions.includes( this.fileInfo.mimetype)){
+			this.isAllowed=false
+		}
+		
+		console.log("is disabled : " + this.isAllowed)
 	},
 
 	computed: {
@@ -274,7 +293,7 @@ export default {
 		/**
 		 * Link share label
 		 *
-		 * @return {string}
+		 * @returns {string}
 		 */
 		title() {
 			// if we have a valid existing share (not pending)
@@ -314,7 +333,7 @@ export default {
 		/**
 		 * Show the email on a second line if a label is set for mail shares
 		 *
-		 * @returns {string}
+		 *  @returns {string}
 		 */
 		subtitle() {
 			if (this.isEmailShareType
@@ -323,6 +342,8 @@ export default {
 			}
 			return null
 		},
+
+		
 
 		/**
 		 * Is the current share password protected ?
@@ -341,6 +362,7 @@ export default {
 			},
 		},
 
+		
 		/**
 		 * Is the current share an email share ?
 		 *
@@ -350,20 +372,6 @@ export default {
 			return this.share
 				? this.share.type === this.SHARE_TYPES.SHARE_TYPE_EMAIL
 				: false
-		},
-
-		canTogglePasswordProtectedByTalkAvailable() {
-			if (!this.isPasswordProtected) {
-				// Makes no sense
-				return false
-			} else if (this.isEmailShareType && !this.hasUnsavedPassword) {
-				// For email shares we need a new password in order to enable or
-				// disable
-				return false
-			}
-
-			// Anything else should be fine
-			return true
 		},
 
 		/**
@@ -403,6 +411,7 @@ export default {
 			return !!(this.fileInfo.permissions & OC.PERMISSION_CREATE)
 		},
 
+
 		/**
 		 * Return the public share link
 		 *
@@ -410,6 +419,15 @@ export default {
 		 */
 		shareLink() {
 			return window.location.protocol + '//' + window.location.host + generateUrl('/s/') + this.share.token
+		},
+
+		/**
+		 * Tooltip message for actions button
+		 *
+		 * @return {string}
+		 */
+		actionsTooltip() {
+			return t('files_sharing', 'Actions for "{title}"', { title: this.title })
 		},
 
 		/**
@@ -428,6 +446,8 @@ export default {
 		},
 
 		/**
+		 * External additionnai actions for the menu
+		 *
 		 * External aditionnal actions for the menu
 		 * @returns {Array}
 		 */
@@ -608,13 +628,15 @@ export default {
 			}
 		},
 
+
 		togglePermissions(option) {
 			const permissions = parseInt(option, 10)
 			this.share.permissions = permissions
 			this.queueUpdate('permissions')
+
 			if (permissions === OC.PERMISSION_CREATE) {
-				this.share.hideDownload = false
-				this.queueUpdate('hideDownload')
+					this.share.hideDownload = false
+					this.queueUpdate('hideDownload')
 			}
 		},
 		async copyLink() {
@@ -689,7 +711,6 @@ export default {
 			// YET. We can safely delete the share :)
 			this.$emit('remove:share', this.share)
 		},
-
 		editPermissions() {
 			this.$store.commit('addFromInput', false)
 			this.$store.commit('addShare', this.share)
