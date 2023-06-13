@@ -1,0 +1,5 @@
+{ "translations": {
+  "Edit with {productName}" : "Edit with Office",
+  "Open with {productName}" : "Open with Office"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
