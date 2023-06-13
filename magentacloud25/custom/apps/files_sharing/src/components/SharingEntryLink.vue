@@ -294,8 +294,10 @@ import SharePermissionsEditor from '../../../../../../../release25.0.6/apps/file
 import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword.js'
 import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share.js'
 import SharesMixin from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/SharesMixin.js'
+
 export default {
 	name: 'SharingEntryLink',
+
 	components: {
 		NcActions,
 		NcActionButton,
@@ -309,7 +311,9 @@ export default {
 		ExternalShareAction,
 		SharePermissionsEditor,
 	},
+
 	mixins: [SharesMixin],
+
 	props: {
 		canReshare: {
 			type: Boolean,
@@ -324,8 +328,10 @@ export default {
 		return {
 			copySuccess: true,
 			copied: false,
+
 			// Are we waiting for password/expiration date
 			pending: false,
+
 			ExternalLegacyLinkActions: OCA.Sharing.ExternalLinkActions.state,
 			ExternalShareActions: OCA.Sharing.ExternalShareActions.state,
 		}
@@ -427,12 +433,16 @@ export default {
 			if (this.share.passwordExpirationTime === null) {
 				return null
 			}
+
 			const expirationTime = moment(this.share.passwordExpirationTime)
+
 			if (expirationTime.diff(moment()) < 0) {
 				return false
 			}
+
 			return expirationTime.fromNow()
 		},
+
 		/**
 		 * Is Talk enabled?
 		 *
@@ -481,9 +491,11 @@ export default {
 				// disable
 				return false
 			}
+
 			// Anything else should be fine
 			return true
 		},
+
 		/**
 		 * Pending data.
 		 * If the share still doesn't have an id, it is not synced
@@ -544,14 +556,18 @@ export default {
 				.filter(action => action.shareType.includes(ShareTypes.SHARE_TYPE_LINK)
 					|| action.shareType.includes(ShareTypes.SHARE_TYPE_EMAIL))
 		},
+
 		isPasswordPolicyEnabled() {
 			return typeof this.config.passwordPolicy === 'object'
 		},
+
 		canChangeHideDownload() {
 			const hasDisabledDownload = (shareAttribute) => shareAttribute.key === 'download' && shareAttribute.scope === 'permissions' && shareAttribute.enabled === false
+
 			return this.fileInfo.shareAttributes.some(hasDisabledDownload)
 		},
 	},
+
 	methods: {
 		/**
 		 * Create a new share link and append it to the list
@@ -572,9 +588,11 @@ export default {
 			if (this.config.enableLinkPasswordByDefault) {
 				shareDefaults.password = await GeneratePassword()
 			}
+
 			// do not push yet if we need a password or an expiration date: show pending menu
 			if (this.config.enforcePasswordForPublicLink || this.config.isDefaultExpireDateEnforced) {
 				this.pending = true
+
 				// if a share already exists, pushing it
 				if (this.share && !this.share.id) {
 					// if the share is valid, create it on the server
@@ -628,8 +646,10 @@ export default {
 				if (this.loading) {
 					return true
 				}
+
 				this.loading = true
 				this.errors = {}
+
 				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
 				const options = {
 					path,
@@ -643,10 +663,13 @@ export default {
 					// lib/Controller/ShareAPIController.php to allow file drop
 					// (currently not supported on create, only update)
 				}
+
 				console.debug('Creating link share with options', options)
 				const newShare = await this.createShare(options)
+
 				this.open = false
 				console.debug('Link share created', newShare)
+
 				// if share already exists, copy link directly on next tick
 				let component
 				if (update) {
@@ -747,8 +770,10 @@ export default {
 		 */
 		onPasswordDisable() {
 			this.share.password = ''
+
 			// reset password state after sync
 			this.$delete(this.share, 'newPassword')
+
 			// only update if valid share.
 			if (this.share.id) {
 				this.queueUpdate('password')
@@ -781,8 +806,10 @@ export default {
 			if (this.hasUnsavedPassword) {
 				this.share.password = this.share.newPassword.trim()
 			}
+
 			this.queueUpdate('sendPasswordByTalk', 'password')
 		},
+
 		/**
 		 * Save potential changed data on menu close
 		 */
@@ -829,12 +856,15 @@ export default {
 			border-top: 1px solid var(--color-border);
 		}
 	}
+
 	::v-deep .avatar-link-share {
 		background-color: var(--color-primary);
 	}
+
 	.sharing-entry__action--public-upload {
 		border-bottom: 1px solid var(--color-border);
 	}
+
 	&__loading {
 		width: 44px;
 		height: 44px;

@@ -24,19 +24,27 @@
 	<div class="sharing-search">
 		<label for="sharing-search-input">{{ t('files_sharing', 'Search for share recipients') }}</label>
 		<NcSelect ref="select"
-			id="sharing-search-input"
 			class="sharing-search__input"
-			:disabled="!canReshare"
-			:loading="loading"
 			:filterable="false"
-			:placeholder="inputPlaceholder"
-			:clear-search-on-blur="() => false"
-			:user-select="true"
+			:clear-on-select="true"
+			:disabled="!canReshare"
+			:internal-search="false"
+			:loading="loading"
 			:options="options"
+			:placeholder="inputPlaceholder"
+			:preselect-first="true"
+			:preserve-search="false"
+			:searchable="true"
+			:user-select="true"
 			v-model="value"
+			multiple: false
+			closeOnSelect: true
 			@open="handleOpen"
+			open-direction="below"
+			label="displayName"
+			track-by="id"
 			@search="asyncFind"
-			@option:selected="addShare">
+			@option:selected="showPermissions">
 			<template #no-options="{ search }">
 				{{ search ? noResultText : t('files_sharing', 'No recommendations. Start typing.') }}
 			</template>
@@ -62,12 +70,16 @@ import GeneratePassword from '../../../../../../../release25.0.6/apps/files_shar
 import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
 import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
 import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+
 export default {
 	name: 'SharingInput',
+
 	components: {
 		NcSelect,
 	},
+
 	mixins: [ShareTypes, ShareRequests],
+
 	props: {
 		shares: {
 			type: Array,
@@ -125,11 +137,14 @@ export default {
 			if (!allowRemoteSharing) {
 				return t('files_sharing', 'Name or email …')
 			}
+
 			return t('files_sharing', 'Name, email, or Federated Cloud ID …')
 		},
+
 		isValidQuery() {
 			return this.query && this.query.trim() !== '' && this.query.length > this.config.minSearchStringLength
 		},
+
 		options() {
 			if (this.isValidQuery) {
 				return this.suggestions
@@ -143,9 +158,14 @@ export default {
 			return t('files_sharing', 'No elements found.')
 		},
 	},
+
 	mounted() {
 		this.getRecommendations()
+		this.$root.$on('getRecommendations', data => {
+			this.getRecommendations()
+		})
 	},
+
 	methods: {
 		/**
 		 * Create a new share link and append it to the list
@@ -336,9 +356,11 @@ export default {
 		 */
 		async getSuggestions(search, lookup = false) {
 			this.loading = true
+
 			if (OC.getCapabilities().files_sharing.sharee.query_lookup_default === true) {
 				lookup = true
 			}
+
 			const shareType = [
 				this.SHARE_TYPES.SHARE_TYPE_USER,
 				this.SHARE_TYPES.SHARE_TYPE_GROUP,
@@ -350,9 +372,11 @@ export default {
 				this.SHARE_TYPES.SHARE_TYPE_DECK,
 				this.SHARE_TYPES.SHARE_TYPE_SCIENCEMESH,
 			]
+
 			if (OC.getCapabilities().files_sharing.public.enabled === true) {
 				shareType.push(this.SHARE_TYPES.SHARE_TYPE_EMAIL)
 			}
+
 			let request = null
 			try {
 				request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees'), {
@@ -369,12 +393,15 @@ export default {
 				console.error('Error fetching suggestions', error)
 				return
 			}
+
 			const data = request.data.ocs.data
 			const exact = request.data.ocs.data.exact
 			data.exact = [] // removing exact from general results
+
 			// flatten array of arrays
 			const rawExactSuggestions = Object.values(exact).reduce((arr, elem) => arr.concat(elem), [])
 			const rawSuggestions = Object.values(data).reduce((arr, elem) => arr.concat(elem), [])
+
 			// remove invalid data and format to user-select layout
 			const exactSuggestions = this.filterOutExistingShares(rawExactSuggestions)
 				.map(share => this.formatForMultiselect(share))
@@ -395,9 +422,12 @@ export default {
 					lookup: true,
 				})
 			}
+
 			// if there is a condition specified, filter it
 			const externalResults = this.externalResults.filter(result => !result.condition || result.condition(this))
+
 			const allSuggestions = exactSuggestions.concat(suggestions).concat(externalResults).concat(lookupEntry)
+
 			// Count occurrences of display names in order to provide a distinguishable description if needed
 			const nameCounts = allSuggestions.reduce((nameCounts, result) => {
 				if (!result.displayName) {
@@ -416,9 +446,11 @@ export default {
 				}
 				return item
 			})
+
 			this.loading = false
 			console.info('suggestions', this.suggestions)
 		},
+
 		/**
 		 * Debounce getSuggestions
 		 *
@@ -444,18 +476,23 @@ export default {
 				console.error('Error fetching recommendations', error)
 				return
 			}
+
 			// Add external results from the OCA.Sharing.ShareSearch api
 			const externalResults = this.externalResults.filter(result => !result.condition || result.condition(this))
+
 			// flatten array of arrays
 			const rawRecommendations = Object.values(request.data.ocs.data.exact)
 				.reduce((arr, elem) => arr.concat(elem), [])
+
 			// remove invalid data and format to user-select layout
 			this.recommendations = this.filterOutExistingShares(rawRecommendations)
 				.map(share => this.formatForMultiselect(share))
 				.concat(externalResults)
+
 			this.loading = false
 			console.info('recommendations', this.recommendations)
 		},
+
 		/**
 		 * Filter out existing shares from
 		 * the provided shares search results
@@ -599,8 +636,10 @@ export default {
 		async addShare(value) {
 			// Clear the displayed selection
 			this.value = null
+
 			if (value.lookup) {
 				await this.getSuggestions(this.query, true)
+
 				this.$nextTick(() => {
 					// open the dropdown again
 					this.$refs.select.$children[0].open = true
@@ -656,17 +695,32 @@ export default {
 				this.loading = false
 			}
 		},
+
+		async showPermissions(value) {
+			// this.$root.$emit('optionValues', value)
+			this.$store.commit('addOption', value)
+			this.$store.commit('addFromInput', true)
+			const newShare = new Share({})
+			newShare.permissions = OC.PERMISSION_READ
+			newShare.expireDate = ''
+			newShare.password = ''
+			this.$store.commit('addShare', newShare)
+			this.$store.commit('addCurrentTab', 'permissions')
+		},
 	},
 }
 </script>
+
 <style lang="scss">
 .sharing-search {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 4px;
+
 	label[for="sharing-search-input"] {
 		margin-bottom: 2px;
 	}
+
 	&__input {
 		width: 100%;
 		margin: 10px 0;
