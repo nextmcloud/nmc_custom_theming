@@ -1,0 +1,218 @@
+@import 'functions';
+
+.oc-dialog {
+	padding: 1.5rem !important;
+	box-shadow: var(--scl-shadow-level-2) !important;
+	.oc-dialog-title {
+		font-size: 1.5rem;
+		margin-bottom: 0.375rem;
+	}
+	.oc-dialog-close {
+		padding: 0.938rem;
+		@include unset('border', false);
+		@include unset('opacity', false);
+		@include unset('border-radius', false);
+		@include unset('background-color', false);
+	}
+	div.crumb {
+		background-size: auto 24px;
+	}
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #cccccc;
+		@include unset('border', false);
+	}
+}
+#oc-dialog-filepicker-content {
+	.dirtree {
+		padding-left: 0.125rem;
+	}
+	#picker-filestable.filelist {
+		.filename {
+			background-size: 44px;
+			background-position: 5px 14px;
+		}
+		margin-bottom: 0;
+		td.filename {
+			width: 200px;
+		}
+		td.filesize {
+			padding: 0.875rem 1rem;
+			width: 50px;
+		}
+		td.date {
+			padding: 0.875rem 1rem;
+			text-align: right;
+			width: calc(100% - 250px);
+		}
+		th {
+			.columntitle.name {
+				padding: 1.25rem 1rem 1.25rem 0.313rem;
+				margin-left: 2.688rem;
+			}
+			.columntitle.size {
+				padding: 1.25rem 1rem;
+				display: flex;
+				flex-direction: row-reverse !important;
+				justify-content: space-between;
+			}
+			.columntitle#modified {
+				padding: 1.25rem 1rem;
+				display: flex;
+				flex-direction: row-reverse !important;
+				justify-content: space-between;
+			}
+			#column-name-container {
+				.sort-indicator {
+					margin-left: -4.375rem;
+				}
+			}
+			.sort-indicator {
+				@include unset('opacity', false);
+				margin-left: 0.875rem;
+				margin-right: 0.5rem;
+			}
+		}
+		thead {
+			tr {
+				th {
+					@include unset('border', false);
+					border-bottom: 1px solid var(--color-border);
+				}
+			}
+		}
+	}
+	.filelist-container {
+		margin-bottom: 1.5rem;
+		margin-top: 0.75rem;
+	}
+	.actions.creatable {
+		@include unset('background-color',false);
+		@include unset('border', false);
+		left: 6px;
+		top: 10px;
+		a {
+			@include unset('background-color', false);
+		}
+	}
+	#picker-view-toggle {
+		display: none;
+	}
+	.breadcrumb {
+		margin-left: 0;
+		padding-bottom: 1.5rem;
+	}
+	.filenameform {
+		input {
+			width: 130px;
+			margin: 0;
+		}
+		input.icon-confirm {
+			width: 34px;
+			margin-left: -0.5rem;
+		}
+	}
+}
+.oc-dialog-buttonrow {
+	button {
+		height: 40px !important;
+		min-width: 135px !important;
+		border-radius: 8px;
+		padding: 0 1.5rem ;
+		background-color: var(--white-color);
+		border-color: var(--scl-color-grey-90);
+		margin: 0px;
+		font-size: 1rem;
+		&:hover {
+			border-color: var(--white-color);
+			color: var(--magenta-color);
+		}
+	}
+	padding: 0;
+}
+.oc-dialog-buttonrow.onebutton {
+	.primary {
+		background-color: var(--color-background-plain) !important;
+		border-color: var(--white-color);
+		color: var(--white-color);
+		margin: 0 0 0 0.5rem;
+		&:hover {
+			background-color: #f90984;
+		}
+	}
+	button {
+		&:disabled {
+			@include unset('opacity', false);
+		}
+	}
+}
+.oc-dialog-buttonrow.twobuttons {
+	.primary {
+		background-color: var(--color-background-plain) !important;
+		border-color: var(--white-color) !important;
+		color: var(--white-color);
+		margin: 0 0 0 0.5rem;
+	}
+}
+.oc-dialog-buttonrow.twobuttons.aside {
+	.primary {
+		&:hover {
+			background-color: #f90984;
+		}
+	}
+}
+#picker-filestable {
+	thead {
+		tr {
+			height: 32px;
+		}
+	}
+	tr {
+		height: 68px;
+	}
+	tbody {
+		tr {
+			&:hover,&:focus,&:active {
+				background-color: rgb(242 242 242 / 50%);
+			}
+		}
+	}
+	.view-grid {
+		tbody {
+			display: none;
+		}
+	}
+}
+
+.oc-dialog-content {
+	@include unset('max-width', true);
+	input {
+		width: 501px !important;
+		margin: 1rem 0 1.5rem 0;
+		@include unset('border-radius', false);
+	}
+}
+
+#oc-dialog-0-content {
+    margin-bottom: 1.5rem;
+}
+
+button:not(.button-vue, [class^=vs__]).primary:not(:disabled):focus {
+	@include unset('box-shadow', true);
+}
+
+.oc-dialog .oc-dialog-close:hover {
+	filter: var(--color-background-magenta);
+}
+
+.oc-dialog .oc-dialog-close:active {
+	@include unset('filter', true);
+}
+
+#oc-dialog-filepicker-content #picker-showgridview:hover,
+#oc-dialog-filepicker-content #picker-showgridview:active,
+#oc-dialog-filepicker-content #picker-showgridview:focus {
+	@include unset('box-shadow', true);
+}
