@@ -1,0 +1,78 @@
+@import 'functions';
+
+// Deleted files
+.files-fileList {
+	.icon-history {
+		margin: 0 0.5rem !important;
+		background-position-y: -1px !important;
+	}
+}
+
+.files-filestable {
+	.filename {
+		.fileactions {
+			a.action-restore {
+				span {
+					&:not(.icon) {
+						color: var(--color-background-plain) !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.files-fileList {
+	td {
+		a {
+			a.action-restore {
+				display: flex;
+				width: auto;
+				padding: 0 !important;
+				flex-direction: row-reverse;
+				align-items: center !important;
+			}
+		}
+	}
+}
+
+#app-content-trashbin {
+	.item-files_zip {
+		display: none;
+	}
+}
+
+#app-content-trashbin .emptycontent [class^=icon-]:not([class^=icon-loading]),
+#app-content-trashbin .emptycontent [class^=icon-]:not([class*=icon-loading]),
+#app-content-trashbin .emptycontent [class*=icon-]:not([class^=icon-loading]),
+#app-content-trashbin .emptycontent [class*=icon-]:not([class*=icon-loading]) {
+	@include unset('opacity',false);
+}
+
+#app-content-trashbin .emptycontent [class^='icon-'],
+#app-content-trashbin .emptycontent [class*='icon-']
+{
+    background-size: 120px;
+    height: 7.5rem;
+    width: 7.5rem;
+    margin: 0 auto !important;
+}
+
+#app-content-trashbin {
+	.emptycontent {
+		h2 {
+			margin-top: 1rem;
+			margin-bottom: 1.5rem;
+			font-size: 1.25rem;
+		}
+		p {
+			font-size: 1.25rem;
+			font-weight: normal;
+		}
+		.icon-delete {
+			&:hover {
+				filter: none;
+			}
+		}
+	}
+}
