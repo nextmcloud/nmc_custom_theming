@@ -1,0 +1,244 @@
+@import 'functions';
+
+ // Files app navigation
+
+ #app-navigation:not(.vue){
+	&> ul > li.pinned {
+    	order: 1;
+	}
+	&> ul > li.pinned.first-pinned{
+		margin-top: 0 !important;
+	}
+	& ul li a{
+		@include unset('border-radius',false);
+	}
+}
+
+ #app-navigation:not(.vue)>ul>li>a,
+ #app-navigation:not(.vue)>ul>li>ul>li>a {
+     background-size: 24px 24px;
+     background-position: 14px 9px;
+ }
+
+
+ #app-navigation:not(.vue) ul,#app-navigation-vue ul {
+     padding-top: 4rem;
+ }
+
+ #app-navigation{
+	 background-color: var(--white-color) !important;
+ 	&>ul>li.active,
+	&>ul>li.active>a,
+	&>ul>li a:active,
+	&>ul>li a:active>a,
+	&>ul>li a.selected,
+	&>ul>li a.selected>a,
+	&>ul>li a.active,
+	&>ul>li a.active>a {
+		background-color: #f2f2f2 !important;
+		color: var(--color-background-plain) !important;
+		text-decoration: none;
+	}
+
+	 &>ul>li>a:active,
+	 &>ul>li>a::selection {
+		color: var(--scl-color-magenta) !important;
+		opacity: 1 !important;
+		text-decoration: none;
+ 	}
+
+	.custom-button {
+		padding-left: 1rem;
+		.btn-style {
+			padding: 0.563rem 1.5rem ;
+			border: 1px solid var(--color-main-text);
+			background-color: var(--white-color);
+			display: inline-block;
+			border-radius: 4px;
+			line-height: 1.42857143;
+			font-weight: 400;
+		}
+		.btn-style:hover {
+			color: var(--color-background-plain);
+			border: 1px solid var(--color-primary-element);
+		}
+	}
+	.collapsible:before {
+		@include unset('content',true);
+	}
+}
+
+
+ #app-navigation:not(.vue)>ul>li a:hover,
+ #app-navigation:not(.vue)>ul>li a:hover>a,
+ #app-navigation:not(.vue)>ul>li a:focus,
+ #app-navigation:not(.vue)>ul>li a:focus>a {
+     background-color: #f2f2f2;
+     color: var(--color-background-plain);
+ }
+
+
+ #app-navigation>ul>li::selection {
+     background-color: #f2f2f2 !important;
+ }
+
+ #app-navigation>ul>li>ul>li>a:hover {
+     color: var(--scl-color-magenta) !important;
+     opacity: 1 !important;
+ }
+
+ #app-navigation>ul>li>a.nav-icon-recent:hover {
+     background-image: var(--icon-files-recent-e20074);
+ }
+
+ #app-navigation>ul>li>a.nav-icon-favorites:hover {
+     background-image: var(--icon-star-dark-e20074);
+ }
+
+ #app-navigation>ul>li>.nav-icon-files.svg.active,#app-navigation>ul>li>a.nav-icon-files:hover {
+     background-image: var(--icon-files-folder-e20074);
+ }
+
+ #app-navigation>ul>li>.nav-icon-sharingout.svg.active,
+ #app-navigation>ul>li>a.nav-icon-sharingout:hover {
+     background-image: var(--icon-user-e20074);
+ }
+
+
+ #app-navigation>ul>li>.nav-icon-sharingin.svg.active,
+ #app-navigation>ul>li>a.nav-icon-sharingin:hover {
+     background-image: var(--icon-attachment-e20074);
+ }
+
+ #app-navigation .nav-icon-sharingin {
+     background-image: var(--icon-attachment-000);
+ }
+
+ #app-navigation>ul>li>ul>li>a.nav-icon-sharinglinks:hover {
+     background-image: var(--icon-files-public-e20074);
+}
+
+
+
+/**navigation-icons**/
+
+#app-navigation .nav-icon-favorites.svg.active ,
+#app-navigation .nav-icon-favorites:hover {
+    background-image: var( --icon-fav-magenta) !important;
+}
+
+#app-navigation .nav-icon-files.svg.active,
+#app-navigation .nav-icon-files:hover {
+    background-image: var( --icon-folder-magenta-nav) !important;
+}
+
+
+#app-navigation .nav-icon-trashbin:hover,
+.popover__inner li:hover .icon-close,
+.popover__wrapper li.hover .icon-delete,
+.popover__inner li:hover span.icon-delete{
+    background-image: var(--icon-delete-magenta) !important;
+}
+
+#app-navigation .nav-icon-trashbin.svg.active {
+    background-image: var(--icon-delete-magenta) !important;
+}
+
+ #sublist-favorites {
+	display: none !important;
+}
+
+
+.NextCloudPorgressBar {
+	margin: 1rem 0rem;
+	padding: 0rem 2rem 0rem 1rem;
+	width: 100%;
+
+	.customprogressbar {
+	   height: 4px;
+	   border-radius: 4px;
+	   margin-bottom: 0.5rem;
+   }
+   .styledbar {
+	   background-color: var(--color-background-plain);
+	   border-radius: 4px;
+	   box-shadow: 4px 0px 0px 0px rgba(255, 255, 255, 0.99);
+	   -webkit-box-shadow: 4px 0px 0px 0px rgba(255, 255, 255, 0.99);
+	   -moz-box-shadow: 4px 0px 0px 0px rgba(255, 255, 255, 0.99);
+   }
+}
+
+
+.progress {
+	overflow: hidden;
+	background-color: #f2f2f2;
+	.progress-bar {
+		height: 100%;
+		-webkit-transition: width .6s ease;
+		transition: width .6s ease;
+	}
+}
+
+.quota{
+	margin-top: auto !important;
+}
+
+/*-------------------MemoryLogo------------------------------*/
+
+.Memory-consumed  {
+	padding-left: 1rem;
+	.left-logo,.logo-right-text {
+		display: inline-block;
+	}
+
+	.logo-right-text {
+		vertical-align: middle;
+		padding-top: 0.313rem;
+		padding-left: 0.375rem;
+		font-size: 1.25rem;
+		& > *{
+			font-size: inherit;
+		}
+	  }
+
+	img {
+		vertical-align: middle;
+	}
+
+	.avlspace {
+		font-weight: 600;
+	}
+
+	.outoftext {
+		padding: 0 4px;
+	}
+
+	.totalspace {
+		padding-left: 3px;
+	}
+
+}
+#app-settings-header{
+	.settings-button{
+		color:var(--color-primary-element);
+		&::before{
+			background-image: var(--icon-triangle-up);
+		}
+		&:hover{
+			text-decoration: underline ;
+		}
+		&:hover,&:focus{
+			@include unset('background-color',false);
+		}
+		&.opened
+		{
+			@include unset('border-top',false);
+			&::before{
+				background-image: var(--icon-triangle-s-e20074);
+			}
+		}
+	}
+}
+
+
+// Files app navigation
