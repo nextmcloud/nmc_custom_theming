@@ -107,8 +107,8 @@ import SharingEntrySimple from '../../../../../../../release25.0.6/apps/files_sh
 import SharingInput from '../components/SharingInput'
 
 import SharingInherited from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingInherited'
-import SharingLinkList from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingLinkList'
-import SharingList from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingList.vue'
+import SharingLinkList from './SharingLinkList'
+import SharingList from './SharingList.vue'
 import SharingPermissions from '../components/SharingPermissions'
 import SharingNotes from '../components/SharingNotes'
 import { mapGetters } from 'vuex'

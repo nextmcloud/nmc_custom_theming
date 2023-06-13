@@ -24,27 +24,23 @@
 	<div class="sharing-search">
 		<label for="sharing-search-input">{{ t('files_sharing', 'Search for share recipients') }}</label>
 		<NcSelect ref="select"
-			class="sharing-search__input"
-			:filterable="false"
+		class="sharing-input"
 			:clear-on-select="true"
 			:disabled="!canReshare"
+			:hide-selected="true"
 			:internal-search="false"
 			:loading="loading"
 			:options="options"
 			:placeholder="inputPlaceholder"
 			:preselect-first="true"
-			:preserve-search="false"
+			:preserve-search="true"
 			:searchable="true"
 			:user-select="true"
-			v-model="value"
-			multiple: false
-			closeOnSelect: true
-			@open="handleOpen"
 			open-direction="below"
 			label="displayName"
 			track-by="id"
-			@search="asyncFind"
-			@option:selected="showPermissions">
+			@search-change="asyncFind"
+			@select="showPermissions">
 			<template #no-options="{ search }">
 				{{ search ? noResultText : t('files_sharing', 'No recommendations. Start typing.') }}
 			</template>
@@ -332,10 +328,6 @@ export default {
 					resolve(newShare)
 				}
 			})
-		},
-		handleOpen() {
-			// Fix dropdown not opening when viewer is open, see https://github.com/nextcloud/viewer/pull/1319
-			emit('viewer:trapElements:changed', this.$refs.select.$el)
 		},
 		async asyncFind(query) {
 			// save current query to check if we display
