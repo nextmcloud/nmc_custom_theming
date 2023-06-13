@@ -1,0 +1,152 @@
+@use 'variables';
+@import 'functions';
+
+// Add button newFileMenu
+.newFileMenu {
+	padding: 0.813rem 0.625rem;
+	box-shadow: var(--scl-shadow-level-2);
+	border-radius: 8px;
+	.menuitem {
+		.displayname {
+			&:hover {
+				color: var(--magenta-color);
+			}
+			padding-left: 0.5rem;
+		}
+	}
+	ul {
+		>li {
+			&:last-child {
+				display: none;
+			}
+		}
+	}
+}
+.bubble, .popovermenu {
+	li {
+		>button,>a,>.menuitem {
+			&:hover,&:focus {
+				@include unset('background-color',true);
+			}
+		}
+	}
+
+	filter: none !important;
+}
+
+.actions.creatable {
+	.popovermenu.menu-left {
+		a {
+			@include unset('width',true);
+			@include unset('height',true);
+		}
+	}
+}
+.app-navigation-entry-menu {
+	filter: none !important;
+}
+.menuitem {
+	&:hover {
+		span {
+			color: var(--magenta-color) !important;
+		}
+	}
+}
+
+button {
+	&:not(:disabled) {
+		&:not(.primary) {
+			&:hover , &:focus{
+				@include unset('border-color',true);
+			}
+		}
+	}
+}
+.button {
+	&:not(:disabled) {
+		&:not(.primary) {
+			&:hover , &:focus{
+				@include unset('border-color',true);
+			}
+		}
+	}
+}
+.pager {
+	li {
+		a {
+			&:not(:disabled) {
+				&:not(.primary) {
+					&:hover , &:focus{
+						@include unset('border-color',true);
+					}
+				}
+				&:not(.primary).active {
+					@include unset('border-color',true);
+				}
+			}
+		}
+	}
+}
+
+.newFileMenu {
+	.icon-upload {
+		background-size: 24px !important;
+	}
+	.icon-folder {
+		background-image: var(--icon-new-folder) !important;
+		background-size: 24px !important;
+	}
+}
+.icon-filetype-folder {
+	background-image: var(--icon-new-folder) !important;
+	background-size: 24px !important;
+}
+
+.newFileMenu {
+	li {
+		&:nth-child(1) {
+			.menuitem {
+				&:hover {
+					span {
+						filter: var(--color-background-magenta);
+					}
+				}
+			}
+		}
+		&:nth-child(2) {
+			.menuitem {
+				&:hover {
+					span {
+						filter: var(--color-background-magenta);
+					}
+				}
+			}
+		}
+		&:nth-child(3) {
+			.menuitem {
+				&:hover {
+					span {
+						filter: var(--color-background-magenta);
+					}
+				}
+			}
+		}
+	}
+}
+
+/* office new file creation */
+.newFileMenu {
+	.icon-filetype-document {
+		background-image: url(#{variables.$filetypes-image-path} + 'file-text-24.svg') !important;
+	}
+	.icon-filetype-spreadsheet {
+		background-image: url(#{variables.$filetypes-image-path} + 'file-calculation-24.svg') !important;
+	}
+	.icon-filetype-presentation {
+		background-image: url(#{variables.$filetypes-image-path} + 'file-presentation-24.svg') !important;
+	}
+	.icon-filetype-draw {
+		background-image: url(#{variables.$filetypes-image-path} + 'file-analytics-24.svg') !important;
+		background-size: contain !important;
+	}
+}
