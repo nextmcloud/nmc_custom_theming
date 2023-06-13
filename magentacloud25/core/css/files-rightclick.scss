@@ -1,0 +1,64 @@
+@import 'functions';
+
+/*----right-click-menu------*/
+#rightClickMenu {
+	.option-details {
+		display: none;
+	}
+	margin: 0;
+	padding: 0.813rem 0.625rem;
+	box-shadow: var(--scl-shadow-level-2);
+	@include unset('filter',false);
+	border-radius: 8px !important;
+	span {
+		&::first-letter {
+			text-transform: capitalize;
+		}
+		&:last-child {
+			margin-left: .5rem;
+		}
+	}
+}
+
+.fileActionsMenu {
+	margin: 0;
+	padding: 0.813rem 0.625rem;
+	box-shadow: var(--scl-shadow-level-2);
+	@include unset('filter',false);
+	border-radius: 8px !important;
+	span {
+		&:last-child {
+			margin-left: .5rem;
+		}
+	}
+}
+
+#rightClickMenu.bubble,
+.fileActionsMenu.bubble
+{
+	li {
+		>a {
+			align-items: center !important;
+			&:hover {
+				@include unset('background-color',false);
+			}
+		}
+	}
+}
+
+li>button span[class^='icon-'],
+li>button span[class*=' icon-'],
+li>a span[class*=' icon-'],
+li>a[class^='icon-'],
+li>.menuitem span[class^='icon-'],
+li>.menuitem span[class*=' icon-'],
+li>.menuitem[class^='icon-'],
+li>.menuitem[class*=' icon-'] {
+	background-size: 24px !important;
+}
+
+.icon-richdocuments
+{
+	background-image: var(--icon-file-grey) !important;
+    background-size: 24px !important;
+}
