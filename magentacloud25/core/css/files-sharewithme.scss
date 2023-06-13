@@ -1,0 +1,61 @@
+@import 'functions';
+
+#app-content-sharingin .emptycontent [class^=icon-]:not([class^=icon-loading]),
+#app-content-sharingin .emptycontent [class^=icon-]:not([class*=icon-loading]),
+#app-content-sharingin .emptycontent [class*=icon-]:not([class^=icon-loading]),
+#app-content-sharingin .emptycontent [class*=icon-]:not([class*=icon-loading]) {
+    @include unset('opacity',false);
+}
+
+#app-content-sharingin .emptycontent [class^='icon-'],
+#app-content-sharingin .emptycontent [class*='icon-']
+{
+    background-size: 120px;
+    height: 7.5rem;
+    width: 7.5rem;
+    margin: 0 auto !important;
+}
+
+#app-content-sharingin {
+	.emptycontent {
+		h2 {
+			margin-top: 1rem;
+			margin-bottom: 1.5rem;
+			font-size: 1.25rem;
+		}
+		p {
+			font-size: 1.25rem;
+			font-weight: normal;
+		}
+		.icon-shared {
+			&:hover {
+				filter: none;
+			}
+		}
+	}
+}
+
+.fileactions .action.action-share.permanent.shared-style .avatar {
+    height: 24px !important;
+    width: 24px !important;
+    margin: 0;
+    background-image: var(--icon-cloud-blue);
+    background-repeat: no-repeat;
+}
+
+.action-share span.avatar {
+    @include unset('background-color',false);
+    @include unset('color',true);
+    @include unset('font-weight',false);
+    @include unset('text-align',false);
+    @include unset('line-height',false);
+    @include unset('font-size',false);
+}
+
+.fileactions .action .avatar img, .action .avatardiv img {
+    display: none !important;
+}
+
+#app-content-sharingin .files-filestable{
+	padding-top: 1.5rem;
+}
