@@ -1,0 +1,41 @@
+@import 'functions';
+
+// favorites
+#app-content-favorites .files-filestable{
+	padding-top: 1.5rem;
+}
+
+#app-content-favorites .emptycontent [class^=icon-]:not([class^=icon-loading]),
+#app-content-favorites .emptycontent [class^=icon-]:not([class*=icon-loading]),
+#app-content-favorites .emptycontent [class*=icon-]:not([class^=icon-loading]),
+#app-content-favorites .emptycontent [class*=icon-]:not([class*=icon-loading]) {
+    @include unset('opacity',false);
+}
+
+#app-content-favorites .emptycontent [class^='icon-'],
+#app-content-favorites .emptycontent [class*='icon-']
+{
+    background-size: 192px;
+    height: 192px;
+    width: 192px;
+    margin: 0 auto !important;
+}
+
+#app-content-favorites {
+	.emptycontent {
+		h2 {
+			margin-top: 1rem;
+			margin-bottom: 1.5rem;
+			font-size: 1.25rem;
+		}
+		p {
+			font-size: 1.25rem;
+			font-weight: normal;
+		}
+		.icon-starred{
+			&:hover {
+				filter: none;
+			}
+		}
+	}
+}
