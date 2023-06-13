@@ -1,8 +1,94 @@
+
+/* Search functionality */
+@media screen and (max-width: 650px) {
+	#header-menu-unified-search {
+		position: fixed !important;
+		width: 100%;
+	}
+}
+
+/* File multiselection action */
+@media only screen and (max-width: 440px) {
+	#selectedActionsList {
+		.popovermenu {
+			right: -85px;
+			top: 20px;
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	table th .selectedActions {
+		float: right;
+    }
+	table th {
+		.selectedActions a,
+		#selectedActionLabel a
+		{
+			padding: 17px 14px;
+		}
+	}
+	table th .columntitle.name {
+		margin-left: 0;
+	}
+	table.multiselect th.column-name {
+		padding-left: 0;
+	}
+    table th.column-name {
+		padding-left: 24px;
+	}
+    #allLabel {
+		display: none;
+	}
+	#selectedActionsList {
+		.filesSelectionMenu {
+			display: none !important;
+		}
+		.popovermenu {
+			right: -70px;
+			top: 25px;
+		}
+	}
+	#selectedActionLabel {
+		padding-right: 0px !important;
+	}
+	table.multiselect th .columntitle.name {
+		padding-left: 0;
+	}
+}
+
+/* file conflict */
 @media screen and (min-width: 1025px) {
 	.oc-dialog {
 		width: 640px;
 	}
 	.oc-conflict-pre-dlg {
 		width: 288px;
+	}
+}
+
+/* filelist view and Grid view */
+@media screen and (min-width: 1600px) {
+	#app-content-files .files-fileList td a a.action.action-menu {
+		display: none !important;
+	}
+
+	.files-filestable.view-grid tbody {
+		row-gap: 13px !important;
+	}
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1599px) {
+	.files-fileList td a a.action.action-menu {
+		display: none;
+	}
+	.files-filestable.view-grid tbody {
+		row-gap: 0px !important;
+	}
+}
+
+@media screen and (min-width: 1599px) {
+	.files-fileList td a a.action.action-menu {
+		display: none !important;
 	}
 }
