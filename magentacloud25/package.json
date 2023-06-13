@@ -1,0 +1,13 @@
+{
+  "name": "magenta_cloud_theme",
+  "version": "1.0.0",
+  "description": "Next magenta cloud custom theme",
+  "scripts": {
+    "sass": "sass --style compressed --load-path core/css core/css/ apps/*/css",
+    "sass:watch": "sass --watch --load-path core/css core/css/ apps/*/css"
+  },
+  "dependencies": {
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2"
+  }
+}

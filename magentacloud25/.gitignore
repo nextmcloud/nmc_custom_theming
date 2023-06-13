@@ -1,0 +1,15 @@
+
+# apps modules
+/apps/*/node_modules
+
+# vscode
+.vscode
+
+# Tests
+/tests/phpunit.xml
+
+# nodejs
+/node_modules
+/npm-debug.log
+package-lock.json
+
