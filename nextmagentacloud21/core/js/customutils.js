@@ -629,3 +629,52 @@ function leftSidebarEvents() {
     window._nc_event_bus.emit('files:navigation:changed')
   })
 }
+
+// Tealium
+function consent_layer_events() {
+  document.addEventListener("click", function(e){
+    if(e.target.closest("#consentAcceptAll") || e.target.closest("#rejectAll")|| e.target.closest("#consentSettingsAcceptAll")){
+      consent_layer_events();
+    }
+  })
+
+  // tracking events
+  if(typeof utag!=='undefined' && utag.view()) {
+    var utag_data = {
+      page_content_id : "magentacloud.de.privatkunden.consentlayer",
+      page_type : "theme"
+    }
+    utag.view(utag_data);
+  }
+
+  // tealium action
+  const locSearch = window.location.search;
+  const urlSearchParams = new URLSearchParams(locSearch);
+
+  if(locSearch) { // all logins except telekom login
+    if (urlSearchParams.get('redirect_url')) {
+      telekom_redirection();
+    } else {
+      document.getElementsByClassName('login-section')[0].style.visibility = 'visible';
+    }
+  } else { // telekom login redirection
+    telekom_redirection();
+  }
+}
+
+function telekom_redirection(){
+  const telLoginButton = document.getElementById('alternative-logins');
+  if (telLoginButton && consentCookies()) {
+    telLoginButton?.children[0]?.click();
+  }else{
+    const loginSect = document.getElementsByClassName('login-section');
+    if(loginSect && consentCookies()){
+      loginSect[0].style.visibility = 'visible';
+    }
+  }
+}
+
+function consentCookies(){
+  const constentCookieValue = document.cookie.match(/^(.*;)?\s*CONSENTMGR\s*=\s*[^;]+(.*)?$/);
+  return constentCookieValue && constentCookieValue[0].includes("consent");
+}
