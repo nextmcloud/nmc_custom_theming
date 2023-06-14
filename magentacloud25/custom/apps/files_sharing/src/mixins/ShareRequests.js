@@ -28,7 +28,7 @@ import 'url-search-params-polyfill'
 
 import { generateOcsUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import Share from '../models/Share'
+import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
 
 const shareUrl = generateOcsUrl('apps/files_sharing/api/v1/shares')
 

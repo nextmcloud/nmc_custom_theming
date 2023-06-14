@@ -157,6 +157,7 @@ export default {
 
 	mounted() {
 		this.getRecommendations()
+		
 		this.$root.$on('getRecommendations', data => {
 			this.getRecommendations()
 		})

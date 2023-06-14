@@ -343,8 +343,7 @@ export default {
 		},
 
 		canHaveExpirationDate() {
-            console.log("can have : "+ !this.isRemoteShare)
-			return !this.isRemoteShare
+            return !this.isRemoteShare
 		},
 
 		/**
