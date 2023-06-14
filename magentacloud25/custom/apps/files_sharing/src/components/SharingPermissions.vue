@@ -310,12 +310,9 @@ export default {
 		}
 	},
 	beforeMount() {
-		
-		console.log("file extension : "+this.fileInfo.mimetype)
 		if(this.allowExtensions.includes( this.fileInfo.mimetype)){
 			this.isAllowed=false
 		}
-		console.log("is disabled : " + this.isAllowed)
 	},
 
 	computed: {
