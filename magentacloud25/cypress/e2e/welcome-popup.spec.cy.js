@@ -6,17 +6,15 @@ describe('Themes related changes', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.visit(`${Cypress.env('local').app_url}/apps/files/`);
-    cy.get('.grouptop input').type(`${Cypress.env('local').user}{enter}`)
-    cy.get('.groupbottom input').type(`${Cypress.env('local').password}{enter}`)
+    cy.get('#user').type(`${Cypress.env('local').user}{enter}`)
+    cy.get('#password').type(`${Cypress.env('local').password}{enter}`)
+ 
   })
 
 
 
   it('Open welcome popup', () => {
-    cy.wait(2000)
-    cy.get('.settingsdiv').click()
-    cy.wait(5000)
-    cy.get("#expanddiv li[data-id='nmc_welcome_popup-about'] a").should('contain.text','Neuigkeiten').click()
+    cy.visit(`${Cypress.env('local').app_url}/apps/nmc_welcome_popup/wizard`);   
     cy.get('.nmc_welcome_popup-header h2').should('have.css','font-weight','700').should('have.css','text-align','left').should('have.css','padding','0px')
     cy.get('.modal-body').should('have.css','padding','0px 24px')
     cy.get('#nmc_welcome_popup .logo img').should('have.css','display','block').should('have.css','padding-top','4px')

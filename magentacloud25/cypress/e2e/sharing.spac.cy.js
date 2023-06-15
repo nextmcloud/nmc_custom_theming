@@ -1,19 +1,12 @@
 
 describe('Sharing related changes', () => {
-     beforeEach(() => {
-     cy.visit(`${Cypress.env('local').app_url}/apps/files/`);
-     cy.get('.grouptop input').type(`${Cypress.env('local').user}{enter}`)
-     cy.get('.groupbottom input').type(`${Cypress.env('local').password}{enter}`)
-
-      })
+  before(function () {
+    cy.visit(`${Cypress.env('local').app_url}/apps/photos/`);
+    cy.get('#user').type(`${Cypress.env('local').user}{enter}`)
+    cy.get('#password').type(`${Cypress.env('local').password}{enter}`)
+  })
 
      it('For language English check all translation for sharing', () => {
-       cy.get('.settingsdiv').click()
-       cy.wait(5000)
-       cy.get('a[href*="/index.php/settings/user"]').contains('Einstellungen').click()
-       cy.wait(2000)
-       cy.get('#languageinput').select('English')
-       cy.wait(2000)
        cy.visit(`${Cypress.env('local').app_url}/apps/files`);
        cy.wait(1000)
        cy.get('#fileList td .fileactions .action-share').last().click({force: true} );
@@ -42,6 +35,19 @@ describe('Sharing related changes', () => {
         cy.wait(2000)
         cy.get('#languageinput').select('Deutsch')
         cy.wait(2000)
+        cy.visit(`${Cypress.env('local').app_url}/apps/files`);
+        cy.wait(2000)
+        cy.get('#fileList td .fileactions .action-share').last().click({force: true} );
+        cy.get('aside').should('contain','Teilen')
+        cy.get('aside').should('contain','Sie können Links erstellen oder Freigaben per Mail versenden. Wenn Sie MagentaCLOUD Nutzer einladen, bieten sich Ihnen mehr Möglichkeiten der Zusammenarbeit.')
+        cy.get('aside').should('contain','Ihre Freigaben')
+        cy.get('.add-new-link-btn').should('contain','Link erstellen')
+
+       })
+
+
+       it('For language German check all translation for sharing', () => {
+        cy.wait(5000)
         cy.visit(`${Cypress.env('local').app_url}/apps/files`);
         cy.wait(2000)
         cy.get('#fileList td .fileactions .action-share').last().click({force: true} );
