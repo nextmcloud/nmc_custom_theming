@@ -50,7 +50,25 @@
     it('Go to my album section and check separate files section if folder are not available', () => {
         cy.get('#content-vue > #app-content-vue > div .list-title').should('have.text', 'Files')
     })
+    // Translation script
     
+    it('Go to my album section fail case', () => {
+      cy.get('.app-navigation__list > .app-navigation-entry-wrapper > .app-navigation-entry').find('span').should('contain.text', 'Ordner')
+  })
+
+  it('Go to my album section success case', () => {
+      cy.get('.app-navigation__list > .app-navigation-entry-wrapper > .app-navigation-entry').find('span').should('contain.text', 'Ordner')
+  })
+
+  it('Go to my folder section and check separate files and folder section', () => {
+    cy.get('a[href*="/folders"]').click()
+      cy.get('#content-vue > #app-content-vue > div').should('contain.text', 'Ordner')
+  })
+
+  it('Go to my album section and check separate files section if folder are not available', () => {
+      cy.get('#content-vue > #app-content-vue > div .list-title').should('have.text', 'Dateien')
+  })
+  
 
  })
 
