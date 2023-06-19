@@ -1,0 +1,41 @@
+@import 'functions';
+
+// My shares
+#app-content-sharingout .emptycontent [class^=icon-]:not([class^=icon-loading]),
+#app-content-sharingout .emptycontent [class^=icon-]:not([class*=icon-loading]),
+#app-content-sharingout .emptycontent [class*=icon-]:not([class^=icon-loading]),
+#app-content-sharingout .emptycontent [class*=icon-]:not([class*=icon-loading]) {
+	@include unset('opacity',false);
+}
+
+#app-content-sharingout .emptycontent [class^='icon-'],
+#app-content-sharingout .emptycontent [class*='icon-']
+{
+    background-size: 120px;
+    height: 7.5rem;
+    width: 7.5rem;
+    margin: 0 auto !important;
+}
+
+#app-content-sharingout {
+	.emptycontent {
+		h2 {
+			margin-top: 1rem;
+			margin-bottom: 1.5rem;
+			font-size: 1.25rem;
+		}
+		p {
+			font-size: 1.25rem;
+			font-weight: normal;
+		}
+		.icon-shared {
+			&:hover {
+				filter: none;
+			}
+		}
+	}
+}
+
+#app-content-sharingout .files-filestable{
+	padding-top: 1.5rem;
+}
