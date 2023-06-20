@@ -73,10 +73,6 @@ describe('Text app styling changes', () => {
     .should('have.css', 'background-image', iconConstant.iconHelpCustom);
 
    })
-
-
    
-
-    
 
 })
