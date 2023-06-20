@@ -63,16 +63,16 @@
 					:file-info="fileInfo" />
 
 				<!-- inherited shares -->
-				<SharingInherited v-if="canReshare && !loading" :file-info="fileInfo" />
+				<!-- <SharingInherited v-if="canReshare && !loading" :file-info="fileInfo" /> -->
 
 				<!-- internal link copy -->
-				<SharingEntryInternal :file-info="fileInfo" />
+				<!-- <SharingEntryInternal :file-info="fileInfo" /> -->
 
 				<!-- projects -->
-				<CollectionList v-if="projectsEnabled && fileInfo"
+				<!-- <CollectionList v-if="projectsEnabled && fileInfo"
 					:id="`${fileInfo.id}`"
 					type="file"
-					:name="fileInfo.name" />
+					:name="fileInfo.name" /> -->
 			</div>
 
 		</div>
