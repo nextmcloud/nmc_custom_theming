@@ -1459,7 +1459,7 @@ opacity: unset !important;
  #body-login,
  #firstrunwizard .firstrunwizard-header,
  #theming-preview {
-     background: url('../../core/img/MagentaCloudConsent.svg') no-repeat !important;
+     background: url('../../core/img/dt_background.jpg') no-repeat !important;
      background-color: unset !important;
      background-size: cover !important;
  }
@@ -2392,15 +2392,6 @@ opacity: unset !important;
   .plyr__controls__item  .plyr__control {
     color: white !important;
     }
-
-  .visibility-hidden {
-    visibility: hidden;
-  }
-
-  /*Telium popup css */
-  .cl-main .cl-link {
-    color: #00739f !important;
-  }
 
   /*Responsive Styling*/
 
