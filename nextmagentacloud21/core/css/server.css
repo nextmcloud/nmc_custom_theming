@@ -1459,9 +1459,15 @@ opacity: unset !important;
  #body-login,
  #firstrunwizard .firstrunwizard-header,
  #theming-preview {
-     background: url('../../core/img/dt_background.jpg') no-repeat !important;
-     background-color: unset !important;
-     background-size: cover !important;
+   background: url('../../core/img/background-full.png')!important;
+   background-color: unset !important;
+   background-size: cover !important;
+   background-repeat: no-repeat !important;
+   background-attachment: fixed !important;
+   background-position: center top !important;
+   align-items: center !important;
+   justify-content: center !important;
+   display: flex !important;
  }
 
  .login-main {
