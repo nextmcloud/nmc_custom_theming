@@ -34,9 +34,7 @@ script('settings', [
 	'settings/personalInfo',
 	'vue-settings-personal-info',
 ]);
-
-script('theme_settings', 'main');
-
+	script('theming_customization', 'settings-main');
 ?>
 <?php if (!$_['isFairUseOfFreePushService']) : ?>
 	<div class="section">
@@ -45,7 +43,6 @@ script('theme_settings', 'main');
 		</div>
 	</div>
 <?php endif; ?>
-
 <div id="personal-settings">
 	<h2 class="hidden-visually"><?php p($l->t('Personal info')); ?></h2>
 	<div id="personal-settings-avatar-container" class="personal-settings-container">

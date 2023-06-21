@@ -1,8 +1,11 @@
 <div id="app-navigation" role="navigation">
 	<ul class="with-icon" tabindex="0">
-
+	
+	<div id="app-settings-header-test">
+		
+	</div>
 	<?php
-
+script('theming_customization', 'files-main');
 if (isset($_['navigationItems']['nmc_files_activity'])) {
     $customNavigationItems['nmc_files_activity'] = $_['navigationItems']['nmc_files_activity'];
 }
@@ -50,10 +53,6 @@ foreach ($customNavigationItems as $item) {
 	</ul>
 
 	<div id="app-settings">
-		<div id="app-settings-header-test">
-			Hello Test.........
-		</div>
-
 		<div id="app-settings-header">
 			<button class="settings-button"
 					data-apps-slide-toggle="#app-settings-content">

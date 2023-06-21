@@ -21,8 +21,6 @@
  */
 import Vue from 'vue'
 import FilesCustom from './components/FilesCustom.vue'
-__webpack_nonce__ = btoa(getRequestToken())
-
 
 console.log('-------------- LOADING VUE COMPONENTS Files----------------')
 const FilesCustomView = Vue.extend(FilesCustom)
