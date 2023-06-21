@@ -5,7 +5,7 @@ $unset: unset;
 $pink_swan: #b2b2b2;
 $dim_gray : #666666;
 $blue: #0d0dec;
-$$white: #fff;
+$white: #fff;
 $dodger_blue: #0998fa;
 $font-family_1: TeleNeoWeb, TeleNeo, sans-serif;
 $font-family_2: unset;
@@ -1399,14 +1399,14 @@ section#tab-activity {
 			background: #0998fa;
 			margin-right: 0.5rem;
 			span {
-				color: $$white;
+				color: $white;
 			}
 		}
 		.action-button.reject {
 			background: #fff;
 			margin-right: 1.5rem;
 			span {
-				color: $nero0;
+				color: $nero;
 			}
 		}
 		.icon {
