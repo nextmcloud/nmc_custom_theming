@@ -1,7 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2021 Yogesh Shejwadkar <yogesh.shejwadkar@t-systems.com>
+  - @copyright Copyright (c) 2021 Ashish Sharma <sharma.a@t-systems.com>
   -
-  - @author Yogesh Shejwadkar <yogesh.shejwadkar@t-systems.com>
+  - @author Ashish Sharma <sharma.a@t-systems.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -122,15 +122,6 @@
 						class="password-message">
 						{{ t('files_sharing', 'The password is not sent with the email to maintain confidentiality.') }}
 					</div>
-
-					<!-- password protected by Talk -->
-					<!-- <NcActionCheckbox v-if="isPasswordProtectedByTalkAvailable"
-						:checked.sync="share.sendPasswordByTalk"
-						:disabled="!canTogglePasswordProtectedByTalkAvailable || saving"
-						class="share-link-password-talk-checkbox"
-						@change="addPasswordProtectedByTalkChange">
-						{{ t('files_sharing', 'Video verification') }}
-					</NcActionCheckbox> -->
 
 					<!-- expiration date -->
 					<NcActionCheckbox
@@ -273,12 +264,12 @@ import NcActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip'
 
 import SharesMixin from '../mixins/SharesMixin'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
-import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword'
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
-import ExternalShareAction from '../../../../../../../release25.0.6/apps/files_sharing/src/components/ExternalShareAction'
+import ShareRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests'
+import ExternalShareAction from '../../../../../../../nextcloud/apps/files_sharing/src/components/ExternalShareAction'
 
 export default {
 	name: 'SharingPermissions',
@@ -506,9 +497,6 @@ export default {
 			// calc permissions if checked
 			const permissions = 0
 				| otherPermissions
-				// | (isWrite ? isWrite : 0)
-				// | (isReadOnly ? isReadOnly : 0)
-				// | (isUpdateOnly ? isUpdateOnly : 0)
 				| (isReshareChecked ? this.permissionsShare : 0)
 
 			this.share.permissions = permissions

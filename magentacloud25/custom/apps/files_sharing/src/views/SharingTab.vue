@@ -61,18 +61,6 @@
 					ref="shareList"
 					:shares="shares"
 					:file-info="fileInfo" />
-
-				<!-- inherited shares -->
-				<!-- <SharingInherited v-if="canReshare && !loading" :file-info="fileInfo" /> -->
-
-				<!-- internal link copy -->
-				<!-- <SharingEntryInternal :file-info="fileInfo" /> -->
-
-				<!-- projects -->
-				<!-- <CollectionList v-if="projectsEnabled && fileInfo"
-					:id="`${fileInfo.id}`"
-					type="file"
-					:name="fileInfo.name" /> -->
 			</div>
 
 		</div>
@@ -99,14 +87,14 @@ import axios from '@nextcloud/axios'
 import { loadState } from '@nextcloud/initial-state'
 
 import Config from '../services/ConfigService'
-import { shareWithTitle } from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/SharedWithMe'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
-import SharingEntryInternal from '../../../../../../../release25.0.6/apps/files_sharing/src/components/SharingEntryInternal'
-import SharingEntrySimple from '../../../../../../../release25.0.6/apps/files_sharing/src/components/SharingEntrySimple'
+import { shareWithTitle } from '../../../../../../../nextcloud/apps/files_sharing/src/utils/SharedWithMe'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import SharingEntryInternal from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntryInternal'
+import SharingEntrySimple from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntrySimple'
 import SharingInput from '../components/SharingInput'
 
-import SharingInherited from '../../../../../../../release25.0.6/apps/files_sharing/src/views/SharingInherited'
+import SharingInherited from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingInherited'
 import SharingLinkList from './SharingLinkList'
 import SharingList from './SharingList.vue'
 import SharingPermissions from '../components/SharingPermissions'

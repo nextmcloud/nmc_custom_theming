@@ -27,13 +27,12 @@
 
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { getCurrentUser } from '@nextcloud/auth'
-// eslint-disable-next-line import/no-unresolved, node/no-missing-import
 import PQueue from 'p-queue'
 import debounce from 'debounce'
 
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share.js'
-import SharesRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests.js'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes.js'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
+import SharesRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests.js'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes.js'
 import Config from '../services/ConfigService.js'
 
 export default {

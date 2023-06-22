@@ -22,12 +22,6 @@
 
 <template>
 	<ul v-if="canLinkShare" class="sharing-link-list">
-		<!-- If no link shares, show the add link default entry -->
-		<!-- <SharingEntryLink v-if="!hasLinkShares && canReshare"
-			:can-reshare="canReshare"
-			:file-info="fileInfo"
-			@add:share="addShare" /> -->
-
 		<!-- Else we display the list -->
 		<template v-if="hasShares">
 			<!-- using shares[index] to work with .sync -->
@@ -46,8 +40,8 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 import SharingEntryLink from '../components/SharingEntryLink'
 
 export default {
