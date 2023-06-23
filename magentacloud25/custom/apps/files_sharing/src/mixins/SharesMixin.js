@@ -31,9 +31,9 @@
  import PQueue from 'p-queue'
  import debounce from 'debounce'
  
- import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share.js'
+ import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
  import SharesRequests from './ShareRequests.js'
- import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes.js'
+ import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes.js'
  import Config from '../services/ConfigService.js'
  
  export default {
