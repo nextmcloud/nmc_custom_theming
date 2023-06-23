@@ -57,11 +57,11 @@ import { emit } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
 import debounce from 'debounce'
 import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
-import Config from '../../../../../../../release25.0.6/apps/files_sharing/src/services/ConfigService'
-import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+import Config from '../../../../../../../nextcloud/apps/files_sharing/src/services/ConfigService'
+import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import ShareRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 export default {
 	name: 'SharingInput',
 	components: {
@@ -589,71 +589,6 @@ export default {
 				subtitle,
 				shareWithDisplayNameUnique: result.shareWithDisplayNameUnique || '',
 				...this.shareTypeToIcon(result.value.shareType),
-			}
-		},
-		/**
-		 * Process the new share request
-		 *
-		 * @param {object} value the multiselect option
-		 */
-		async addShare(value) {
-			// Clear the displayed selection
-			this.value = null
-			if (value.lookup) {
-				await this.getSuggestions(this.query, true)
-				this.$nextTick(() => {
-					// open the dropdown again
-					this.$refs.select.$children[0].open = true
-				})
-				return true
-			}
-			// handle externalResults from OCA.Sharing.ShareSearch
-			if (value.handler) {
-				const share = await value.handler(this)
-				this.$emit('add:share', new Share(share))
-				return true
-			}
-			this.loading = true
-			console.debug('Adding a new share from the input for', value)
-			try {
-				let password = null
-				if (this.config.enforcePasswordForPublicLink
-					&& value.shareType === this.SHARE_TYPES.SHARE_TYPE_EMAIL) {
-					password = await GeneratePassword()
-				}
-				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
-				const share = await this.createShare({
-					path,
-					shareType: value.shareType,
-					shareWith: value.shareWith,
-					password,
-					permissions: this.fileInfo.sharePermissions & OC.getCapabilities().files_sharing.default_permissions,
-					attributes: JSON.stringify(this.fileInfo.shareAttributes),
-				})
-				// If we had a password, we need to show it to the user as it was generated
-				if (password) {
-					share.newPassword = password
-					// Wait for the newly added share
-					const component = await new Promise(resolve => {
-						this.$emit('add:share', share, resolve)
-					})
-					// open the menu on the
-					// freshly created share component
-					component.open = true
-				} else {
-					// Else we just add it normally
-					this.$emit('add:share', share)
-				}
-				await this.getRecommendations()
-			} catch (error) {
-				this.$nextTick(() => {
-					// open the dropdown again on error
-					this.$refs.select.$children[0].open = true
-				})
-				this.query = value.shareWith
-				console.error('Error while adding new share', error)
-			} finally {
-				this.loading = false
 			}
 		},
 	},
