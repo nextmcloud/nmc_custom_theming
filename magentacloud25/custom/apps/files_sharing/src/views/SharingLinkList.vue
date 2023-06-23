@@ -46,8 +46,8 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 import SharingEntryLink from '../components/SharingEntryLink'
 
 export default {

@@ -62,11 +62,11 @@ import axios from '@nextcloud/axios'
 import debounce from 'debounce'
 import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 
-import Config from '../../../../../../../release25.0.6/apps/files_sharing/src/services/ConfigService'
-import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+import Config from '../../../../../../../nextcloud/apps/files_sharing/src/services/ConfigService'
+import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import ShareRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 
 export default {
 	name: 'SharingInput',
