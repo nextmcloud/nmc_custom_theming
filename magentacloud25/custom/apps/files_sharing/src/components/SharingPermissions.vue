@@ -273,12 +273,12 @@ import NcActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip'
 
 import SharesMixin from '../mixins/SharesMixin'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
-import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword'
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
-import ExternalShareAction from '../../../../../../../release25.0.6/apps/files_sharing/src/components/ExternalShareAction'
+import ShareRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests'
+import ExternalShareAction from '../../../../../../../nextcloud/apps/files_sharing/src/components/ExternalShareAction'
 
 export default {
 	name: 'SharingPermissions',

@@ -66,11 +66,11 @@ import axios from '@nextcloud/axios'
 import debounce from 'debounce'
 import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
 
-import Config from '../../../../../../../release25.0.6/apps/files_sharing/src/services/ConfigService'
-import GeneratePassword from '../../../../../../../release25.0.6/apps/files_sharing/src/utils/GeneratePassword'
-import Share from '../../../../../../../release25.0.6/apps/files_sharing/src/models/Share'
-import ShareRequests from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareRequests'
-import ShareTypes from '../../../../../../../release25.0.6/apps/files_sharing/src/mixins/ShareTypes'
+import Config from '../../../../../../../nextcloud/apps/files_sharing/src/services/ConfigService'
+import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword'
+import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import ShareRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests'
+import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 
 export default {
 	name: 'SharingInput',
@@ -272,8 +272,7 @@ export default {
 						// this.$emit('add:share', newShare, resolve)
 					})
 				}
-				// Execute the copy link method
-				// freshly created share component
+				// Execute the copy link method freshly created share component
 				// ! somehow does not works on firefox !
 				if (!this.config.enforcePasswordForPublicLink) {
 					// Only copy the link when the password was not forced,
@@ -281,14 +280,6 @@ export default {
 					component.copyLink()
 				}
 			} catch ({ response }) {
-				// const message = response.data.ocs.meta.message
-				// if (message.match(/password/i)) {
-				// 	this.onSyncError('password', message)
-				// } else if (message.match(/date/i)) {
-				// 	this.onSyncError('expireDate', message)
-				// } else {
-				// 	this.onSyncError('pending', message)
-				// }
 			} finally {
 				this.loading = false
 			}
