@@ -52,12 +52,13 @@
 				<!-- the following div ensures that the spinner is always inside the #message div -->
 				<div style="clear: both;" />
 			</div>
-			<h2 class="login-form__headline" v-html="headline" />
+			<!-- <h2 class="login-form__headline" v-html="headline" /> -->
 			<NcTextField id="user"
 				ref="user"
 				:label="t('core', 'Account name or email')"
-				:label-visible="true"
+				:label-visible="false"
 				name="user"
+				placeholder="Username or email"
 				:value.sync="user"
 				:class="{shake: invalidPassword}"
 				autocapitalize="none"
@@ -69,11 +70,12 @@
 			<NcPasswordField id="password"
 				ref="password"
 				name="password"
-				:label-visible="true"
+				:label-visible="false"
 				:class="{shake: invalidPassword}"
 				:value.sync="password"
 				:spellchecking="false"
 				autocapitalize="none"
+				placeholder="Password"
 				:autocomplete="autoCompleteAllowed ? 'current-password' : 'off'"
 				:label="t('core', 'Password')"
 				:helper-text="errorLabel"
@@ -81,7 +83,7 @@
 				required />
 
 			<LoginButton :loading="loading" />
-			
+
 			<input v-if="redirectUrl"
 				type="hidden"
 				name="redirect_url"
@@ -111,7 +113,7 @@ import NcPasswordField from '@nextcloud/vue/dist/Components/NcPasswordField.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 
-import LoginButton from '../../../../../../../../../nextcloud/core/src/components/login/LoginButton.vue'
+import LoginButton from '../../../../../../../../../server/core/src/components/login/LoginButton.vue'
 
 export default {
 	name: 'LoginForm',
@@ -232,6 +234,7 @@ export default {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: .5rem;
 	}
 

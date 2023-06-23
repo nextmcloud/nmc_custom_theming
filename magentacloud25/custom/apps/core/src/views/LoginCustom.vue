@@ -22,8 +22,11 @@
 <template>
 	<div class="guest-box login-box">
 		<div v-if="!hideLoginForm || directLogin">
+		<img src="/themes/magentacloud25/core/img/app-logo.svg">
+			<h1>Magenta<span class="logo-title">CLOUD</span></h1>
 			<transition name="fade" mode="out-in">
 				<div v-if="!passwordlessLogin && !resetPassword && resetPasswordTarget === ''">
+
 					<LoginFormCustom :username.sync="user"
 						:redirect-url="redirectUrl"
 						:direct-login="directLogin"
@@ -121,9 +124,9 @@ import { loadState } from '@nextcloud/initial-state'
 import queryString from 'query-string'
 
 import LoginFormCustom from '../components/login/LoginFormCustom.vue'
-import PasswordLessLoginForm from '../../../../../../../../nextcloud/core/src/components/login/PasswordLessLoginForm.vue'
-import ResetPassword from '../../../../../../../../nextcloud/core/src/components/login/ResetPassword.vue'
-import UpdatePassword from '../../../../../../../../nextcloud/core/src/components/login/UpdatePassword.vue'
+import PasswordLessLoginForm from '../../../../../../../../server/core/src/components/login/PasswordLessLoginForm.vue'
+import ResetPassword from '../../../../../../../../server/core/src/components/login/ResetPassword.vue'
+import UpdatePassword from '../../../../../../../../server/core/src/components/login/UpdatePassword.vue'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 
@@ -193,7 +196,10 @@ body {
 }
 
 .login-box {
-	width: 300px;
+    width: 400px;
+    background: rgba(0, 0, 0, .4);
+    margin: 0 auto;
+	box-sizing: border-box;
 
 	&__link {
 		display: block;
@@ -202,6 +208,33 @@ body {
 		text-align: center;
 		font-weight: normal !important;
 	}
+	& h1{
+		color: var(--color-main-background);;
+		font-size: 1.7em;
+		font-weight: bold;
+		margin: 1rem auto 3rem auto;
+	}
+	& .input-field{
+		width:250px;
+		& input {
+			padding: 20px;
+			border-radius: 4px;
+		}
+
+		&__main-wrapper{
+			height: 48px;
+		}
+	}
+	a {
+		color:var(--color-main-background);
+	}
+
+	& .logo-title {
+		font-size: 1em;
+		font-weight: normal !important;
+		color: var(--color-main-background);;
+	}
+
 }
 .fade-enter-active, .fade-leave-active {
 	transition: opacity .3s;
@@ -220,3 +253,4 @@ body {
 	}
 }
 </style>
+

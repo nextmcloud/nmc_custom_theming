@@ -27,11 +27,9 @@ import Vue from 'vue'
 
 // eslint-disable-next-line no-unused-vars
 
-import OC from '../../../../../../../nextcloud/core/src/OC/index'
+import OC from '../../../../../../server/core/src/OC/index'
 import LoginViewCustom from './views/LoginCustom'
-import Nextcloud from '../../../../../../../nextcloud/core/src/mixins/Nextcloud'
-
-
+import Nextcloud from '../../../../../../server/core/src/mixins/Nextcloud'
 Vue.mixin(Nextcloud)
 
 const ViewCustom = Vue.extend(LoginViewCustom)

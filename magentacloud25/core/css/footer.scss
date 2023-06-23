@@ -1,0 +1,75 @@
+
+/*****footer******/
+
+.brand-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    background-color: var(--scl-color-white);
+    color: var(--scl-color-grey-10);
+    z-index: 998;
+    border-top: 2px solid var(--scl-color-grey-10);
+	padding: 0 15%;
+	box-sizing: border-box;
+
+	& .brand-footer-bar {
+		display: flex;
+		height: 64px;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	& .brand-footer-bar-text {
+		color: #666666;
+		margin-left: 15px;
+	}
+
+	& .brand-footer-nav {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	& .brand-footer-nav li {
+    	margin: 0 15px;
+	}
+
+	& .footer-left{
+		width: 35%;
+		text-align: left;
+	}
+
+	& .brand-footer-nav a,
+	& .brand-footer-nav a:active,
+	& .brand-footer-nav a:focus,
+	& .brand-footer-nav a:hover {
+		color: #666666;
+		background: transparent;
+	}
+
+	& .brand-footer-bar a:hover {
+    	text-decoration: underline;
+	}
+}
+
+.login-footer {
+    background: no-repeat;
+    color: var(--color-main-background);;
+    border: none;
+    position: relative;
+    height: auto;
+
+	& .brand-footer-bar-text {
+   	 color: var(--color-main-background); ;
+	}
+}
+
+#body-login .login-footer {
+	& .footer-right a{
+		font-weight: 400;
+	}
+}
+
+
+/****footer*****/
