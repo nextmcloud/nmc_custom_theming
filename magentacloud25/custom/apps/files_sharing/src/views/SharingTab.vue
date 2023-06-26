@@ -107,8 +107,8 @@ import SharingEntrySimple from '../../../../../../../nextcloud/apps/files_sharin
 import SharingInput from '../components/SharingInput'
 
 import SharingInherited from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingInherited'
-import SharingLinkList from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingLinkList'
-import SharingList from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingList.vue'
+import SharingLinkList from './SharingLinkList'
+import SharingList from './SharingList.vue'
 import SharingPermissions from '../components/SharingPermissions'
 import SharingNotes from '../components/SharingNotes'
 import { mapGetters } from 'vuex'

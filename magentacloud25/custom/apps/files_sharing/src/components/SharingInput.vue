@@ -24,22 +24,18 @@
 	<div class="sharing-search">
 		<label for="sharing-search-input">{{ t('files_sharing', 'Search for share recipients') }}</label>
 		<NcSelect ref="select"
-			class="sharing-search__input"
-			:filterable="false"
+		class="sharing-input"
 			:clear-on-select="true"
 			:disabled="!canReshare"
+			:hide-selected="true"
 			:internal-search="false"
 			:loading="loading"
 			:options="options"
 			:placeholder="inputPlaceholder"
 			:preselect-first="true"
-			:preserve-search="false"
+			:preserve-search="true"
 			:searchable="true"
 			:user-select="true"
-			v-model="value"
-			multiple: false
-			closeOnSelect: true
-			@open="handleOpen"
 			open-direction="below"
 			label="displayName"
 			track-by="id"
@@ -267,7 +263,8 @@ export default {
 						// this.$emit('add:share', newShare, resolve)
 					})
 				}
-				// Execute the copy link method freshly created share component
+				// Execute the copy link method
+				// freshly created share component
 				// ! somehow does not works on firefox !
 				if (!this.config.enforcePasswordForPublicLink) {
 					// Only copy the link when the password was not forced,
@@ -275,6 +272,14 @@ export default {
 					component.copyLink()
 				}
 			} catch ({ response }) {
+				// const message = response.data.ocs.meta.message
+				// if (message.match(/password/i)) {
+				// 	this.onSyncError('password', message)
+				// } else if (message.match(/date/i)) {
+				// 	this.onSyncError('expireDate', message)
+				// } else {
+				// 	this.onSyncError('pending', message)
+				// }
 			} finally {
 				this.loading = false
 			}
@@ -323,10 +328,6 @@ export default {
 					resolve(newShare)
 				}
 			})
-		},
-		handleOpen() {
-			// Fix dropdown not opening when viewer is open, see https://github.com/nextcloud/viewer/pull/1319
-			emit('viewer:trapElements:changed', this.$refs.select.$el)
 		},
 		async asyncFind(query) {
 			// save current query to check if we display
