@@ -32,7 +32,7 @@
  import debounce from 'debounce'
  
  import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
- import SharesRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests.js'
+ import SharesRequests from './ShareRequests.js'
  import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes.js'
  import Config from '../services/ConfigService.js'
  
