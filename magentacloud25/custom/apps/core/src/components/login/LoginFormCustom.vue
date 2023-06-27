@@ -113,7 +113,7 @@ import NcPasswordField from '@nextcloud/vue/dist/Components/NcPasswordField.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 
-import LoginButton from '../../../../../../../../../server/core/src/components/login/LoginButton.vue'
+import LoginButton from '../../../../../../../../core/src/components/login/LoginButton.vue'
 
 export default {
 	name: 'LoginForm',

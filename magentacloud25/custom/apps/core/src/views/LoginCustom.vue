@@ -124,9 +124,9 @@ import { loadState } from '@nextcloud/initial-state'
 import queryString from 'query-string'
 
 import LoginFormCustom from '../components/login/LoginFormCustom.vue'
-import PasswordLessLoginForm from '../../../../../../../../server/core/src/components/login/PasswordLessLoginForm.vue'
-import ResetPassword from '../../../../../../../../server/core/src/components/login/ResetPassword.vue'
-import UpdatePassword from '../../../../../../../../server/core/src/components/login/UpdatePassword.vue'
+import PasswordLessLoginForm from '../../../../../../../core/src/components/login/PasswordLessLoginForm.vue'
+import ResetPassword from '../../../../../../../core/src/components/login/ResetPassword.vue'
+import UpdatePassword from '../../../../../../../core/src/components/login/UpdatePassword.vue'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 
