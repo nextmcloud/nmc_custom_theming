@@ -42,9 +42,9 @@
 import { loadState } from '@nextcloud/initial-state'
 
 import Language from './LanguageCustom.vue'
-import HeaderBar from '../../../../../../../../../server25/server/apps/settings/src/components/PersonalInfo/shared/HeaderBar.vue'
+import HeaderBar from '../../../../../../apps/settings/src/components/PersonalInfo/shared/HeaderBar.vue'
 
-import { ACCOUNT_SETTING_PROPERTY_ENUM, ACCOUNT_SETTING_PROPERTY_READABLE_ENUM } from '../../../../../../../../../server25/server/apps/settings/src/constants/AccountPropertyConstants'
+import { ACCOUNT_SETTING_PROPERTY_ENUM, ACCOUNT_SETTING_PROPERTY_READABLE_ENUM } from '../../../../../../apps/settings/src/constants/AccountPropertyConstants'
 
 const { languageMap: { activeLanguage, commonLanguages, otherLanguages } } = loadState('settings', 'personalInfoParameters', {})
 

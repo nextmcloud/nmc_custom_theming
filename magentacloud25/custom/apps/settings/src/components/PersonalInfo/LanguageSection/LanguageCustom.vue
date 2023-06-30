@@ -33,31 +33,21 @@
 				{{ customLanguage.name }}
 			</option>
 		</select>
-
-		<a
-			href="https://www.transifex.com/nextcloud/nextcloud/"
-			target="_blank"
-			rel="noreferrer noopener">
-			<em>{{ t('settings', 'Help translate') }}</em>
-		</a>
 	</div>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
 
-import { ACCOUNT_SETTING_PROPERTY_ENUM } from '../../../../../../../../../server25/server/apps/settings/src/constants/AccountPropertyConstants'
-import { savePrimaryAccountProperty } from '../../../../../../../../../server25/server/apps/settings/src/service/PersonalInfo/PersonalInfoService'
-import { validateLanguage } from '../../../../../../../../../server25/server/apps/settings/src/utils/validate'
+import { ACCOUNT_SETTING_PROPERTY_ENUM } from '../../../../../../apps/settings/src/constants/AccountPropertyConstants'
+import { savePrimaryAccountProperty } from '../../../../../../apps/settings/src/service/PersonalInfo/PersonalInfoService'
+import { validateLanguage } from '../../../../../../apps/settings/src/utils/validate'
 
 export default {
 	name: 'Language',
-	created () {
-		console.log('CREATED LANGUAGECUSTOM COMPONENT-------------------')
-	},
 	props: {
 		commonLanguages: {
-			type: Array,
+			type: Array, 
 			required: true,
 		},
 		otherLanguages: {
