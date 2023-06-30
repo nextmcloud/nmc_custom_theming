@@ -23,6 +23,7 @@
         padding: 0px 3px;
     }
 }
+
 #personal-settings h2{
     margin-left: 0.5%;
     color: #191919 !important;
@@ -39,6 +40,7 @@
     border-radius: unset !important;
     font-family: TeleNeoWeb, TeleNeo, sans-serif;
   }
+
 .personal-settings-container .personal-settings-setting-box input[type=text]:hover,
 .personal-settings-container .personal-settings-setting-box input[type=email]:hover {
   border-color: #e5e5e5 !important;
@@ -59,25 +61,7 @@
     border-color:#e5e5e5 !important;
 }
 
-// input[type=text],input[type=email]{
-//     width: 27rem !important;
-//     height: 3rem !important;
-//     padding: 0.75rem 0.75rem 0.75rem 0.688rem !important;
-//     background-color: #e5e5e5;
-//     border: 1px solid #e5e5e5;
-//     border-radius:unset !important;
-//     font-family: TeleNeoWeb, TeleNeo, sans-serif;
-// }
-
-// input[type=text]:hover{
-//     border-color:#e5e5e5 !important;
-// }
-
-// input[type=email]:hover{
-//     border-color:#e5e5e5 !important;
-// }
-
-select#account-setting-language{
+select#account-setting-language {
     width: 27rem;
     height: 3rem !important;
     padding: 0.75rem 0.75rem 0.75rem 0.688rem;
@@ -88,7 +72,7 @@ select#account-setting-language{
     border-radius:unset !important;
 }
 
-.alt-email-text a{
+.alt-email-text a {
     color: #e20074;
 }
 
@@ -100,7 +84,7 @@ select#account-setting-language{
     display: none;
 }
 
-.extra-details #files-utilization{
+.extra-details #files-utilization { 
     border-radius: 30px;
     width: 16px;
     height: 8px;
@@ -112,7 +96,7 @@ select#account-setting-language{
     background-color: #22adb9;
 }
 
-.extra-details #photos-utilization{
+.extra-details #photos-utilization {
     border-radius: 30px;
     width: 16px;
     height: 8px;
@@ -123,7 +107,7 @@ select#account-setting-language{
     background-color: #b682bd;
 }
 
-.extra-details #bin-utilization{
+.extra-details #bin-utilization {
     border-radius: 30px;
     width: 16px;
     height: 8px;
@@ -131,7 +115,7 @@ select#account-setting-language{
     margin: 0.125rem 0.25rem;
 }
 
-.bin-usage-utilization{
+.bin-usage-utilization {
     background-color: #fc9a55;
 }
 
@@ -139,7 +123,7 @@ select#account-setting-language{
     margin-top: 1.25rem;
 }
 
-#tarrifInfo-details button{
+#tarrifInfo-details button {
     height: 40px;
     padding: 0 1.5rem;
     background-color: #ffffff;
@@ -157,18 +141,18 @@ select#account-setting-language{
     color: #e20074 !important;
 }
 
-.storage-utilization{
+.storage-utilization {
     .details{
         .details__groups{
             display: none !important;
         }
     }
 }
-.storage-utilization span{
+.storage-utilization span {
     font-weight: bold;
 }
 
-.tarrifInfo-usage-details h4{
+.tarrifInfo-usage-details h4 {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 1rem;
