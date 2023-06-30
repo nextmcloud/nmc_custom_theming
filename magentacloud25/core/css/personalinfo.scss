@@ -1,0 +1,181 @@
+.icon-contacts-dark{
+    display: none;
+}
+
+#personal-settings{
+    display: block;
+    padding: 3rem 0rem 1rem 4rem !important;
+    .personal-settings-container{
+        display: flex;
+        gap:2%;
+    }
+    .profile-settings-container{
+        display: flex;
+        gap:2%;
+    }
+    .alt-email-text{
+        display: flex;
+        gap: 2%;
+        padding: 0px 10px;
+        margin-top: 1.5rem;
+    }
+    .storage-utilization{
+        padding: 0px 3px;
+    }
+}
+#personal-settings h2{
+    margin-left: 0.5%;
+    color: #191919 !important;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.personal-settings-container .personal-settings-setting-box input[type=text],input[type=email]{
+    width: 27rem !important;
+    height: 3rem !important;
+    padding: 0.75rem 0.75rem 0.75rem 0.688rem !important;
+    background-color: #e5e5e5;
+    border: 1px solid #e5e5e5;
+    border-radius: unset !important;
+    font-family: TeleNeoWeb, TeleNeo, sans-serif;
+  }
+.personal-settings-container .personal-settings-setting-box input[type=text]:hover,
+.personal-settings-container .personal-settings-setting-box input[type=email]:hover {
+  border-color: #e5e5e5 !important;
+}
+
+.profile-settings-container .personal-settings-setting-box input[type=text],input[type=email]{
+    width: 27rem !important;
+    height: 3rem !important;
+    padding: 0.75rem 0.75rem 0.75rem 0.688rem !important;
+    background-color: #e5e5e5;
+    border: 1px solid #e5e5e5;
+    border-radius: unset !important;
+    font-family: TeleNeoWeb, TeleNeo, sans-serif;
+  }
+
+.profile-settings-container .personal-settings-setting-box input[type=text]:hover,
+.profile-settings-container .personal-settings-setting-box input[type=email]:hover{
+    border-color:#e5e5e5 !important;
+}
+
+// input[type=text],input[type=email]{
+//     width: 27rem !important;
+//     height: 3rem !important;
+//     padding: 0.75rem 0.75rem 0.75rem 0.688rem !important;
+//     background-color: #e5e5e5;
+//     border: 1px solid #e5e5e5;
+//     border-radius:unset !important;
+//     font-family: TeleNeoWeb, TeleNeo, sans-serif;
+// }
+
+// input[type=text]:hover{
+//     border-color:#e5e5e5 !important;
+// }
+
+// input[type=email]:hover{
+//     border-color:#e5e5e5 !important;
+// }
+
+select#account-setting-language{
+    width: 27rem;
+    height: 3rem !important;
+    padding: 0.75rem 0.75rem 0.75rem 0.688rem;
+    background-color: #ffffff;
+    border: 1px solid #191919;
+    font-family: TeleNeoWeb, TeleNeo, sans-serif;
+    display: inline-block !important;
+    border-radius:unset !important;
+}
+
+.alt-email-text a{
+    color: #e20074;
+}
+
+.profile-settings-container em {
+    color: #e20074 !important;
+  }
+
+.language a{
+    display: none;
+}
+
+.extra-details #files-utilization{
+    border-radius: 30px;
+    width: 16px;
+    height: 8px;
+    display: inline-block;
+    margin: 0.125rem 0.25rem;
+}
+
+.files-usage-utilization {
+    background-color: #22adb9;
+}
+
+.extra-details #photos-utilization{
+    border-radius: 30px;
+    width: 16px;
+    height: 8px;
+    display: inline-block;
+    margin: 0.125rem 0.25rem;
+}
+.photos-usage-utilization{
+    background-color: #b682bd;
+}
+
+.extra-details #bin-utilization{
+    border-radius: 30px;
+    width: 16px;
+    height: 8px;
+    display: inline-block;
+    margin: 0.125rem 0.25rem;
+}
+
+.bin-usage-utilization{
+    background-color: #fc9a55;
+}
+
+#tarrifInfo-details{
+    margin-top: 1.25rem;
+}
+
+#tarrifInfo-details button{
+    height: 40px;
+    padding: 0 1.5rem;
+    background-color: #ffffff;
+    border-color: #191919;
+    color: #191919;
+    border-radius: 4px;
+    font-family: TeleNeoWeb, TeleNeo, sans-serif;
+    font-size: 1rem;
+    margin: 1rem 0 0 0;
+    font-weight: normal;
+}
+
+#tarrifInfo-details button:hover {
+    border: 1px solid #e20074 !important;
+    color: #e20074 !important;
+}
+
+.storage-utilization{
+    .details{
+        .details__groups{
+            display: none !important;
+        }
+    }
+}
+.storage-utilization span{
+    font-weight: bold;
+}
+
+.tarrifInfo-usage-details h4{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
