@@ -207,11 +207,12 @@ import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 
 import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword.js'
 import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
+import SharingEntryLink from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntryLink.vue'
 import SharesMixin from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/SharesMixin.js'
 import CustomSelect from './CustomSelect'
 export default {
-	name: 'SharingEntryLink',
-
+	name: 'SharingEntryLinkCustom',
+	extends:SharingEntryLink,
 	components: {
 		NcActions,
 		NcActionButton,
@@ -455,159 +456,7 @@ export default {
 	},
 
 	methods: {
-		/**
-		 * Create a new share link and append it to the list
-		 */
-		async onNewLinkShare() {
-			// do not run again if already loading
-			if (this.loading) {
-				return
-			}
-
-			const shareDefaults = {
-				share_type: ShareTypes.SHARE_TYPE_LINK,
-			}
-			if (this.config.isDefaultExpireDateEnforced) {
-				// default is empty string if not set
-				// expiration is the share object key, not expireDate
-				shareDefaults.expiration = this.formatDateToString(this.config.defaultExpirationDate)
-			}
-			if (this.config.enableLinkPasswordByDefault) {
-				shareDefaults.password = await GeneratePassword()
-			}
-
-			// do not push yet if we need a password or an expiration date: show pending menu
-			if (this.config.enforcePasswordForPublicLink || this.config.isDefaultExpireDateEnforced) {
-				this.pending = true
-
-				// if a share already exists, pushing it
-				if (this.share && !this.share.id) {
-					// if the share is valid, create it on the server
-					if (this.checkShare(this.share)) {
-						try {
-							await this.pushNewLinkShare(this.share, true)
-						} catch (e) {
-							this.pending = false
-							console.error(e)
-							return false
-						}
-						return true
-					} else {
-						this.open = true
-						OC.Notification.showTemporary(t('files_sharing', 'Error, please enter proper password and/or expiration date'))
-						return false
-					}
-				}
-
-				// ELSE, show the pending popovermenu
-				// if password enforced, pre-fill with random one
-				if (this.config.enforcePasswordForPublicLink) {
-					shareDefaults.password = await GeneratePassword()
-				}
-
-				// create share & close menu
-				const share = new Share(shareDefaults)
-				const component = await new Promise(resolve => {
-					this.$emit('add:share', share, resolve)
-				})
-
-				// open the menu on the
-				// freshly created share component
-				this.open = false
-				this.pending = false
-				component.open = true
-
-			// Nothing is enforced, creating share directly
-			} else {
-				const share = new Share(shareDefaults)
-				await this.pushNewLinkShare(share)
-			}
-		},
-
-		/**
-		 * Push a new link share to the server
-		 * And update or append to the list
-		 * accordingly
-		 *
-		 * @param {Share} share the new share
-		 * @param {boolean} [update=false] do we update the current share ?
-		 */
-		async pushNewLinkShare(share, update) {
-			try {
-				// do nothing if we're already pending creation
-				if (this.loading) {
-					return true
-				}
-
-				this.loading = true
-				this.errors = {}
-
-				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
-				const options = {
-					path,
-					shareType: ShareTypes.SHARE_TYPE_LINK,
-					password: share.password,
-					expireDate: share.expireDate,
-					attributes: JSON.stringify(this.fileInfo.shareAttributes),
-					// we do not allow setting the publicUpload
-					// before the share creation.
-					// Todo: We also need to fix the createShare method in
-					// lib/Controller/ShareAPIController.php to allow file drop
-					// (currently not supported on create, only update)
-				}
-
-				console.debug('Creating link share with options', options)
-				const newShare = await this.createShare(options)
-
-				this.open = false
-				console.debug('Link share created', newShare)
-
-				// if share already exists, copy link directly on next tick
-				let component
-				if (update) {
-					component = await new Promise(resolve => {
-						this.$emit('update:share', newShare, resolve)
-					})
-				} else {
-					// adding new share to the array and copying link to clipboard
-					// using promise so that we can copy link in the same click function
-					// and avoid firefox copy permissions issue
-					component = await new Promise(resolve => {
-						this.$emit('add:share', newShare, resolve)
-					})
-				}
-
-				// Execute the copy link method
-				// freshly created share component
-				// ! somehow does not works on firefox !
-				if (!this.config.enforcePasswordForPublicLink) {
-					// Only copy the link when the password was not forced,
-					// otherwise the user needs to copy/paste the password before finishing the share.
-					component.copyLink()
-				}
-				showSuccess(t('sharing', 'Link share created'))
-
-			} catch (data) {
-				const message = data?.response?.data?.ocs?.meta?.message
-				if (!message) {
-					showError(t('sharing', 'Error while creating the share'))
-					console.error(data)
-					return
-				}
-
-				if (message.match(/password/i)) {
-					this.onSyncError('password', message)
-				} else if (message.match(/date/i)) {
-					this.onSyncError('expireDate', message)
-				} else {
-					this.onSyncError('pending', message)
-				}
-				throw data
-			} finally {
-				this.loading = false
-			}
-		},
-
+	
 		togglePermissions(option) {
 			const permissions = parseInt(option, 10)
 			this.share.permissions = permissions
@@ -616,78 +465,6 @@ export default {
 				this.share.hideDownload = false
 				this.queueUpdate('hideDownload')
 			}
-		},
-		async copyLink() {
-			try {
-				await navigator.clipboard.writeText(this.shareLink)
-				showSuccess(t('files_sharing', 'Link copied'))
-				// focus and show the tooltip
-				this.$refs.copyButton.$el.focus()
-				this.copySuccess = true
-				this.copied = true
-			} catch (error) {
-				this.copySuccess = false
-				this.copied = true
-				console.error(error)
-			} finally {
-				setTimeout(() => {
-					this.copySuccess = false
-					this.copied = false
-				}, 4000)
-			}
-		},
-
-		/**
-		 * Uncheck password protection
-		 * We need this method because @update:checked
-		 * is ran simultaneously as @uncheck, so we
-		 * cannot ensure data is up-to-date
-		 */
-		onPasswordDisable() {
-			this.share.password = ''
-
-			// reset password state after sync
-			this.$delete(this.share, 'newPassword')
-
-			// only update if valid share.
-			if (this.share.id) {
-				this.queueUpdate('password')
-			}
-		},
-
-		/**
-		 * Menu have been closed or password has been submitted.
-		 * The only property that does not get
-		 * synced automatically is the password
-		 * So let's check if we have an unsaved
-		 * password.
-		 * expireDate is saved on datepicker pick
-		 * or close.
-		 */
-		onPasswordSubmit() {
-			if (this.hasUnsavedPassword) {
-				this.share.password = this.share.newPassword.trim()
-				this.queueUpdate('password')
-			}
-		},
-
-		/**
-		 * Save potential changed data on menu close
-		 */
-		onMenuClose() {
-			this.onPasswordSubmit()
-			this.onNoteSubmit()
-		},
-
-		/**
-		 * Cancel the share creation
-		 * Used in the pending popover
-		 */
-		onCancel() {
-			// this.share already exists at this point,
-			// but is incomplete as not pushed to server
-			// YET. We can safely delete the share :)
-			this.$emit('remove:share', this.share)
 		},
 
 		editPermissions() {

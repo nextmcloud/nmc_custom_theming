@@ -65,10 +65,10 @@
 </template>
 
 <script>
-import Config from '../services/ConfigService'
+import Config from '../services/ConfigServiceCustom'
 import SharesMixin from '../mixins/SharesMixin'
 import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
-import ShareRequests from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareRequests'
+import ShareRequests from '..//mixins/ShareRequests'
 import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 import { mapGetters } from 'vuex'
 export default {
@@ -130,7 +130,7 @@ export default {
 				return true
 			}
 			this.loading = true
-			//console.debug('Adding a new share from the input for', this.share)
+			console.debug('Adding a new share from the input for', this.share)
 			try {
 				const path = (this.fileInfo.path + '/' + this.fileInfo.name).replace('//', '/')
 				if (this.share.sendPasswordByTalk) {
@@ -139,7 +139,10 @@ export default {
 				if (this.share.hideDownload) {
 					this.hideDownload = this.share.hideDownload.toString()
 				}
-				const share = await this.createShare({
+				if (this.share.newPassword !== undefined) {
+					this.share.password = this.share.newPassword.trim()
+				}
+				await this.createShare({
 					path,
 					shareType: this.optionValues.shareType,
 					shareWith: this.optionValues.shareWith,
@@ -147,14 +150,10 @@ export default {
 					sendPasswordByTalk: this.sendPasswordByTalk,
 					expireDate: this.share.expireDate,
 					hideDownload: this.hideDownload,
+					note: this.shareNote,
 					permissions: this.fileInfo.sharePermissions & OC.getCapabilities().files_sharing.default_permissions & this.share.permissions,
 				})
-				// add notes to share if any
-				// this.share = share
-				// this.share.note = this.shareNote
-				// this.queueUpdate('note')
-				// reset the search string when done
-				// FIXME: https://github.com/shentao/vue-multiselect/issues/633
+			
 				if (this.$refs.multiselect?.$refs?.VueMultiselect?.search) {
 					this.$refs.multiselect.$refs.VueMultiselect.search = ''
 				}
@@ -175,5 +174,8 @@ export default {
 .sharing-note {
 	width: 100%;
 	height: 200px;
+}
+.note-title {
+	font-weight: bold;
 }
 </style>

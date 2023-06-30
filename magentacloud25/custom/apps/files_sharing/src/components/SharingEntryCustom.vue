@@ -94,25 +94,16 @@
 </template>
 
 <script>
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
-import NcActions from '@nextcloud/vue/dist/Components/NcActions'
-import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import NcActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
-import NcActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
-import NcActionTextEditable from '@nextcloud/vue/dist/Components/NcActionTextEditable'
+import SharingEntry from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntry.vue'
 import CustomSelect from './CustomSelect'
 import SharesMixin from '../mixins/SharesMixin.js'
 
+
 export default {
 	name: 'SharingEntry',
-
+	extends : SharingEntry,
 	components: {
-		NcActions,
-		NcActionButton,
-		NcActionCheckbox,
-		NcActionInput,
-		NcActionTextEditable,
-		NcAvatar,
+
 		CustomSelect
 	},
 
@@ -309,41 +300,11 @@ export default {
 	},
 
 	methods: {
-		updatePermissions({
-			isEditChecked = this.canEdit,
-			isCreateChecked = this.canCreate,
-			isDeleteChecked = this.canDelete,
-			isReshareChecked = this.canReshare,
-			isDownloadChecked = this.canDownload,
-		} = {}) {
-			// calc permissions if checked
-			const permissions = 0
-				| (this.hasRead ? this.permissionsRead : 0)
-				| (isCreateChecked ? this.permissionsCreate : 0)
-				| (isDeleteChecked ? this.permissionsDelete : 0)
-				| (isEditChecked ? this.permissionsEdit : 0)
-				| (isReshareChecked ? this.permissionsShare : 0)
-
-			this.share.permissions = permissions
-			if (this.share.hasDownloadPermission !== isDownloadChecked) {
-				this.share.hasDownloadPermission = isDownloadChecked
-			}
-			this.queueUpdate('permissions', 'attributes')
-		},
-
 		togglePermissions(option) {
 			const permissions = parseInt(option, 10)
 			| (this.canReshare ? this.permissionsShare : 0)
 			this.share.permissions = permissions
 			this.queueUpdate('permissions')
-		},
-
-
-		/**
-		 * Save potential changed data on menu close
-		 */
-		onMenuClose() {
-			this.onNoteSubmit()
 		},
 
 		editPermissions() {

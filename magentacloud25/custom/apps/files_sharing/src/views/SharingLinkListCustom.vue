@@ -39,14 +39,12 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import SharingLinkList from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingLinkList'
+import SharingEntryLink from '../components/SharingEntryLinkCustom'
 import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
-import SharingEntryLink from '../components/SharingEntryLink'
-
 export default {
-	name: 'SharingLinkList',
-
+	name: 'SharingLinkListCustom',
+	extends :SharingLinkList,
 	components: {
 		SharingEntryLink,
 	},
