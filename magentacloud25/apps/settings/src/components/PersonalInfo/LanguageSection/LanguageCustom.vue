@@ -39,9 +39,9 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 
-import { ACCOUNT_SETTING_PROPERTY_ENUM } from '../../../../../../apps/settings/src/constants/AccountPropertyConstants'
-import { savePrimaryAccountProperty } from '../../../../../../apps/settings/src/service/PersonalInfo/PersonalInfoService'
-import { validateLanguage } from '../../../../../../apps/settings/src/utils/validate'
+import { ACCOUNT_SETTING_PROPERTY_ENUM } from '../../../../../apps/settings/src/constants/AccountPropertyConstants'
+import { savePrimaryAccountProperty } from '../../../../../apps/settings/src/service/PersonalInfo/PersonalInfoService'
+import { validateLanguage } from '../../../../../apps/settings/src/utils/validate'
 
 export default {
 	name: 'Language',
