@@ -61,11 +61,11 @@ import { emit } from '@nextcloud/event-bus'
 import axios from '@nextcloud/axios'
 import debounce from 'debounce'
 import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
-import SharingInput from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingInput.vue'
+import SharingInput from '../../../../../../nextcloud/apps/files_sharing/src/components/SharingInput.vue'
 import Config from '../services/ConfigServiceCustom'
-import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import Share from '../../../../../../nextcloud/apps/files_sharing/src/models/Share'
 import ShareRequests from '../mixins/ShareRequests'
-import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import ShareTypes from '../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 
 export default {
 	name: 'SharingInputCustom',

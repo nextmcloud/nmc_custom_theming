@@ -30,9 +30,10 @@ import { getCurrentUser } from '@nextcloud/auth'
 import PQueue from 'p-queue'
 import debounce from 'debounce'
 
-import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
+import Share from '../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
 import SharesRequests from '../mixins/ShareRequests.js'
-import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes.js'
+import ShareTypes from '../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes.js'
+
 import Config from '../services/ConfigServiceCustom.js'
 
 export default {

@@ -205,10 +205,10 @@ import NcActionText from '@nextcloud/vue/dist/Components/NcActionText'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions'
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 
-import GeneratePassword from '../../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword.js'
-import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
-import SharingEntryLink from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntryLink.vue'
-import SharesMixin from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/SharesMixin.js'
+import GeneratePassword from '../../../../../../nextcloud/apps/files_sharing/src/utils/GeneratePassword.js'
+import Share from '../../../../../../nextcloud/apps/files_sharing/src/models/Share.js'
+import SharingEntryLink from '../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntryLink.vue'
+import SharesMixin from '../../../../../../nextcloud/apps/files_sharing/src/mixins/SharesMixin.js'
 import CustomSelect from './CustomSelect'
 export default {
 	name: 'SharingEntryLinkCustom',

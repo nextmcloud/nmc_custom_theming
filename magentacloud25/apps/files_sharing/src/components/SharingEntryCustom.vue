@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import SharingEntry from '../../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntry.vue'
+import SharingEntry from '../../../../../../nextcloud/apps/files_sharing/src/components/SharingEntry.vue'
 import CustomSelect from './CustomSelect'
 import SharesMixin from '../mixins/SharesMixin.js'
 

@@ -39,9 +39,9 @@
 </template>
 
 <script>
-import SharingLinkList from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingLinkList'
+import SharingLinkList from '../../../../../../nextcloud/apps/files_sharing/src/views/SharingLinkList'
 import SharingEntryLink from '../components/SharingEntryLinkCustom'
-import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import ShareTypes from '../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 export default {
 	name: 'SharingLinkListCustom',
 	extends :SharingLinkList,

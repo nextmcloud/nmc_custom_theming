@@ -82,13 +82,13 @@
 <script>
 import Config from '../services/ConfigServiceCustom'
 import SharingInput from '../components/SharingInputCustom'
-import SharingTab from '../../../../../../../nextcloud/apps/files_sharing/src/views/SharingTab'
+import SharingTab from '../../../../../../nextcloud/apps/files_sharing/src/views/SharingTab'
 import SharingLinkList from './SharingLinkListCustom'
 import SharingList from './SharingListCustom.vue'
 import SharingPermissions from '../components/SharingPermissions'
 import SharingNotes from '../components/SharingNotes'
 import { mapGetters } from 'vuex'
-import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import ShareTypes from '../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 export default {
 	name: 'SharingTabCustom',
 	extends:SharingTab,

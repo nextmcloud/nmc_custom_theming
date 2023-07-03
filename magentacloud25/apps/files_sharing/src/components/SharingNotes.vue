@@ -67,9 +67,9 @@
 <script>
 import Config from '../services/ConfigServiceCustom'
 import SharesMixin from '../mixins/SharesMixin'
-import Share from '../../../../../../../nextcloud/apps/files_sharing/src/models/Share'
+import Share from '../../../../../../nextcloud/apps/files_sharing/src/models/Share'
 import ShareRequests from '..//mixins/ShareRequests'
-import ShareTypes from '../../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
+import ShareTypes from '../../../../../../nextcloud/apps/files_sharing/src/mixins/ShareTypes'
 import { mapGetters } from 'vuex'
 export default {
 	name: 'SharingNotes',
