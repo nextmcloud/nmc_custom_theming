@@ -1,0 +1,59 @@
+#body-user #header, #body-settings #header, #body-public #header{
+	background:var(--color-main-background) !important;
+    border-top: 4px solid var(--magenta-color);
+	border-radius:10px 10px 0 0;
+	height: 64px;
+}
+
+#header {
+	.app-menu-main {
+		& .app-menu-entry {
+			width: auto;
+			height: unset;
+			margin: 0 0.5rem;
+			opacity: 1;
+
+			img {
+				display: none;
+			}
+
+			&:hover .app-menu-entry--label{
+				color: var(--magenta-color);
+			}
+
+			& .app-menu-entry--label{
+				opacity: 1;
+				position: relative;
+				top: unset;
+				left: unset;
+				bottom: unset;
+				font-size: 20px;
+				font-weight: bold;
+				color:var(--color-main-text);
+				text-overflow: unset;
+				overflow: unset;
+				letter-spacing: unset;
+				transform: unset;
+				transition: unset;
+
+			}
+
+			&.app-menu-entry__active{
+				& .app-menu-entry--label{
+					color: var(--magenta-color);
+				}
+				&::before{
+					content: unset;
+				}
+			}
+		}
+	}
+	& .logo{
+		width: 24px;
+	}
+
+    #nextcloud{
+		padding-left:65px;
+	  margin-left: 30px;
+	}
+}
