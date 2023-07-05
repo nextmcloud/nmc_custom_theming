@@ -77,7 +77,7 @@ $maxUploadFilesize = min($upload_max_filesize, $post_max_size);
 				<?php } ?>
 				<?php if ($_['previewURL'] === $_['downloadURL'] && !$_['hideDownload']): ?>
 					<div class="directDownload">
-						<div>
+						<div class="file-details">
 							<?php p($_['filename'])?>&nbsp;(<?php p($_['fileSize']) ?>)
 						</div>
 						<a href="<?php p($_['downloadURL']); ?>" id="downloadFile" class="button">
