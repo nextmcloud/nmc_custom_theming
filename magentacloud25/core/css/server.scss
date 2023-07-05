@@ -18,6 +18,10 @@
 @import 'variables.scss';
 @import 'functions.scss';
 
+@import 'header.scss';
+@import 'footer.scss';
+@import 'breadcrumb.scss';
+@import 'core.scss';
 @import 'fileconflict.scss';
 @import 'file.scss';
 @import 'files-nav.scss';
@@ -29,10 +33,6 @@
 @import 'files-myshares.scss';
 @import 'files-favorites.scss';
 @import 'files-rightclick.scss';
-@import 'core.scss';
-@import 'breadcrumb.scss';
-@import 'header.scss';
-
 
 // Responsive styling
 @import 'mobile.scss';
