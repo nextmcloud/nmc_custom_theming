@@ -92,3 +92,12 @@
 		display: none !important;
 	}
 }
+
+/* Guest view page */
+@media screen and (max-width: 768px) {
+    .container-fixed .closePopup {
+        display: inline !important;
+        float: right !important;
+        margin-right: 0px !important;
+    }
+}
