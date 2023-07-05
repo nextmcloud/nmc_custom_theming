@@ -39,7 +39,17 @@
 							class="sharing-entry__avatar" />
 					</template>
 				</SharingEntrySimple>
-
+				<p class="sharing-message">
+					<span v-if="!canReshare">
+						<!-- {{ t('files_sharing', 'Resharing is not allowed.' ) }} -->
+					</span>
+					<span v-else>
+						<span v-if="isSharedWithMe">
+							{{ t('files_sharing', 'Resharing is allowed.' ) }}
+						</span>
+						{{ t('files_sharing', 'You can create links or send shares by mail. If you invite MagentaCLOUD users, you have more opportunities for collaboration.') }}
+					</span>
+				</p>
 				<!-- add new share input -->
 				<SharingInput v-if="!loading"
 					:can-reshare="canReshare"

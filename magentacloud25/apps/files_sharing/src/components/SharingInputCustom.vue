@@ -22,7 +22,6 @@
 
 <template>
 	<div class="sharing-search">
-		<label for="sharing-search-input">{{ t('files_sharing', 'You can create links or send shares by mail. If you invite MagentaCLOUD users, you have more opportunities for collaboration.') }}</label>
 		<NcSelect ref="select"
 		class="sharing-input"
 			:clear-on-select="true"
@@ -128,7 +127,7 @@ export default {
 		},
 		inputPlaceholder() {
 			const allowRemoteSharing = this.config.isRemoteShareAllowed
-
+			console.log("allowRemoteSharing"+ allowRemoteSharing)
 			if (!this.canReshare) {
 				return t('files_sharing', 'Resharing is not allowed')
 			}
@@ -634,8 +633,9 @@ export default {
 				user: result.uuid || result.value.shareWith,
 				isNoUser: result.value.shareType !== this.SHARE_TYPES.SHARE_TYPE_USER,
 				displayName: result.name || result.label,
+				subtitle,
 				shareWithDisplayNameUnique: result.shareWithDisplayNameUnique || '',
-				...this.shareTypeToIcon(result.value.shareType),
+				icon: this.shareTypeToIcon(result.value.shareType),
 			}
 		},
 

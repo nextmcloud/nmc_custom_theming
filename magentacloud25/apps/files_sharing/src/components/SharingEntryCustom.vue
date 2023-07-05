@@ -34,7 +34,6 @@
 			:aria-label="tooltip"
 			:href="share.shareWithLink"
 			class="sharing-entry__desc">
-			<span>{{ title }}<span v-if="!isUnique" class="sharing-entry__desc-unique"> ({{ share.shareWithDisplayNameUnique }})</span></span>
 				<p v-if="hasStatus">
 					<span>{{ share.status.icon || '' }}</span>
 					<span>{{ share.status.message || '' }}</span>
