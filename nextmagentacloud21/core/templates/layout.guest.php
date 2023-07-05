@@ -79,20 +79,6 @@ if ($isLoginPage || $isShareAuth) {
       <main>
         <div class="login-main">
           <div class="login-section visibility-hidden">
-            <div class="logo">
-              <h1 class="hidden-visually">
-                <?php p($theme->getName()); ?>
-              </h1>
-              <?php if (
-                \OC::$server->getConfig()->getSystemValue('installed', false)
-                && \OC::$server->getConfig()->getAppValue('theming', 'logoMime', false)
-              ) : ?>
-                <img src="<?php p($theme->getLogo()); ?>" />
-              <?php endif; ?>
-              <img src="/themes/nextmagentacloud21/core/img/app-logo.svg" />
-            </div>
-
-            <h1>Magenta<span class="logo-title">CLOUD</span></h1>
             <?php print_unescaped($_['content']); ?>
           </div>
         </div>
