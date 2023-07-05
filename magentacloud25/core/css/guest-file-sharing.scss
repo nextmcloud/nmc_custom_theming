@@ -41,6 +41,10 @@
     border-radius: 8px !important;
 }
 
+.directDownload #downloadFile:active {
+    color: var(--white-color);
+}
+
 .directDownload .file-details{
     font-size: 1.25em !important;
 }
