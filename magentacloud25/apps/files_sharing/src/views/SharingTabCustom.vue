@@ -48,6 +48,14 @@
 					:reshare="reshare"
 					:shares="shares"
 					@add:share="addShare" />
+					<div v-if="canReshare" class="your-shares">
+						{{ t('files_sharing', 'Your shares' ) }}
+					</div>
+					<template v-if="!hasShares && !hasLinkShares && canReshare">
+						<label>
+							{{ t('files_sharing', 'No shares created yet.' ) }}
+						</label>
+					</template>
 
 				<!-- link shares list -->
 				<SharingLinkList v-if="!loading"
