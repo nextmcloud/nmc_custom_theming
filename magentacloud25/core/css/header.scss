@@ -5,7 +5,15 @@
 	height: 64px;
 }
 
+#content{
+	margin-top: 64px;
+}
+
 #header {
+	border-bottom: 1px solid var(--border-color);
+	#notifications{
+		display: none;
+	}
 	.app-menu-main {
 		& .app-menu-entry {
 			width: auto;
