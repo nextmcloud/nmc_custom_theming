@@ -1476,7 +1476,11 @@ opacity: unset !important;
      align-items: center;
  }
 
- .login-header {
+.login-hidden{
+  visibility: hidden;
+}
+
+.login-header {
      display: flex;
      width: 100%;
      justify-content: space-between;

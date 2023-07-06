@@ -74,10 +74,9 @@ if ($isLoginPage || $isShareAuth) {
             <img src="/themes/nextmagentacloud21/core/img/1-T-3-logo.svg">
           </div>
         </div>
-
       <?php endif; ?>
       <main>
-        <div class="login-main">
+        <div class="login-main <?php if($_GET['direct'] != 2){ echo 'login-hidden'; }?>">
           <div class="login-section visibility-hidden">
             <?php print_unescaped($_['content']); ?>
           </div>
