@@ -1,19 +1,19 @@
 #files-public-content #preview {
-    min-height: 65vh !important;
+    min-height: 65vh;
 }
 
 #files-public-content{
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #files-public-content {
-    height: auto !important;
+    height: auto;
 }
 
 #files-public-content #imgframe {
-    padding: 1.5em 0px 1em 0px !important;
+    padding: 1.5em 0px 1em 0px;
 }
 
 .directDownload button,
@@ -21,9 +21,9 @@
 .directDownload input[type='button'],
 .directDownload input[type='submit'],
 .directDownload input[type='reset'] {
-    border-radius: 4px !important;
-    background-color: var(--magenta-color) !important;
-    font-weight: normal !important;
+    border-radius: 4px ;
+    background-color: var(--magenta-color);
+    font-weight: normal;
     border: 1px solid var(--magenta-color);
     font-size: 16px;
     color:var(--white-color);
@@ -43,10 +43,11 @@
 
 .directDownload #downloadFile:active {
     color: var(--white-color);
+    background-color: var(--magenta-color);
 }
 
 .directDownload .file-details{
-    font-size: 1.25em !important;
+    font-size: 1.25em;
 }
 
 .container-fixed .closePopup {
@@ -62,11 +63,11 @@
 }
 
 .closePopup .icon-download{
-    background-image: var(--icon-close-mark) !important;
+    background-image: var(--icon-close-mark);
 }
 
 .closePopup .button {
-    border: unset !important;
+    border: unset;
     background: unset;
 }
 
@@ -81,10 +82,10 @@
 
 .content-dialog .informNow #downloadFile {
     padding: 0.625rem 1.5rem 0.813rem 1.5rem;
-    border-radius: 8px !important;
+    border-radius: 8px;
     width: 13em;
     height: 3em;
-    background: var(--white-color) !important;
+    background: var(--white-color);
     border: 1px solid;
 }
 
@@ -108,7 +109,7 @@
 }
 
 .content-dialog .informNow span:hover {
-    color:var(--magenta-color) !important;
+    color:var(--magenta-color);
 }
 
 .informNow a:hover span {
@@ -116,8 +117,8 @@
 }
 
 .content-button .informNow .icon-download {
-    background-image: var(--icon-magenta-cloud) !important;
-    opacity: unset !important;
+    background-image: var(--icon-magenta-cloud);
+    opacity: unset;
     min-width: 25px;
     min-height: 16px;
 }
