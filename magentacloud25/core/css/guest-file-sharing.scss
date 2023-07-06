@@ -1,0 +1,128 @@
+#files-public-content #preview {
+    min-height: 65vh;
+}
+
+#files-public-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#files-public-content {
+    height: auto;
+}
+
+#files-public-content #imgframe {
+    padding: 1.5em 0px 1em 0px;
+}
+
+.directDownload button,
+.directDownload .button,
+.directDownload input[type='button'],
+.directDownload input[type='submit'],
+.directDownload input[type='reset'] {
+    border-radius: 4px ;
+    background-color: var(--magenta-color);
+    font-weight: normal;
+    border: 1px solid var(--magenta-color);
+    font-size: 16px;
+    color:var(--white-color);
+}
+
+.directDownload .icon-download {
+    background-image: var(--icon-white-download) !important;
+    opacity: unset !important;
+}
+
+.directDownload #downloadFile {
+    margin-top: 1em;
+    margin-bottom: 4em;
+    padding: 0.625em 1.5em !important;
+    border-radius: 8px !important;
+}
+
+.directDownload #downloadFile:active {
+    color: var(--white-color);
+    background-color: var(--magenta-color);
+}
+
+.directDownload .file-details{
+    font-size: 1.25em;
+}
+
+.container-fixed .closePopup {
+    display: inline;
+    float: right;
+    margin-right: 11em;
+}
+
+.content-dialog .content-para {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.closePopup .icon-download{
+    background-image: var(--icon-close-mark);
+}
+
+.closePopup .button {
+    border: unset;
+    background: unset;
+}
+
+.content-button .informNow{
+    display: flex;
+    justify-content: center;
+}
+
+.content-dialog .informNow {
+    margin-top: 1.5em;
+}
+
+.content-dialog .informNow #downloadFile {
+    padding: 0.625rem 1.5rem 0.813rem 1.5rem;
+    border-radius: 8px;
+    width: 13em;
+    height: 3em;
+    background: var(--white-color);
+    border: 1px solid;
+}
+
+.content-dialog {
+    text-align: center;
+    padding: 24px;
+    background-color:var(--white-color);
+    
+}
+
+.content-dialog .informNow span {
+    vertical-align: middle;
+    margin: 0em 0.125em;
+    font-weight: 100;
+}
+
+.informNow a:hover .icon-download {
+    background-image: var(--icon-cloud-btn-magenta) !important;
+    min-width: 25px;
+    min-height: 16px;
+}
+
+.content-dialog .informNow span:hover {
+    color:var(--magenta-color);
+}
+
+.informNow a:hover span {
+    color:var(--magenta-color) !important;
+}
+
+.content-button .informNow .icon-download {
+    background-image: var(--icon-magenta-cloud);
+    opacity: unset;
+    min-width: 25px;
+    min-height: 16px;
+}
+
+.content-dialog .content-para span {
+    font-weight: bold;
+}

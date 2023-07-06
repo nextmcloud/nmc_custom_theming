@@ -15,9 +15,6 @@
 					<a class="name sort columntitle" data-sort="name"><span><?php p($l->t('Name')); ?></span><span class="sort-indicator"></span></a>
 				</div>
 			</th>
-			<th class="hidden column-size">
-				<a class="size sort columntitle" href="#" onclick="event.preventDefault()" data-sort="size"><span><?php p($l->t('Size')); ?></span><span class="sort-indicator"></span></a>
-			</th>
 			<th class="hidden column-mtime">
 				<a class="columntitle" data-sort="mtime"><span><?php p($l->t('Share time')); ?></span><span class="sort-indicator"></span></a>
 			</th>
