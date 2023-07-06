@@ -168,5 +168,6 @@ class OC_Theme {
 		\OCP\Util::addScript('core', 'search');
 		\OCP\Util::addScript('core', 'breadcrumb');
 		\OCP\Util::addScript('core', 'theme');
+		\OCP\Util::addScript('core', 'guestviewinfo');
 	}
 }
