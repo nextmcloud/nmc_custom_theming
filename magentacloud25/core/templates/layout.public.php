@@ -63,7 +63,17 @@
 				p($primary->getIcon());
 			} ?>">
 				<a href="<?php p($primary->getLink()); ?>" class="primary button">
-					<span><?php p($primary->getLabel()) ?></span>
+				<span class="gust-download-svg">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <title>download</title>
+                    <g fill="currentColor">
+                      <g>
+                        <path fill-rule="evenodd" d="M21.25 20.5c.4 0 .75.35.75.75s-.35.75-.75.75H2.75c-.4 0-.75-.35-.75-.75s.35-.75.75-.75zM12 2c.4 0 .75.35.75.75V9.5h3.85l-4.6 7-4.6-7h3.85V2.75c0-.4.35-.75.75-.75z"></path>
+                      </g>
+                    </g>
+                  </svg>
+                </span>
+                <span class="gust-download-label"><?php p($primary->getLabel()) ?></span>
 				</a>
 			</span>
 			<?php if ($template->getActionCount() > 1) { ?>
