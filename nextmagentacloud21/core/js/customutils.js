@@ -614,9 +614,11 @@ function leftSidebarEvents() {
 // Tealium
 window.addEventListener("consentChanged", ()=> redirectToTelekomLogin());
 window.onload = function () {
+  var urlParams = new URLSearchParams(window.location.href);
   if( "object" === typeof utag &&
     "object" === typeof utag.gdpr &&
-    utag.gdpr.getConsentState() !== 0) {
+    utag.gdpr.getConsentState() !== 0 &&
+    (urlParams.has('direct') && urlParams.get('direct') !== '2')) {
     redirectToTelekomLogin();
   }
 }
