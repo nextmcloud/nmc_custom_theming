@@ -612,17 +612,24 @@ function leftSidebarEvents() {
 }
 
 // Tealium
+
+//Add event listener to the consentChanged event. When the consent is given, redirect to Telekom Login
 window.addEventListener("consentChanged", ()=> redirectToTelekomLogin());
+
+//If the page is loaded with consent given, redirect to Telekom Login
 window.onload = function () {
   var urlParams = new URLSearchParams(window.location.href);
   if( "object" === typeof utag &&
     "object" === typeof utag.gdpr &&
     utag.gdpr.getConsentState() !== 0 &&
+    //Check is direct login is not set to 2
     (urlParams.has('direct') && urlParams.get('direct') !== '2')) {
+    //Redirect to Telekom Login
     redirectToTelekomLogin();
   }
 }
 
 function redirectToTelekomLogin(){
+  //Path to Telekom Login
   window.location.href = "/apps/user_oidc/login/1";
 }
