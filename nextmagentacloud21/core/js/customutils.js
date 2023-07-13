@@ -623,7 +623,7 @@ window.onload = function () {
     "object" === typeof utag.gdpr &&
     utag.gdpr.getConsentState() !== 0 &&
     //Check is direct login is not set to 2
-    (urlParams.has('direct') && urlParams.get('direct') !== '2')) {
+    (!urlParams.has('direct') && urlParams.get('direct') !== '2')) {
     //Redirect to Telekom Login
     redirectToTelekomLogin();
   }

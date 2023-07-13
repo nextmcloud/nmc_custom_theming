@@ -2959,4 +2959,8 @@ opacity: unset !important;
   }
   }
 
+.cl-main a{
+  color: #00739f !important;
+}
+
  /*Responsive Styling*/
