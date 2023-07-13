@@ -6,12 +6,9 @@ describe('Settings related changes', () => {
     })
 
     function clickAccountSetting(){
-      cy.wait(3000);
       cy.get('#user-menu')
       .click();
-      cy.wait(3000);
       cy.get("#settings")
-      .click();
     }
     it('should match details in storage utilization text as per english language',()=>{
       clickAccountSetting();

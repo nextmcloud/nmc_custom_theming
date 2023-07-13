@@ -6,10 +6,8 @@ describe('setting personal info related changes', () => {
       })
 
       function clickAccountSetting(){
-        cy.wait(3000);
         cy.get('#user-menu')
         .click();
-        cy.wait(3000);
         cy.get("#settings")
         .click();
       }
