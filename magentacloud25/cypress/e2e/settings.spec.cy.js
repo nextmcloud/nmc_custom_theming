@@ -1,8 +1,8 @@
 describe('Device and session settings related changes', () => {
     beforeEach(() => {
-      cy.visit(`${Cypress.env('local').app_url}/apps/files/`);
-      cy.get('.grouptop input').type(`${Cypress.env('local').user}{enter}`)
-      cy.get('.groupbottom input').type(`${Cypress.env('local').password}{enter}`)
+    cy.visit(`${Cypress.env('local').app_url}/apps/files/`);
+    cy.get('#user').type(`${Cypress.env('local').user}{enter}`)
+    cy.get('#password').type(`${Cypress.env('local').password}{enter}`)
     })
 
     it('For language English check all translation for device and session page', () => {

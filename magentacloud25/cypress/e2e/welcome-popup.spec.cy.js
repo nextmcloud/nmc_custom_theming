@@ -6,8 +6,8 @@ describe('Themes related changes', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.visit(`${Cypress.env('local').app_url}/apps/files/`);
-    cy.get('.grouptop input').type(`${Cypress.env('local').user}{enter}`)
-    cy.get('.groupbottom input').type(`${Cypress.env('local').password}{enter}`)
+    cy.get('#user').type(`${Cypress.env('local').user}{enter}`)
+    cy.get('#password').type(`${Cypress.env('local').password}{enter}`)
   })
 
 
