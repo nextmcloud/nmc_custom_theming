@@ -1459,7 +1459,7 @@ opacity: unset !important;
 #body-login,
 #firstrunwizard .firstrunwizard-header,
 #theming-preview {
-  background: url('../../core/img/background-full.png')!important;
+  background: url('../../core/img/Background_consent.svg')!important;
   background-color: unset !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -1468,6 +1468,17 @@ opacity: unset !important;
   align-items: center !important;
   justify-content: center !important;
   display: flex !important;
+}
+
+.login-consent-layer-buuble-text {
+  height: 450px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 0;
 }
 
  .login-main {

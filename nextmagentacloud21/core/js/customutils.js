@@ -12,7 +12,6 @@ window.onload = function () {
   mobileOnlyClass();
   webTrackingEvents();
   leftSidebarEvents();
-  consent_layer_events();
 };
 
 function brandBarAnimation() {
@@ -618,7 +617,7 @@ window.addEventListener("consentChanged", ()=> redirectToTelekomLogin());
 
 //If the page is loaded with consent given, redirect to Telekom Login
 window.onload = function () {
-  var urlParams = new URLSearchParams(window.location.href);
+  var urlParams = new URLSearchParams(window.location.search);
   if( "object" === typeof utag &&
     "object" === typeof utag.gdpr &&
     utag.gdpr.getConsentState() !== 0 &&

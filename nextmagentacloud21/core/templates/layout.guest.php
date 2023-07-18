@@ -45,6 +45,7 @@ if ($isLoginPage || $isShareAuth) {
 ?>
 
 <body id="<?php p($_['bodyid']); ?>" class="<?php p($nmcBodyClassList); ?>">
+  <img src="/themes/nextmagentacloud21/core/img/Consent_layer_buuble-textinvector.svg" class="login-consent-layer-buuble-text">
   <?php include 'layout.noscript.warning.php'; ?>
   <?php foreach ($_['initialStates'] as $app => $initialState) { ?>
     <input type="hidden" id="initial-state-<?php p($app); ?>" value="<?php p(base64_encode($initialState)); ?>">
