@@ -613,15 +613,15 @@ function leftSidebarEvents() {
 // Tealium
 
 //Add event listener to the consentChanged event. When the consent is given, redirect to Telekom Login
-if(window.location.pathname === "/login"){
-  window.addEventListener("consentChanged", ()=> redirectToTelekomLogin());
+if (window.location.pathname === "/login") {
+  window.addEventListener("consentChanged", () => redirectToTelekomLogin());
 }
 
 //If the page is loaded with consent given, redirect to Telekom Login
-if(document.getElementById("alternative-logins")){
+if (document.getElementById("alternative-logins")) {
   window.onload = function () {
     var urlParams = new URLSearchParams(window.location.search);
-    if( "object" === typeof utag &&
+    if ("object" === typeof utag &&
       "object" === typeof utag.gdpr &&
       utag.gdpr.getConsentState() !== 0 &&
       //Check is direct login is not set to 2
@@ -633,8 +633,14 @@ if(document.getElementById("alternative-logins")){
 }
 
 
-
-function redirectToTelekomLogin(){
+function redirectToTelekomLogin() {
+  var urlParams = new URLSearchParams(window.location.search);
   //Path to Telekom Login
-  window.location.href = "/apps/user_oidc/login/1";
+  let path = "/apps/user_oidc/login/1?redirectUrl=" + window.location.pathname;
+  if (urlParams.has('redirect_url')) {
+    path = "/apps/user_oidc/login/1?redirectUrl=" + encodeURIComponent(urlParams.get('redirect_url'));
+  }else if (window.location.pathname === "/login" && !urlParams.has('redirect_url')) {
+    path = "/apps/user_oidc/login/1";
+  }
+  window.location.href = path;
 }
