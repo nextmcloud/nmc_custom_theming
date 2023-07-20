@@ -42,6 +42,8 @@ if ($isLoginPage || $isShareAuth) {
 } else {
   $nmcBodyClassList = 'nmc-guest';
 }
+
+
 ?>
 
 <body id="<?php p($_['bodyid']); ?>" class="<?php p($nmcBodyClassList); ?>">
@@ -77,7 +79,7 @@ if ($isLoginPage || $isShareAuth) {
         </div>
       <?php endif; ?>
       <main>
-        <div class="login-main <?php if($_GET['direct'] != 2){ echo 'login-hidden'; }?>">
+        <div class="login-main <?php if($_GET['direct'] != 2 && $isLoginPage){ echo 'login-hidden'; }?>">
           <div class="login-section visibility-hidden">
             <?php print_unescaped($_['content']); ?>
           </div>

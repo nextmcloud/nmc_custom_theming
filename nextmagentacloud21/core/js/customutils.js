@@ -613,7 +613,9 @@ function leftSidebarEvents() {
 // Tealium
 
 //Add event listener to the consentChanged event. When the consent is given, redirect to Telekom Login
-window.addEventListener("consentChanged", ()=> redirectToTelekomLogin());
+if(window.location.pathname === "/login"){
+  window.addEventListener("consentChanged", ()=> redirectToTelekomLogin());
+}
 
 //If the page is loaded with consent given, redirect to Telekom Login
 if(document.getElementById("alternative-logins")){
