@@ -18,20 +18,26 @@
   <link rel="manifest" href="<?php print_unescaped('/themes/nextmagentacloud21/core/img/manifest.json'); ?>">
   <?php
   /* Get tealium config  */
-    use OCP\IConfig;
-    $config = \OC::$server->get(IConfig::class);
-    $tealiumConfig = $config->getSystemValue('tealium');
-    if($tealiumConfig && $tealiumConfig['enable']){ ?>
+
+  use OC\Security\CSP\ContentSecurityPolicyNonceManager;
+  use OCP\IConfig;
+  use OCP\IRequest;
+
+  $nonceManager = \OC::$server->get(ContentSecurityPolicyNonceManager::class);
+  $request = \OC::$server->get(IRequest::class);
+  $config = \OC::$server->get(IConfig::class);
+
+  $tealiumConfig = $config->getSystemValue('tealium');
+  if ($tealiumConfig && $tealiumConfig['enable']) { ?>
     <!--TODO :Trying to load Telium library directly from CDN -->
-      <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
-    src="<?php echo $tealiumConfig['url'];?>"></script>
+    <script type="text/javascript" nonce="<?php p($nonceManager->getNonce()) ?>" src="<?php echo $tealiumConfig['url']; ?>"></script>
   <?php } ?>
-   <?php emit_css_loading_tags($_); ?>
+  <?php emit_css_loading_tags($_); ?>
   <?php emit_script_loading_tags($_); ?>
   <?php print_unescaped($_['headers']); ?>
 </head>
 <?php
-$pathInfo = \OC::$server->getRequest()->getPathInfo();
+$pathInfo = $request->getPathInfo();
 
 $isLoginPage = $pathInfo === '/login';
 $isShareAuth = preg_match("#^/s/\w+/authenticate#", $pathInfo) === 1;
