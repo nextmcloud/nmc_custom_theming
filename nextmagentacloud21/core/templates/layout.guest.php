@@ -1,3 +1,33 @@
+<?php
+
+use OC\Security\CSP\ContentSecurityPolicyNonceManager;
+use OCP\IConfig;
+use OCP\IRequest;
+
+/** @var IConfig $config */
+$nonceManager = OC::$server->get(ContentSecurityPolicyNonceManager::class);
+
+/** @var IRequest $request */
+$request = OC::$server->get(IRequest::class);
+
+/** @var IConfig $config */
+$config = OC::$server->get(IConfig::class);
+
+/** @var array $tealiumConfig */
+$tealiumConfig = $config->getSystemValue('tealium');
+
+$pathInfo = $request->getPathInfo();
+$isLoginPage = $pathInfo === '/login';
+$isShareAuth = preg_match("#^/s/\w+/authenticate#", $pathInfo) === 1;
+
+
+$nmcBodyClassList = '';
+if ($isLoginPage || $isShareAuth) {
+  $nmcBodyClassList = 'nmc-login';
+} else {
+  $nmcBodyClassList = 'nmc-guest';
+}
+?>
 <!DOCTYPE html>
 <html class="ng-csp" data-placeholder-focus="false" lang="<?php p($_['language']); ?>" data-locale="<?php p($_['locale']); ?>">
 
@@ -18,34 +48,18 @@
   <link rel="manifest" href="<?php print_unescaped('/themes/nextmagentacloud21/core/img/manifest.json'); ?>">
   <?php
   /* Get tealium config  */
-    use OCP\IConfig;
-    $config = \OC::$server->get(IConfig::class);
-    $tealiumConfig = $config->getSystemValue('tealium');
     if($tealiumConfig && $tealiumConfig['enable']){ ?>
     <!--TODO :Trying to load Telium library directly from CDN -->
-      <script type="text/javascript" nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>"
+      <script type="text/javascript" nonce="<?php p($nonceManager->getNonce()) ?>"
     src="<?php echo $tealiumConfig['url'];?>"></script>
+  <?php } ?>
+  <?php if ($isLoginPage) { ?>
+    <script type="text/javascript" nonce="<?php p($nonceManager->getNonce()) ?>" src="/themes/nextmagentacloud21/core/js/login/consentlayer.js"> </script>
   <?php } ?>
    <?php emit_css_loading_tags($_); ?>
   <?php emit_script_loading_tags($_); ?>
   <?php print_unescaped($_['headers']); ?>
 </head>
-<?php
-$pathInfo = \OC::$server->getRequest()->getPathInfo();
-
-$isLoginPage = $pathInfo === '/login';
-$isShareAuth = preg_match("#^/s/\w+/authenticate#", $pathInfo) === 1;
-
-$nmcBodyClassList = '';
-if ($isLoginPage || $isShareAuth) {
-  $nmcBodyClassList = 'nmc-login';
-} else {
-  $nmcBodyClassList = 'nmc-guest';
-}
-
-
-?>
-
 <body id="<?php p($_['bodyid']); ?>" class="<?php p($nmcBodyClassList); ?>">
   <img src="/themes/nextmagentacloud21/core/img/Consent_layer_buuble-textinvector.svg" class="login-consent-layer-buuble-text">
   <?php include 'layout.noscript.warning.php'; ?>
@@ -62,8 +76,8 @@ if ($isLoginPage || $isShareAuth) {
 									<?php p($theme->getName()); ?>
 								</h1>
 								<?php if (
-                  \OC::$server->getConfig()->getSystemValue('installed', false)
-                  && \OC::$server->getConfig()->getAppValue('theming', 'logoMime', false)
+                  $config->getSystemValue('installed', false)
+                  && $config->getAppValue('theming', 'logoMime', false)
                 ) : ?>
 									<img src="<?php p($theme->getLogo()); ?>"/>
 								<?php endif; ?>
