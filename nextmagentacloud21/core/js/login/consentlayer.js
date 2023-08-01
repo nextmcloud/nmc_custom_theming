@@ -1,28 +1,28 @@
 // Tealium
 
 //Create URLSearchParams object
-var urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
 
 //Path to Telekom Login
-var path = "/apps/user_oidc/login/1";
+let path = "/apps/user_oidc/login/1";
 
 //Check if the page is the login page
-var checkIsLoginPage = function () {
+const checkIsLoginPage = function () {
   return window.location.pathname === "/login";
 };
 
 //Check if url has redirect_url parameter
-var checkIsRedirectUrl = function () {
+const checkIsRedirectUrl = function () {
   return urlParams.has('redirect_url');
 };
 
 //Check if the page is the alternative login page
-var checkIsAlternativeLogin = function () {
+const checkIsAlternativeLogin = function () {
   return document.getElementById("alternative-logins");
 };
 
 //Add event listener to the consentChanged event. When the consent is given, redirect to Telekom Login
-if (checkIsLoginPage() && !checkIsRedirectUrl()) {
+if (checkIsLoginPage()) {
   window.addEventListener("consentChanged", function () {
     return redirectToTelekomLogin();
   });
