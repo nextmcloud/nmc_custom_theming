@@ -16,11 +16,6 @@ const checkIsRedirectUrl = function () {
   return urlParams.has('redirect_url');
 };
 
-//Check if the page is the alternative login page
-const checkIsAlternativeLogin = function () {
-  return document.getElementById("alternative-logins");
-};
-
 //Add event listener to the consentChanged event. When the consent is given, redirect to Telekom Login
 if (checkIsLoginPage()) {
   window.addEventListener("consentChanged", function () {
