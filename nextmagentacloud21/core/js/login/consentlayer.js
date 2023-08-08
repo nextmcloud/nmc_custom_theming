@@ -16,6 +16,10 @@ const checkIsRedirectUrl = function () {
   return urlParams.has('redirect_url');
 };
 
+const checkIsDirectLogin = function () {
+    return urlParams.has('direct') && urlParams.get('direct') === '2';
+}
+
 //Add event listener to the consentChanged event. When the consent is given, redirect to Telekom Login
 if (checkIsLoginPage()) {
   window.addEventListener("consentChanged", function () {
@@ -26,7 +30,8 @@ if (checkIsLoginPage()) {
 //If the page is loaded with consent given, redirect to Telekom Login
 if ("object" === typeof utag &&
   "object" === typeof utag.gdpr &&
-  utag.gdpr.getConsentState() !== 0) {
+  utag.gdpr.getConsentState() !== 0 &&
+  !checkIsDirectLogin()) {
   //Redirect to Telekom Login
   redirectToTelekomLogin();
 }
