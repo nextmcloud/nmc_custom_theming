@@ -84,13 +84,13 @@ if ($isLoginPage || $isShareAuth) {
 							</div>
 							<h5>Magenta<span class="logo-title">CLOUD</span></h5>
 						</div>
-					</header> -->
+					</header>
 
         <div class="login-header">
           <div class="app-logo brand">
             <img src="/themes/nextmagentacloud21/core/img/1-T-3-logo.svg">
           </div>
-        </div>
+        </div> -->
       <?php endif; ?>
       <main>
         <div class="login-main <?php if($_GET['direct'] != 2 && $isLoginPage){ echo 'login-hidden'; }?>">
